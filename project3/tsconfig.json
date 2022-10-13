@@ -18,9 +18,12 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
+    "rootDirs": ["src"],
+    "outDir": "dist",
+    "types": ["node"],
     "jsx": "react-jsx"
   },
   "include": [
     "src"
-  ]
+, "graphQL/Server.js"  ]
 }
