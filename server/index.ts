@@ -32,7 +32,7 @@ credentials: true,
   }
 }
 app.use(cors(corsOptions))
-const uri = "mongodb://localhost:27017/testmongo";
+const uri = "mongodb+srv://sips:sips123@sips.zjjstwz.mongodb.net/?retryWrites=true&w=majority";
 // tror dette må gjøre om til å bruke cloud based varsjonenen siden tror man må laste ned MONGO DB på pcen for å få det til å funke akk nå
 
 //@ts-ignore
