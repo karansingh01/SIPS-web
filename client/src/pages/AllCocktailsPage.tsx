@@ -16,18 +16,22 @@ const AllCocktailsPage = () => {
     let fav2 : boolean = false;
     let img2 : string = 'https://www.liquor.com/thmb/GnTu-oC4mKRUCVztPZqDiAWw4l8=/735x0/whiskey-smash-720x720-recipe-c696cdf017494dbd981e51dca3f4402e.jpg';
 
-    let desc3 : string = "Nomanomanom";
+    let desc3 : string = "Nomanomanom NAAAAMAMAMAMA AMAMMAMAMAMAMMAM AMAMAM";
     let drinkName3 : string = "GT babyyy";
     let fav3 : boolean = true;
     let img3 : string = 'https://assets.bonappetit.com/photos/62cdd8cedc3e934b224d8fb5/1:1/w_2560%2Cc_limit/0712-paloma-lede.jpg';
 
+
+
     return (
-        <SimpleGrid columns={[1, 2, 3]} spacing={3} mt={5}>
+        <SimpleGrid margin={'30px'} rounded={20} columns={[1, 2, 3]} minChildWidth={'330px'} spacing={2} mt={5} backgroundColor={'beige'}>
+            <CocktailCard name={drinkName1} description={desc1} favorite={fav1} image={img1}/>
+            <CocktailCard name={drinkName2} description={desc2} favorite={fav2} image={img2}/>
+            <CocktailCard name={drinkName3} description={desc3} favorite={fav3} image={img3}/>
             <CocktailCard name={drinkName1} description={desc1} favorite={fav1} image={img1}/>
             <CocktailCard name={drinkName2} description={desc2} favorite={fav2} image={img2}/>
             <CocktailCard name={drinkName3} description={desc3} favorite={fav3} image={img3}/>
          </SimpleGrid>
-
     );
 };
 

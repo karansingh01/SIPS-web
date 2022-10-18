@@ -8,7 +8,8 @@ import {
     Stack,
     Image,
     HStack,
-    IconButton
+    IconButton,
+    Container
   } from '@chakra-ui/react';
   import {FaRegHeart, FaHeart} from "react-icons/fa";
   
@@ -70,9 +71,9 @@ import {
             />
           </Box>
           <Stack pt={10} >
-            <Text align={'center'} fontSize={'15px'} fontFamily={'body'} fontWeight={100}>
+            <Container maxW='270px' textAlign={'center'} fontSize={'15px'} fontFamily={'body'} fontWeight={100}>
               {description} {/* blablablablabla blabalablabla blablabla eruygierguouerwg ergag aegrgeg aergeargregegrag */}
-            </Text>
+            </Container>
               <Text textTransform={'uppercase'} fontSize={'10px'} color={'gray.300'} textAlign={'right'} marginBottom={'10px'}>
                 How I'm made...
               </Text>
