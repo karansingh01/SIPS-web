@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { useQuery, gql } from '@apollo/client';
+import AllCocktailsPage from './pages/AllCocktailsPage';
 
 
 const GET_LOCATIONS = gql`
@@ -37,8 +38,8 @@ export default function App() {
   return (
     <div>
       <h2>My first Apollo app 🚀</h2>
-      <h2>Console.logger fra en nettside ved bruk av apollo</h2>
-      <br />
+      <div><AllCocktailsPage/></div>
+      
 {/*       <DisplayLocations />
  */}
     </div>
