@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, useColorModeValue, SimpleGrid, Icon  } from "@chakra-ui/react";
 import CocktailCard from '../components/CocktailCard';
+import Header from '../components/Header';
 
 const AllCocktailsPage = () => {
     /**
@@ -24,6 +25,8 @@ const AllCocktailsPage = () => {
 
 
     return (
+        <Box>
+        <Header/>
         <SimpleGrid margin={'30px'} rounded={20} columns={[1, 2, 3]} minChildWidth={'330px'} spacing={2} mt={5} backgroundColor={'beige'}>
             <CocktailCard name={drinkName1} description={desc1} favorite={fav1} image={img1}/>
             <CocktailCard name={drinkName2} description={desc2} favorite={fav2} image={img2}/>
@@ -32,6 +35,7 @@ const AllCocktailsPage = () => {
             <CocktailCard name={drinkName2} description={desc2} favorite={fav2} image={img2}/>
             <CocktailCard name={drinkName3} description={desc3} favorite={fav3} image={img3}/>
          </SimpleGrid>
+         </Box>
     );
 };
 

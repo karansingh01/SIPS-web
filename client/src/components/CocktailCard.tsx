@@ -13,9 +13,6 @@ import {
   } from '@chakra-ui/react';
   import {FaRegHeart, FaHeart} from "react-icons/fa";
   
-  /* const IMAGE =
-    'https://www.liquor.com/thmb/fO-COKLw_iEA28v8K4XQjzMhkfw=/735x0/very-sexy-martini-720x720-primary-b1212ebf73f54f898a56f7f0b60c0a34.jpg';
-   */
   export default function CocktailCard({name, description, favorite, image}:{name: string; description: string; favorite: boolean, image: string}) {
     const IMAGE = image;
 
@@ -39,6 +36,7 @@ import {
             </Stack>
           <Box
           alignContent={'center'}
+          boxShadow={'base'} /**Funker ikke */
             /* marginTop={'20px'}
             mt={-12}
             pos={'relative'}
