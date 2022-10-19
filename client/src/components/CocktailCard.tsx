@@ -71,7 +71,10 @@ import {
           </Box>
           <Stack pt={10} >
             <Container maxW='270px' textAlign={'center'} fontSize={'15px'} fontFamily={'body'} fontWeight={100}>
-              {description} {/* blablablablabla blabalablabla blablabla eruygierguouerwg ergag aegrgeg aergeargregegrag */}
+              
+               {description.slice(0, 20)}
+               {description[21] ? "..." : null}
+             {/*  {description} */} {/* blablablablabla blabalablabla blablabla eruygierguouerwg ergag aegrgeg aergeargregegrag */}
             </Container>
               <Text textTransform={'uppercase'} fontSize={'10px'} color={'gray.300'} textAlign={'right'} marginBottom={'10px'}>
                 How I'm made...

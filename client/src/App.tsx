@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { ChakraProvider } from '@chakra-ui/react'
 import { useQuery, gql } from '@apollo/client';
 import AllCocktailsPage from './pages/AllCocktailsPage';
 
@@ -36,8 +37,9 @@ const GET_LOCATIONS = gql`
  */
 export default function App() {
   return (
+    <ChakraProvider>
       <div><AllCocktailsPage/></div>
-      
+    </ChakraProvider>
 /*       <DisplayLocations />
  */
     
