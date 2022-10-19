@@ -47,43 +47,41 @@ const AllCocktailsPage = () => {
       }, 
     ]
 
-    /**
-     * Ish for henting av cocktails på ordentlig:
-     * const [cocktails, setCocktails] = useState([]);
-     * 
-     * const getCocktails = async () => {
-     *   henter fra databasen
-     * }
-     */
 
-   const [cocktails, setCocktails] = useState(dummyCocktails);
+      /* For søk. Denne funker ikke helt atm */
+      const [query, setQuery] = useState('')
+      const [cocktails, setCocktails] = useState(dummyCocktails);
+      const [filteredResults, setFilteredResults] = useState(dummyCocktails);
 
-   /*  For søk. Denne funker ikke helt atm*/
-/*       const [query, setQuery] = useState("");
-      const [searchParam] = useState(["name"]);
-
-      useEffect(() => {
-         const filteredCocktails = cocktails.filter(
-            (cocktail) => cocktail.name === query
-         );
-         setCocktails(filteredCocktails);
-      }, cocktails); */
-     
+       const searchItems = (searchValue : string) => {
+         setQuery(searchValue);
+         console.log(searchValue);
+         if (query !== ''){
+         const filteredData = cocktails.filter((cocktail) => {
+            return Object.values(cocktail).join('').toLowerCase().includes(query.toLowerCase())
+        })
+         setFilteredResults(filteredData)
+        } else {
+         setFilteredResults(cocktails)
+        }
+       };
       
+
+
     return (
 
         <Flex  flexDirection='column'> 
         <Header />
         <Grid transform='translate(0%, -15%)' margin={'30px'} rounded={20} templateRows='repeat(1fr)' templateColumns='repeat(1fr)' gap={4} mt={5} /* backgroundColor={'#ede6df'} */>
         <GridItem colSpan={4}>
-            <SearchBar /* q={query} setQuery={setQuery} *//>
+            <SearchBar q={query} searchItems={searchItems}/>
         </GridItem>
         <GridItem colSpan={4}>
         <SimpleGrid columns={[1, 2, 3]} minChildWidth={'330px'} spacing={1} backgroundColor={'#ede6df'} rounded={20} >
-            {cocktails.length > 0 ? (
+            {filteredResults.length > 0 ? (
                <>
-                  {cocktails[0] ? (
-                     cocktails.map((cocktail) => <CocktailCard key={cocktail.id} cocktail={cocktail} />)
+                  {filteredResults[0] ? (
+                     filteredResults.map((cocktail) => <CocktailCard key={cocktail.id} cocktail={cocktail} />)
                   ) : (
                      <Text>There are no cocktails available</Text>
                   )}
