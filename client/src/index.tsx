@@ -2,23 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
 import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
-/* root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-); */
-
-
 
 
 const client = new ApolloClient({
-  uri: 'https://flyby-gateway.herokuapp.com/',
+  uri: 'https://flyby-gateway.herokuapp.com/',   // her må iv hente API?
   cache: new InMemoryCache(),
 });
 
@@ -43,7 +35,4 @@ client
     </ApolloProvider>,
   );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+

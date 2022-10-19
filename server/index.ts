@@ -33,7 +33,7 @@ credentials: true,
 }
 app.use(cors(corsOptions))
 const uri = "mongodb+srv://sips:sips123@sips.zjjstwz.mongodb.net/?retryWrites=true&w=majority";
-// tror dette må gjøre om til å bruke cloud based varsjonenen siden tror man må laste ned MONGO DB på pcen for å få det til å funke akk nå
+
 
 //@ts-ignore
 mongoose.connect(uri, { useUnifiedTopology: true, useNewUrlParser: true })
@@ -42,10 +42,6 @@ mongoose.connect(uri, { useUnifiedTopology: true, useNewUrlParser: true })
 // Drop the 'foo' collection from the current database
 // mongoose.connection.db.dropCollection('apollo', function(err, result) {});
 
-//   mongoose.connect(uri,function(){
-//     /* Drop the DB */
-//     mongoose.connection.db.dropDatabase();
-// });
 
 const connection = mongoose.createConnection(uri);
 autoIncrement.initialize(connection);
@@ -73,55 +69,3 @@ app.listen(PORT, () => {
 });
 }
 startServer().catch(e=>console.log("error strting server======== ",e))
-
-
-
-
-/* import { Request, Response, Application } from 'express';
-const app = express();
-app.set("port", 3000);
-
-app.get('/', (req:any,res: any) => {
-   res.send("Hello World");
-});
-app.listen(app.get("port"),() =>{
-  console.log("App is running on http://localhost:d", app.get("port"))
- });
- */
-
-
-
-
-
-
-/* 
- import { responsePathAsArray } from "graphql";
- import { log } from 'console';
- 
- const uriGood: string = process.env.MONGO_DB_PATH as string;
-  
-
- const {ApolloServer } = require('apollo-server');
- const mongoose = require('mongoose')
- 
- 
- const uri: string = "mongodb+srv://sips:sips123@sips.zjjstwz.mongodb.net/?retryWrites=true&w=majority";
- 
-const tyepDefs = require('./graphql/typeDefs')
-const resolvers = require('./graphql/resolvers')
-
-const server = new ApolloServer({
-   tyepDefs,
-   resolvers
-});
-
-
- mongoose.connect(uri, {useNewUrlParser:true})
- .then(()=> {
-console.log("wohoo monogoggodb");
-return server.listen({port:5000});
-})
-.then((res:any) => {
-   console.log(res.url)
-});
- */
