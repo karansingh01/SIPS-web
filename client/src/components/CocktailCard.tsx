@@ -7,20 +7,25 @@ import {
     Image,
     Container
   } from '@chakra-ui/react';
+  import { useState } from 'react';
   import {FaRegHeart, FaHeart} from "react-icons/fa";
   
-  /**
-   * Vil hente ut CocktailCard basert på cocktail:
-   * CocktailCard({ cocktail }: Props) {
-   * let name : string = cocktail.name
-   * let description : string = cocktail.description
-   * let favorite : boolean = cocktail.favorite
-   * ...
-   * }
-   */
-  export default function CocktailCard({name, description, favorite, image}:{name: string; description: string; favorite: boolean, image: string}) {
-    const IMAGE = image;
+  
+  export default function CocktailCard({cocktail}:{cocktail : {id : number, name : string, description  :string, favorite : boolean, image : string }}) {
+    const IMAGE = cocktail.image;
+    let name : string = cocktail.name
+    let description : string = cocktail.description
+    let favorite : boolean = cocktail.favorite
 
+    /**
+     * toggler favoritt-knapp (ikke faktisk logikk så langt obv)
+     */
+    const [isFav, setFav] = useState(favorite); 
+    const toggleFav = () => {
+      setFav(!isFav);
+      cocktail.favorite = isFav;
+   };
+  
     return (
       <Center py={12}>
         <Box
@@ -33,7 +38,7 @@ import {
           borderColor={'beige'} 
           pos={'relative'}>
             <Stack style={{flexDirection: 'row-reverse'}} marginBottom={-20}> 
-            {favorite ?  <FaHeart color={'lightpink'} size={20} /> : <FaRegHeart color={'lightpink'} size={20} />}
+            {isFav ?  <FaHeart color={'lightpink'} size={20} onClick={toggleFav} /> : <FaRegHeart color={'lightpink'} size={20} onClick={toggleFav}/>}
             </Stack>
             <Stack pt={20} align={'center'} marginBottom={10} marginTop={0}> 
                 <Text color={'gray.500'} fontSize={'lg'} textTransform={'uppercase'} >

@@ -39,9 +39,9 @@ const GET_LOCATIONS = gql`
 }
  */
 export default function App() {
+
   return (
     <ChakraProvider>
-      {/* <div><AllCocktailsPage/></div> */}
       <HashRouter>
         <Routes>
           <Route path="/" element={<AllCocktailsPage />} />
