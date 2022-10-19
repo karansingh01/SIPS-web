@@ -1,8 +1,7 @@
 import React from "react";
-import { Box, useColorModeValue, SimpleGrid, Icon,  Wrap, WrapItem , Stack, Flex, Grid, GridItem  } from "@chakra-ui/react";
+import { SimpleGrid, Flex } from "@chakra-ui/react";
 import CocktailCard from '../components/CocktailCard';
 import Header from '../components/Header';
-import styled from "@emotion/styled";
 
 const AllCocktailsPage = () => {
     /**

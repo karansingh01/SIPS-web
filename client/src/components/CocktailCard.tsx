@@ -2,13 +2,9 @@ import {
     Box,
     Center,
     useColorModeValue,
-    Heading,
     Text,
-    Textarea,
     Stack,
     Image,
-    HStack,
-    IconButton,
     Container
   } from '@chakra-ui/react';
   import {FaRegHeart, FaHeart} from "react-icons/fa";

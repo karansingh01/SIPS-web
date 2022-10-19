@@ -1,16 +1,14 @@
 import {
     Box,
-    Center,
-    useColorModeValue,
     Heading,
     Text,
-    Textarea,
     Stack,
-    Image,
     Container,
     Button
   } from '@chakra-ui/react';
   import {FaHeart} from "react-icons/fa";
+  import {BiDrink} from "react-icons/bi";
+
 
 export default function Header(){
 
@@ -42,18 +40,21 @@ export default function Header(){
             </Button> </Stack>
             <Container /* size="container.lg" */ height="600px" position="relative" marginLeft={25}>
               <Stack
-                spacing={150}
-                w={'full'}
-                maxW={'lg'}
+                /* spacing={150} */
+               /*  w={'full'}*/
+                maxW={'xs'} 
                 position="absolute"
                 marginTop={'-50px'} 
                 /* marginLeft={-25} */>
-                <Heading color={'beige'} fontSize={'40px'}>
+                <Heading color={'beige'} fontSize={'40px'} marginBottom={150}>
                   {TITLE}
                 </Heading>
                 <Text fontSize={'15px'} color={'grey'}>
                   {text}
                 </Text>
+                <Button size={'md'} leftIcon={<BiDrink color={'lightpink'} size={20}/>}  color={'beige'} variant={'outline'} /* maxWidth={'150px'} */>
+                Mix me a drink!
+            </Button> 
               </Stack>
             </Container>
           </Box>
