@@ -4,7 +4,7 @@ import "./App.css";
 import { ChakraProvider } from "@chakra-ui/react";
 import { useQuery, gql } from "@apollo/client";
 import AllCocktailsPage from "./pages/AllCocktailsPage";
-import TestPage from "./pages/CocktailRecipePage";
+
 import { HashRouter, Route, Routes } from "react-router-dom";
 import CocktailRecipePage from "./pages/CocktailRecipePage";
 import FavoritesPage from "./pages/FavoritesPage";

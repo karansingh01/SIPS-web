@@ -1,52 +1,67 @@
 import {
-    Box,
-    Center,
-    useColorModeValue,
-    Text,
-    Stack,
-    Image,
-    Container
-  } from '@chakra-ui/react';
-  import {FaRegHeart, FaHeart} from "react-icons/fa";
-  
-  /**
-   * Vil hente ut CocktailCard basert på cocktail:
-   * CocktailCard({ cocktail }: Props) {
-   * let name : string = cocktail.name
-   * let description : string = cocktail.description
-   * let favorite : boolean = cocktail.favorite
-   * ...
-   * }
-   */
-  export default function CocktailCard({name, description, favorite, image}:{name: string; description: string; favorite: boolean, image: string}) {
-    const IMAGE = image;
+  Box,
+  Center,
+  useColorModeValue,
+  Text,
+  Stack,
+  Image,
+  Container,
+} from "@chakra-ui/react";
+import { FaRegHeart, FaHeart } from "react-icons/fa";
 
-    return (
-      <Center py={12}>
+/**
+ * Vil hente ut CocktailCard basert på cocktail:
+ * CocktailCard({ cocktail }: Props) {
+ * let name : string = cocktail.name
+ * let description : string = cocktail.description
+ * let favorite : boolean = cocktail.favorite
+ * ...
+ * }
+ */
+export default function CocktailCard({
+  name,
+  description,
+  favorite,
+  image,
+}: {
+  name: string;
+  description: string;
+  favorite: boolean;
+  image: string;
+}) {
+  const IMAGE = image;
+
+  return (
+    <Center py={12}>
+      <Box
+        role={"group"}
+        p={6}
+        maxW={"330px"}
+        w={"full"}
+        rounded={15}
+        bg={useColorModeValue("#f7f0e9", "gray.800")}
+        borderColor={"beige"}
+        pos={"relative"}
+      >
+        <Stack style={{ flexDirection: "row-reverse" }} marginBottom={-20}>
+          {favorite ? (
+            <FaHeart color={"lightpink"} size={20} />
+          ) : (
+            <FaRegHeart color={"lightpink"} size={20} />
+          )}
+        </Stack>
+        <Stack pt={20} align={"center"} marginBottom={10} marginTop={0}>
+          <Text color={"gray.500"} fontSize={"lg"} textTransform={"uppercase"}>
+            {name}
+          </Text>
+        </Stack>
         <Box
-          role={'group'}
-          p={6}
-          maxW={'330px'}
-          w={'full'}
-          rounded={15}
-          bg={useColorModeValue('#f7f0e9', 'gray.800')}
-          borderColor={'beige'} 
-          pos={'relative'}>
-            <Stack style={{flexDirection: 'row-reverse'}} marginBottom={-20}> 
-            {favorite ?  <FaHeart color={'lightpink'} size={20} /> : <FaRegHeart color={'lightpink'} size={20} />}
-            </Stack>
-            <Stack pt={20} align={'center'} marginBottom={10} marginTop={0}> 
-                <Text color={'gray.500'} fontSize={'lg'} textTransform={'uppercase'} >
-                {name}
-                </Text> 
-            </Stack>
-          <Box
-          alignContent={'center'}
-          /* boxShadow={'base'} */ 
+          alignContent={"center"}
+          /* boxShadow={'base'} */
           /**
            * Her er det mye hentet fra chakra. Tror det er for mobil-versjon, men usikker?
            */
-            /* marginTop={'20px'}
+          /* marginTop={'20px'}
             mt={-12}
             pos={'relative'}
             color={'red'}
@@ -68,26 +83,38 @@ import {
               _after: {
                 filter: 'blur(20px)',
               },
-            }} */>
-            <Image
-              rounded={15}
-              height={230}
-              width={282}
-              objectFit={'cover'}
-              src={IMAGE}
-            />
-          </Box>
-          <Stack pt={10} >
-            <Container maxW='270px' textAlign={'center'} fontSize={'15px'} fontFamily={'body'} fontWeight={100}>
-               {description.slice(0, 20)}
-               {description[21] ? "..." : null}
-             </Container>
-              <Text textTransform={'uppercase'} fontSize={'10px'} color={'gray.300'} textAlign={'right'} marginBottom={'10px'}>
-                How I'm made...
-              </Text>
-
-          </Stack>
+            }} */
+        >
+          <Image
+            rounded={15}
+            height={230}
+            width={282}
+            objectFit={"cover"}
+            src={IMAGE}
+          />
         </Box>
-      </Center>
-    );
-  }
+        <Stack pt={10}>
+          <Container
+            maxW="270px"
+            textAlign={"center"}
+            fontSize={"15px"}
+            fontFamily={"body"}
+            fontWeight={100}
+          >
+            {description.slice(0, 20)}
+            {description[21] ? "..." : null}
+          </Container>
+          <Text
+            textTransform={"uppercase"}
+            fontSize={"10px"}
+            color={"gray.300"}
+            textAlign={"right"}
+            marginBottom={"10px"}
+          >
+            How I'm made...
+          </Text>
+        </Stack>
+      </Box>
+    </Center>
+  );
+}
