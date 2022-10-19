@@ -21,7 +21,7 @@ const AllCocktailsPage = () => {
     let drinkName3 : string = "GT babyyy";
     let fav3 : boolean = true;
     let img3 : string = 'https://assets.bonappetit.com/photos/62cdd8cedc3e934b224d8fb5/1:1/w_2560%2Cc_limit/0712-paloma-lede.jpg';
-
+    console.log("AllCocktails");
     /**
      * Ish for henting av cocktails:
      */
@@ -30,7 +30,6 @@ const AllCocktailsPage = () => {
 
         <Flex  flexDirection='column'> 
         <Header />
-
         <SimpleGrid transform='translate(0%, -10%)' margin={'30px'} rounded={20} columns={[1, 2, 3]} minChildWidth={'330px'} spacing={1} mt={5} backgroundColor={'#ede6df'}>
             {/*
             mapping for å hente ut alle cocktails i databasen; lagd for å hente ut cocktail direkte etter id, ikke navn, bilde osv. :

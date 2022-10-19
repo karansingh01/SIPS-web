@@ -4,6 +4,8 @@ import './App.css';
 import { ChakraProvider } from '@chakra-ui/react'
 import { useQuery, gql } from '@apollo/client';
 import AllCocktailsPage from './pages/AllCocktailsPage';
+import TestPage from './pages/TestPage';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 
 
 const GET_LOCATIONS = gql`
@@ -37,8 +39,15 @@ const GET_LOCATIONS = gql`
  */
 export default function App() {
   return (
+
     <ChakraProvider>
-      <div><AllCocktailsPage/></div>
+      {/* <div><AllCocktailsPage/></div> */}
+      <HashRouter>
+        <Routes>
+          <Route path='/' element={<AllCocktailsPage/>} />
+          <Route path='/test' element={<TestPage/>} />
+        </Routes>
+      </HashRouter>
     </ChakraProvider>
 /*       <DisplayLocations />
  */
