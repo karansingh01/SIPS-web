@@ -1,12 +1,13 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { ChakraProvider } from '@chakra-ui/react'
-import { useQuery, gql } from '@apollo/client';
-import AllCocktailsPage from './pages/AllCocktailsPage';
-import TestPage from './pages/TestPage';
-import { HashRouter, Route, Routes } from 'react-router-dom';
-
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { ChakraProvider } from "@chakra-ui/react";
+import { useQuery, gql } from "@apollo/client";
+import AllCocktailsPage from "./pages/AllCocktailsPage";
+import TestPage from "./pages/CocktailRecipePage";
+import { HashRouter, Route, Routes } from "react-router-dom";
+import CocktailRecipePage from "./pages/CocktailRecipePage";
+import FavoritesPage from "./pages/FavoritesPage";
 
 const GET_LOCATIONS = gql`
   query GetLocations {
@@ -39,19 +40,17 @@ const GET_LOCATIONS = gql`
  */
 export default function App() {
   return (
-
     <ChakraProvider>
       {/* <div><AllCocktailsPage/></div> */}
       <HashRouter>
         <Routes>
-          <Route path='/' element={<AllCocktailsPage/>} />
-          <Route path='/test' element={<TestPage/>} />
+          <Route path="/" element={<AllCocktailsPage />} />
+          <Route path="/cr" element={<CocktailRecipePage />} />
+          <Route path="/fav" element={<FavoritesPage />} />
         </Routes>
       </HashRouter>
     </ChakraProvider>
-/*       <DisplayLocations />
- */
-    
+    /*       <DisplayLocations />
+     */
   );
 }
-
