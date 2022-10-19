@@ -1,7 +1,8 @@
 import React from "react";
-import { SimpleGrid, Flex } from "@chakra-ui/react";
+import { SimpleGrid, Flex, Grid, GridItem } from "@chakra-ui/react";
 import CocktailCard from '../components/CocktailCard';
 import Header from '../components/Header';
+import SearchBar from '../components/SearchBar';
 
 const AllCocktailsPage = () => {
     /**
@@ -30,7 +31,11 @@ const AllCocktailsPage = () => {
 
         <Flex  flexDirection='column'> 
         <Header />
-        <SimpleGrid transform='translate(0%, -10%)' margin={'30px'} rounded={20} columns={[1, 2, 3]} minChildWidth={'330px'} spacing={1} mt={5} backgroundColor={'#ede6df'}>
+        <Grid transform='translate(0%, -10%)' margin={'30px'} rounded={20}/*  h='200px' */ templateRows='repeat(1fr)' templateColumns='repeat(1fr)' gap={4} mt={5} /* backgroundColor={'#ede6df'} */>
+         <GridItem colSpan={4}><SearchBar/></GridItem>
+         <GridItem colSpan={4}>
+        <SimpleGrid  columns={[1, 2, 3]} minChildWidth={'330px'} spacing={1} backgroundColor={'#ede6df'} rounded={20} >
+            
             {/*
             mapping for å hente ut alle cocktails i databasen; lagd for å hente ut cocktail direkte etter id, ikke navn, bilde osv. :
 
@@ -43,7 +48,7 @@ const AllCocktailsPage = () => {
                   )}s
                </>
             ) : <Text>There are no cocktails available</Text>} */}
-
+            
             <CocktailCard name={drinkName1} description={desc1} favorite={fav1} image={img1}/>
             <CocktailCard name={drinkName2} description={desc2} favorite={fav2} image={img2}/>
             <CocktailCard name={drinkName3} description={desc3} favorite={fav3} image={img3}/>
@@ -51,7 +56,8 @@ const AllCocktailsPage = () => {
             <CocktailCard name={drinkName2} description={desc2} favorite={fav2} image={img2}/>
             <CocktailCard name={drinkName3} description={desc3} favorite={fav3} image={img3}/>
          </SimpleGrid>
-
+         </GridItem>
+         </Grid>
         </Flex>
     );
 };
