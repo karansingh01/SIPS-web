@@ -8,31 +8,33 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
+console.log("he eehe");
 
 const client = new ApolloClient({
-  uri: 'https://flyby-gateway.herokuapp.com/',   // her må iv hente API?
-  cache: new InMemoryCache(),
+  uri: 'www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita',   // her må iv hente API?
+  cache: new InMemoryCache(),  
 });
+console.log(client);
 
+/* 
 client
   .query({
     query: gql`
-      query GetLocations {
-        locations {
-          id
-          name
-          description
-          photo
+      query getDrinks {
+        idDrink: 11007{
+          strDrink
         }
       }
     `,
   })
-  .then((result) => console.log(result));
+  .then((result) => console.log(result + "asdfghjkjhgf"));
+
+  console.log(client.link);
+ */
+
 
   root.render(
     <ApolloProvider client={client}>
-      <App />
+      <App/>
     </ApolloProvider>,
   );
-
-
