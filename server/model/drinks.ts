@@ -2,7 +2,7 @@ import { models } from "mongoose";
 
 const {model, Schema} = require('mongoose');
 
-
+// to be use in the future, look at testModel.ts
 
 const drink = new Schema({
 

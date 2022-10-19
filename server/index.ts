@@ -7,6 +7,8 @@ import { typeDefs } from './typeDefs/typeDefs';
 import autoIncrement from 'mongoose-auto-increment'
 
 
+
+
 const PORT=4000;
 
 const startServer=async()=>
@@ -99,7 +101,7 @@ app.listen(app.get("port"),() =>{
  import { log } from 'console';
  
  const uriGood: string = process.env.MONGO_DB_PATH as string;
-  
+
 
  const {ApolloServer } = require('apollo-server');
  const mongoose = require('mongoose')
