@@ -24,22 +24,11 @@ const AllCocktailsPage = () => {
     let img3 : string = 'https://assets.bonappetit.com/photos/62cdd8cedc3e934b224d8fb5/1:1/w_2560%2Cc_limit/0712-paloma-lede.jpg';
 
     return (
-        /* <Stack spacing='-100px'>  
-        <Box >
-        <Flex flexDirection={'column'} >*/
-        /*<Grid
-         templateColumns=  "repeat(1, 6fr)" 
-        templateRows = "repeat(1, 6fr)" 
-        grid-auto-columns = {'50px'}
-        width="100%"
-        height="100%" 
-        >
-        <GridItem gridColumn={1} gridRow={3 / 5}> */
+
         <Flex  flexDirection='column' /*alignItems='center' justifyContent='center' */> 
         <Header />
-       {/*  </GridItem>
-        <GridItem gridColumn={1} gridRow={1 / 4}  z-index={-100}  > */}
-        <SimpleGrid transform='translate(0%, -10%)' margin={'30px'} rounded={20} columns={[1, 2, 3]} minChildWidth={'330px'} spacing={2} mt={5} backgroundColor={'beige'}>
+
+        <SimpleGrid transform='translate(0%, -10%)' margin={'30px'} rounded={20} columns={[1, 2, 3]} minChildWidth={'330px'} spacing={1} mt={5} backgroundColor={'#ede6df'}>
             <CocktailCard name={drinkName1} description={desc1} favorite={fav1} image={img1}/>
             <CocktailCard name={drinkName2} description={desc2} favorite={fav2} image={img2}/>
             <CocktailCard name={drinkName3} description={desc3} favorite={fav3} image={img3}/>
@@ -47,13 +36,8 @@ const AllCocktailsPage = () => {
             <CocktailCard name={drinkName2} description={desc2} favorite={fav2} image={img2}/>
             <CocktailCard name={drinkName3} description={desc3} favorite={fav3} image={img3}/>
          </SimpleGrid>
-        {/*  </GridItem> */}
-        </Flex>
-         /*  </Grid>
-       
-         </Box>
 
-          </Stack> */
+        </Flex>
     );
 };
 

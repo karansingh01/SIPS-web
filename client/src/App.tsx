@@ -36,12 +36,11 @@ const GET_LOCATIONS = gql`
  */
 export default function App() {
   return (
-    <div>
       <div><AllCocktailsPage/></div>
       
-{/*       <DisplayLocations />
- */}
-    </div>
+/*       <DisplayLocations />
+ */
+    
   );
 }
 

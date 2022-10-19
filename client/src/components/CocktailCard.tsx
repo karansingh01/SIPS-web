@@ -24,7 +24,8 @@ import {
           maxW={'330px'}
           w={'full'}
           rounded={15}
-          bg={useColorModeValue('lightyellow', 'gray.800')}
+          bg={useColorModeValue('#f7f0e9', 'gray.800')}
+          borderColor={'beige'} /**Denne har ingen effekt */
           pos={'relative'}>
             <Stack style={{flexDirection: 'row-reverse'}}> 
             {favorite ?  <FaHeart color={'lightpink'} size={20} /> : <FaRegHeart color={'lightpink'} size={20} />}
