@@ -1,14 +1,11 @@
 import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
 import { useQuery, gql } from "@apollo/client";
 import AllCocktailsPage from "./pages/AllCocktailsPage";
-
-import { HashRouter, Route, Routes } from "react-router-dom";
 import CocktailRecipePage from "./pages/CocktailRecipePage";
-import FavoritesPage from "./pages/FavoritesPage";
 import FavoriteCocktailsPage from "./pages/FavoriteCocktailsPage";
+import "./App.css";
 
 const GET_LOCATIONS = gql`
   query GetLocations {
@@ -40,7 +37,6 @@ const GET_LOCATIONS = gql`
 }
  */
 export default function App() {
-
   return (
     <ChakraProvider>
       <HashRouter>

@@ -55,7 +55,7 @@ const FavoriteCocktailsPage = () => {
         marginRight={"75px"}
       >
         <Link to="/">
-          <BsArrowLeft size={60} />
+          <BsArrowLeft size={60} color={"beige"} />
         </Link>
         <Spacer />
         <Heading color={"beige"} fontSize={"40px"}>
