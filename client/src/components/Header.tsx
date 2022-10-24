@@ -2,6 +2,7 @@ import { Box, Heading, Text, Stack, Container, Button } from "@chakra-ui/react";
 import { FaHeart } from "react-icons/fa";
 import { BiDrink } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import Navbar from "./Navbar";
 
 export default function Header() {
   const IMAGE: string =
@@ -21,6 +22,7 @@ export default function Header() {
 
   return (
     <Box
+    
       /**
        * Bakgrunnsbilde som boks, med knapper, tittel og beskrivelse over
        */
@@ -31,22 +33,13 @@ export default function Header() {
       backgroundRepeat="no-repeat"
       backgroundSize="cover"
       backgroundImage={`url(${IMAGE})`}
+      
     >
       <Stack
         style={{ flexDirection: "row-reverse" }}
         marginTop={"30px"}
         marginRight={"30px"}
-      >
-        <Link to="/fav">
-          <Button
-            leftIcon={<FaHeart color={"lightpink"} size={20} />}
-            color={"beige"}
-            variant={"outline"}
-          >
-            My favorite drinks
-          </Button>
-        </Link>
-      </Stack>
+      ></Stack>
       <Container height="600px" position="relative" marginLeft={25}>
         <Stack
           /* 
@@ -57,10 +50,7 @@ export default function Header() {
           position="absolute"
           marginTop={"-50px"}
         >
-          <Heading color={"beige"} fontSize={"40px"} marginBottom={150}>
-            {TITLE}
-          </Heading>
-          <Text fontSize={"15px"} color={"grey"}>
+          <Text marginTop={150} fontSize={"15px"} color={"grey"}>
             {text}
           </Text>
           {/* 

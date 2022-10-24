@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { Link as RouterLink } from "react-router-dom";
 import {
   Box,
   Flex,
@@ -19,7 +20,7 @@ import {
 import { FaHeart } from "react-icons/fa";
 
 const TITLE: string = "SIPS";
-const BUTTONTEXT: string = "Favorites";
+const BUTTONTEXT: string = "My favorite drinks";
 
 const NavLink = ({ children }: { children: ReactNode }) => (
   <Link
@@ -42,16 +43,22 @@ export default function Navbar() {
     <>
       <Box backgroundColor={"transparent"} px={10}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
-          <Box color={"beige"} fontSize={"60px"}>
+          <Box color={"beige"} fontSize={"60px"} fontWeight={"bold"}>
             {TITLE}
           </Box>
 
           <Flex alignItems={"center"}>
             <Stack direction={"row"} spacing={7}>
-              <Button backgroundColor={"beige"} color={"lightpink"}>
-                <FaHeart />
-                {BUTTONTEXT}
-              </Button>
+              <RouterLink to="/fav">
+                <Button
+                  backgroundColor={"transparent"}
+                  color={"beige"}
+                  leftIcon={<FaHeart color={"lightpink"} size={18} />}
+                  variant={"outline"}
+                >
+                  {BUTTONTEXT}
+                </Button>
+              </RouterLink>
 
               <Menu>
                 <MenuButton
