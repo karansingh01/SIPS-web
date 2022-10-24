@@ -8,15 +8,30 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-console.log("he eehe");
 
 const client = new ApolloClient({
-  uri: 'www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita',   // her må iv hente API?
+  uri: 'https://www.thecocktaildb.com/api/json/v1/1/search.php?i=vodka',   // her må iv hente API?
   cache: new InMemoryCache(),  
 });
 console.log(client);
 
+/* const query = gql`
+  query Luke {
+    person @rest(
+      type: "Drink", 
+      path: "people/1/") {
+      name
+    }
+  }
+`;
+
+client.query({ query }).then(response => {
+  console.log(response.data.person.name);
+});
+ */
 /* 
+
+
 client
   .query({
     query: gql`
