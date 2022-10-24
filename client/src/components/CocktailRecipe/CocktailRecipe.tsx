@@ -16,7 +16,7 @@ import {
   IoSearchSharp,
 } from "react-icons/io5";
 import { ReactElement } from "react";
-
+import "./CocktailRecipe.css";
 
 interface CocktailRecipe {
   text: string;
@@ -44,10 +44,10 @@ const Feature = ({ text, icon, iconBg }: CocktailRecipe) => {
 
 export default function SplitWithImage() {
   return (
-    <Container maxW={"5xl"} py={12}>
+    <Container maxW={"5xl"} py={20}>
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
         <Flex flexDirection="column">
-          <Stack spacing={4} >
+          <Stack spacing={4}>
             <Image
               rounded={"md"}
               alt={"feature image"}
@@ -58,7 +58,7 @@ export default function SplitWithImage() {
             />
           </Stack>
           <Stack spacing={4}>
-            <Heading size="md" >Ingredients</Heading>
+            <Heading size="md">Ingredients</Heading>
             <Text color={"gray.500"} fontSize={"lg"}>
               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
               nonumy eirmod tempor invidunt ut labore
