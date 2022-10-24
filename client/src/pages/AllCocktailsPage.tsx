@@ -32,7 +32,8 @@ const AllCocktailsPage = () => {
     <Flex flexDirection="column">
       <Header />
       <Grid
-        transform="translate(0%, -15%)"
+        /* transform="translate(0%, -15%)" */
+        transform="translate(0px, -150px)" //piksler for å unngå at designet "hopper"
         margin={"30px"}
         rounded={20}
         templateRows="repeat(1fr)"
