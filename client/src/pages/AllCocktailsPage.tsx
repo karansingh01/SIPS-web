@@ -4,7 +4,7 @@ import CocktailCard from "../components/CocktailCard";
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
 import { useState, useEffect } from "react";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/Navbar/Navbar";
 
 const AllCocktailsPage = () => {
   /**
@@ -76,7 +76,6 @@ const AllCocktailsPage = () => {
 
   return (
     <Flex flexDirection="column">
-      <Navbar />
       <Header />
 
       <Grid

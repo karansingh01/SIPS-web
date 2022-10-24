@@ -2,7 +2,7 @@ import React from "react";
 import { SimpleGrid, Flex, Text } from "@chakra-ui/react";
 import CocktailCard from "../components/CocktailCard";
 import Header from "../components/Header";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/Navbar/Navbar";
 import "./Pages.css";
 
 const FavoritesPage = () => {

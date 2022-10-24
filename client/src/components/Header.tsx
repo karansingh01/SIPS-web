@@ -2,7 +2,7 @@ import { Box, Heading, Text, Stack, Container, Button } from "@chakra-ui/react";
 import { FaHeart } from "react-icons/fa";
 import { BiDrink } from "react-icons/bi";
 import { Link } from "react-router-dom";
-import Navbar from "./Navbar";
+import Navbar from "./Navbar/Navbar";
 
 export default function Header() {
   const IMAGE: string =
@@ -22,7 +22,6 @@ export default function Header() {
 
   return (
     <Box
-    
       /**
        * Bakgrunnsbilde som boks, med knapper, tittel og beskrivelse over
        */
@@ -33,8 +32,8 @@ export default function Header() {
       backgroundRepeat="no-repeat"
       backgroundSize="cover"
       backgroundImage={`url(${IMAGE})`}
-      
     >
+      <Navbar />
       <Stack
         style={{ flexDirection: "row-reverse" }}
         marginTop={"30px"}

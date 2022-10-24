@@ -18,9 +18,10 @@ import {
   Center,
 } from "@chakra-ui/react";
 import { FaHeart } from "react-icons/fa";
+import "./Navbar.css";
 
 const TITLE: string = "SIPS";
-const BUTTONTEXT: string = "My favorite drinks";
+const BUTTONTEXT: string = "Favorites";
 
 const NavLink = ({ children }: { children: ReactNode }) => (
   <Link
@@ -39,13 +40,16 @@ const NavLink = ({ children }: { children: ReactNode }) => (
 export default function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <>
       <Box backgroundColor={"transparent"} px={10}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
-          <Box color={"beige"} fontSize={"60px"} fontWeight={"bold"}>
-            {TITLE}
-          </Box>
+          <RouterLink to="/">
+            <Box color={"beige"} fontSize={"60px"} fontWeight={"bold"}>
+              {TITLE}
+            </Box>
+          </RouterLink>
 
           <Flex alignItems={"center"}>
             <Stack direction={"row"} spacing={7}>
@@ -71,7 +75,7 @@ export default function Navbar() {
                   <Avatar
                     size={"sm"}
                     src={
-                      "https://upload.wikimedia.org/wikipedia/commons/2/24/Missing_avatar.svg"
+                      "https://i.pinimg.com/originals/c6/ce/f6/c6cef63923ff0193948c75c7807eda89.jpg"
                     }
                   />
                 </MenuButton>
@@ -81,7 +85,7 @@ export default function Navbar() {
                     <Avatar
                       size={"2xl"}
                       src={
-                        "https://upload.wikimedia.org/wikipedia/commons/2/24/Missing_avatar.svg"
+                        "https://i.pinimg.com/originals/c6/ce/f6/c6cef63923ff0193948c75c7807eda89.jpg"
                       }
                     />
                   </Center>
