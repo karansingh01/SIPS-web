@@ -19,6 +19,7 @@ import {
 import { FaHeart } from "react-icons/fa";
 
 const TITLE: string = "SIPS";
+const BUTTONTEXT: string = "Favorites";
 
 const NavLink = ({ children }: { children: ReactNode }) => (
   <Link
@@ -27,7 +28,6 @@ const NavLink = ({ children }: { children: ReactNode }) => (
     rounded={"md"}
     _hover={{
       textDecoration: "none",
-      bg: useColorModeValue("gray.200", "gray.700"),
     }}
     href={"#"}
   >
@@ -40,16 +40,17 @@ export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Box bg={useColorModeValue("transparent", "gray.900")} px={4}>
+      <Box backgroundColor={"transparent"} px={10}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
-          <Box color={"beige"} fontSize={"80px"} margin-left={"3%"}>
+          <Box color={"beige"} fontSize={"60px"}>
             {TITLE}
           </Box>
 
           <Flex alignItems={"center"}>
             <Stack direction={"row"} spacing={7}>
-              <Button color={"lightpink"}>
+              <Button backgroundColor={"beige"} color={"lightpink"}>
                 <FaHeart />
+                {BUTTONTEXT}
               </Button>
 
               <Menu>

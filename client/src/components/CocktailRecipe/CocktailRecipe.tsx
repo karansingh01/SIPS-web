@@ -58,15 +58,17 @@ export default function SplitWithImage() {
             />
           </Stack>
           <Stack spacing={4}>
-            <Heading size="md">Ingredients</Heading>
-            <Text color={"gray.500"} fontSize={"lg"}>
+            <Heading color={"black"} size="md">
+              Ingredients
+            </Heading>
+            <Text color={"beige"} fontSize={"lg"}>
               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
               nonumy eirmod tempor invidunt ut labore
             </Text>
           </Stack>
         </Flex>
         <Stack spacing={4}>
-          <Heading>Cranberry spritz</Heading>
+          <Heading color={"black"}>Cranberry spritz</Heading>
 
           <Text
             textTransform={"uppercase"}
@@ -79,18 +81,10 @@ export default function SplitWithImage() {
           >
             How I'm made...
           </Text>
-          <Text color={"gray.500"} fontSize={"lg"}>
+          <Text color={"beige"} fontSize={"lg"}>
             Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
             nonumy eirmod tempor invidunt ut labore
           </Text>
-          <Stack
-            spacing={4}
-            divider={
-              <StackDivider
-                borderColor={useColorModeValue("gray.100", "gray.700")}
-              />
-            }
-          ></Stack>
         </Stack>
       </SimpleGrid>
     </Container>
