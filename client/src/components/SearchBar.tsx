@@ -12,7 +12,7 @@ export default function SearchBar({q, searchItems}:{q : string, searchItems : Fu
                     placeholder='What drink are you looking for?'
                     color={'beige'}
                     value = {q}
-                    onChange={(e) => searchItems(e.target.value)/*(e) => searchItems(e.target.value)*/}
+                    onChange={(e) => searchItems(e.target.value)}
                     />    
             </InputGroup>
         </Stack>

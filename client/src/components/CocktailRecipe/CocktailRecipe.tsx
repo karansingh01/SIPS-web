@@ -17,8 +17,9 @@ import {
 } from "react-icons/io5";
 import { ReactElement } from "react";
 import "./CocktailRecipe.css";
+import { FaRegHeart, FaHeart } from "react-icons/fa";
 
-interface CocktailRecipe {
+/* interface CocktailRecipe {
   text: string;
   iconBg: string;
   icon?: ReactElement;
@@ -40,53 +41,55 @@ const Feature = ({ text, icon, iconBg }: CocktailRecipe) => {
       <Text fontWeight={600}>{text}</Text>
     </Stack>
   );
-};
+}; */
 
-export default function SplitWithImage() {
+export default function CocktailDetails() {
   return (
-    <Container maxW={"5xl"} py={20}>
+    <Container maxW={"5xl"} py={12}>
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
-        <Flex flexDirection="column">
-          <Stack spacing={4}>
-            <Image
-              rounded={"md"}
-              alt={"feature image"}
-              src={
-                "https://www.liquor.com/thmb/fO-COKLw_iEA28v8K4XQjzMhkfw=/735x0/very-sexy-martini-720x720-primary-b1212ebf73f54f898a56f7f0b60c0a34.jpg"
-              }
-              objectFit={"cover"}
-            />
-          </Stack>
-          <Stack spacing={4}>
-            <Heading color={"black"} size="md">
-              Ingredients
-            </Heading>
-            <Text color={"beige"} fontSize={"lg"}>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor invidunt ut labore
-            </Text>
-          </Stack>
+        <Flex>
+          <Image
+            rounded={"md"}
+            alt={"cocktail image"}
+            src={
+              "https://www.liquor.com/thmb/fO-COKLw_iEA28v8K4XQjzMhkfw=/735x0/very-sexy-martini-720x720-primary-b1212ebf73f54f898a56f7f0b60c0a34.jpg"
+            }
+            objectFit={"cover"}
+          />
         </Flex>
         <Stack spacing={4}>
-          <Heading color={"black"}>Cranberry spritz</Heading>
-
-          <Text
-            textTransform={"uppercase"}
-            color={"black"}
-            fontWeight={600}
-            fontSize={"sm"}
-            p={2}
-            alignSelf={"flex-end"}
-            rounded={"md"}
+          <Heading /* textTransform={"uppercase"} */ color={"beige"}>
+            Raspberry Spritz
+          </Heading>
+          <FaHeart color={"lightpink"} />
+          <Text color={"gray.500"} fontSize={"lg"}>
+            ingredients
+          </Text>
+          <Stack
+            spacing={4}
+            divider={
+              <StackDivider
+                borderColor={useColorModeValue("gray.100", "gray.700")}
+              />
+            }
           >
-            How I'm made...
-          </Text>
-          <Text color={"beige"} fontSize={"lg"}>
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-            nonumy eirmod tempor invidunt ut labore
-          </Text>
+            <Text color={"beige"}>4oz liquor</Text>
+            <Text color={"beige"}>1 lime</Text>
+            <Text color={"beige"}>12oz tonic water</Text>
+          </Stack>
         </Stack>
       </SimpleGrid>
+      <Stack marginTop={"20px"}>
+        <Text
+          textTransform={"uppercase"}
+          fontSize={"20px"}
+          color={"beige"}
+          marginBottom={"10px"}
+        >
+          How I'm made...
+        </Text>
+        <Text color={"gray.500"}>Fremgangsmåte her</Text>
+      </Stack>
     </Container>
   );
 }
