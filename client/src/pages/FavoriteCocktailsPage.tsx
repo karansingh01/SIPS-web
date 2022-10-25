@@ -16,6 +16,35 @@ import Navbar from "../components/Navbar/Navbar";
 import { Link } from "react-router-dom";
 import "./Pages.css";
 
+/**
+ * Search method
+ * @param cocktails favorite cocktails
+ * @param query the query parameter
+ * @returns favorite cocktails containing the search param
+ */
+const filterFavCocktails = (
+  cocktails: {
+    id: number;
+    name: string;
+    description: string;
+    favorite: boolean;
+    image: string;
+  }[],
+  query: string
+) => {
+  if (query === "") {
+    return cocktails;
+  } else {
+    const filtered = cocktails.filter((cocktail) => {
+      return Object.values(cocktail.name)
+        .join("")
+        .toLowerCase()
+        .includes(query.toLowerCase());
+    });
+    return filtered;
+  }
+};
+
 const FavoriteCocktailsPage = () => {
   /**
    * Filtrerer ut alle favoritter
@@ -24,26 +53,8 @@ const FavoriteCocktailsPage = () => {
     (cocktail) => cocktail.favorite
   );
 
-  /* For søk. Denne funker ikke heeelt som jeg vil atm */
   const [query, setQuery] = useState("");
-  const [cocktails, setCocktails] = useState(favoriteCocktails);
-  const [filteredResults, setFilteredResults] = useState(favoriteCocktails);
-
-  const searchItems = (searchValue: string) => {
-    setQuery(searchValue);
-    console.log(searchValue);
-    if (query !== "") {
-      const filteredData = cocktails.filter((cocktail) => {
-        return Object.values(cocktail.name)
-          .join("")
-          .toLowerCase()
-          .includes(query.toLowerCase());
-      });
-      setFilteredResults(filteredData);
-    } else {
-      setFilteredResults(cocktails);
-    }
-  };
+  const filteredFavCocktails = filterFavCocktails(favoriteCocktails, query);
 
   return (
     <div className="lol">
@@ -73,10 +84,10 @@ const FavoriteCocktailsPage = () => {
           mt={5}
         >
           <GridItem colSpan={4}>
-            <SearchBar q={query} searchItems={searchItems} />
+            <SearchBar q={query} setQuery={setQuery} />
           </GridItem>
           <GridItem colSpan={4}>
-            <CocktailCardsDisplay cocktails={filteredResults} />
+            <CocktailCardsDisplay cocktails={filteredFavCocktails} />
           </GridItem>
         </Grid>
       </Flex>
