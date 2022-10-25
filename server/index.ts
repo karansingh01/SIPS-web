@@ -13,7 +13,6 @@ const startServer=async()=>
 {
 
 // Middleware
-// Middleware
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -51,4 +50,4 @@ app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
 });
 }
-startServer().catch(e=>console.log("error starting server======== ",e))
+startServer().catch(e=>console.log("Error starting server ",e))

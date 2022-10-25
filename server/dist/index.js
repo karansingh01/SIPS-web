@@ -22,7 +22,6 @@ const resolvers = require('./resolvers');
 const PORT = process.env.PORT || 3001;
 const startServer = () => __awaiter(void 0, void 0, void 0, function* () {
     // Middleware
-    // Middleware
     const app = (0, express_1.default)();
     app.use(express_1.default.json());
     app.use(express_1.default.urlencoded({ extended: false }));
@@ -50,4 +49,4 @@ const startServer = () => __awaiter(void 0, void 0, void 0, function* () {
         console.log(`Server is running at http://localhost:${PORT}`);
     });
 });
-startServer().catch(e => console.log("error starting server======== ", e));
+startServer().catch(e => console.log("Error starting server ", e));

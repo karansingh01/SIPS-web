@@ -1,18 +1,15 @@
 
 import './App.css';
-import { useQuery, gql } from '@apollo/client';
+import { client } from './api/client';
+import { RandomDrinkQuery } from './api/graphql/randomDrink';
 
+// format: response.data.<queryName>.drinks[0].<whateverYouWantToCollect>
+// drinks[0] gives you the first drink in the array, which is the only drink since we
+// are only querying for one random drink.
+client.query({ query: RandomDrinkQuery }).then(response => {
+  console.log(response.data.randomDrink.drinks[0].strDrink);
+});
 
-const GET_LOCATIONS = gql`
-  query GetLocations {
-    locations {
-      id
-      name
-      description
-      photo
-    }
-  }
-`;
 
 export default function App() {
   return (
