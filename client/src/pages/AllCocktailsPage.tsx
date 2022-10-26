@@ -40,6 +40,9 @@ const AllCocktailsPage = () => {
   const cocktails = dummyCocktails;
   const filteredCocktails = filterCocktails(cocktails, query);
 
+/*   const { loading, error, data } = useQuery(GET_GEN_3);
+  console.log(data); */
+
   return (
     <Flex flexDirection="column">
       <Header />
