@@ -6,9 +6,19 @@ import { gql, useQuery } from '@apollo/client';
 // There are a max of 15 ingredients,
 // where those that are not used are "null". We probably need to fetch these later though...
 
+/**
+ * 
+export const AlcoholFilterQuery = gql`
+ query AlcoholFilter($alcohol : string!) {
+  alcoholFilter(alcohol : $alcohol) @rest(type: "drinks", path: "filter.php?i={$alcohol}"){ 
+    drinks
+  }}
+`;
+ */
+
 export const AlcoholFilterQuery = gql`
  query AlcoholFilter {
-  alcoholFilter @rest(type: "drinks", path: "filter.php?i=Vodka"){ 
+  alcoholFilter @rest (type: "drinks", path: "filter.php?i=Vodka"){ 
     drinks
   }}
 `;

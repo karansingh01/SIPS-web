@@ -7,9 +7,18 @@ const client_1 = require("@apollo/client");
 // we are currently only fetching drinks, which is the parent of all the atrributes. 
 // There are a max of 15 ingredients,
 // where those that are not used are "null". We probably need to fetch these later though...
+/**
+ *
+export const AlcoholFilterQuery = gql`
+ query AlcoholFilter($alcohol : string!) {
+  alcoholFilter(alcohol : $alcohol) @rest(type: "drinks", path: "filter.php?i={$alcohol}"){
+    drinks
+  }}
+`;
+ */
 exports.AlcoholFilterQuery = (0, client_1.gql) `
  query AlcoholFilter {
-  alcoholFilter @rest(type: "drinks", path: "filter.php?i=Vodka"){ 
+  alcoholFilter @rest (type: "drinks", path: "filter.php?i=Gin"){ 
     drinks
   }}
 `;
