@@ -20,16 +20,17 @@ client.query({ query: VodkaDrinksQuery }).then((response) => {
   console.log("vodka drink: ", response.data.vodkaDrinks.drinks[1].strDrink);
 });
 
-client.query({ query: AlcoholFilterQuery }).then((response) => {
+/* client.query({ query: AlcoholFilterQuery }).then((response) => {
   console.log(
     "alcohol filter: ",
     response.data.alcoholFilter.drinks[0].strDrink
   );
-});
+}); */
 /* 
 let alc: String = "Vodka";
-DrinkByAlc(alc);
- */
+DrinkByAlc(alc); */
+console.log(DrinkByAlc("Gin"));
+
 export default function App() {
   return (
     <ChakraProvider>
