@@ -1,7 +1,7 @@
 import "./App.css";
 import { client } from "./api/client";
 import { RandomDrinkQuery } from "./api/graphql/randomDrink";
-import { AlcoholFilterQuery } from "./api/graphql/alcoholFilter";
+import { AlcoholFilterQuery, DrinkByAlc } from "./api/graphql/alcoholFilter";
 import { HashRouter, Route, Routes } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
 import AllCocktailsPage from "./pages/AllCocktailsPage";
@@ -15,12 +15,11 @@ client.query({ query: RandomDrinkQuery }).then((response) => {
   console.log(response.data.randomDrink.drinks[0].strDrink);
 });
 
-// format: response.data.<queryName>.drinks[0].<whateverYouWantToCollect>
-// drinks[0] gives you the first drink in the array, which is the only drink since we
-// are only querying for one random drink.
 client.query({ query: AlcoholFilterQuery }).then((response) => {
   console.log(response.data.alcoholFilter.drinks[0].strDrink);
 });
+
+DrinkByAlc("Vodka");
 
 export default function App() {
   return (

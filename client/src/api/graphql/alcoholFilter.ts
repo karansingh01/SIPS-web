@@ -10,22 +10,16 @@ export const AlcoholFilterQuery = gql`
  query AlcoholFilter($alcohol : String!) {
   alcoholFilter @rest(type: "drinks", path: "filter.php?i=$alcohol"){ 
     drinks
-/*     {
-      name
-      alcohol
-    } */
+/*  {
+     name
+   } */
   }}
 `;
 
-function Drinks( alcohol : string) {
+
+export const DrinkByAlc = (alcohol : string/* {alcohol}:{alcohol : string} */) => {
     const { loading, error, data } = useQuery(AlcoholFilterQuery, {
-        variables: { alcohol },
-      });
-  
-    if (loading) return 'Loading...';
-    if (error) return `Error! ${error.message}`;
-  
-    return (
-        console.log(data.drinks)
-    );
-  }
+        variables: { alcohol }
+    })
+    return console.log(data?.drinks)
+}

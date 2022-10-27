@@ -9,4 +9,8 @@ const restLink = new apollo_link_rest_1.RestLink({ uri: 'https://www.thecocktail
 exports.client = new client_1.ApolloClient({
     cache: new client_1.InMemoryCache(),
     link: restLink,
+    headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+    },
 });
