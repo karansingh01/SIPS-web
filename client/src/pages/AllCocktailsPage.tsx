@@ -5,6 +5,12 @@ import SearchBar from "../components/SearchBar";
 import { useState, useEffect } from "react";
 import dummyCocktails from "../DummyData";
 import CocktailCardsDisplay from "../components/CocktailCardsDisplay";
+import { VodkaDrinksQuery } from "../api/graphql/vodkaDrinks";
+import { RumDrinksQuery } from "../api/graphql/rumDrinks";
+import { TequilaDrinksQuery } from "../api/graphql/tequilaDrinks";
+import { GinDrinksQuery } from "../api/graphql/ginDrinks";
+/* import { alcoholFilterParam,
+} from "../api/graphql/alcoholFilter"; */
 
 /**
  * search filter method
