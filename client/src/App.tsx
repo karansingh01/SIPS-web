@@ -43,7 +43,7 @@ let alc: String = "Vodka";
 client.query({ query: alcoholFilterParam(alc) }).then((response) => {
   console.log(
     "vodka drink by filter: ",
-    response.data.alcoholFilter.drinks[1].strDrink
+    response.data.alcoholFilter.drinks /*.drinks[1]  .strDrink */
   );
 });
 
