@@ -41,47 +41,56 @@ const filterCocktails = (
   }
 };
 
-const drinks: {
-  id: number;
-  name: string;
-  /*   description: string;
-  favorite: boolean; */
-  image: string;
-}[] = [];
-
 /**
- * to-be: alc === button pressed
+ *
+ * @param drinks all cocktails
+ * @param alc button pressed (gin | tequila | rum | vodka | none)
+ * @returns array of drinks with certain alcohol
  */
-function filterByAlc(alc: String) {
-  client.query({ query: alcoholFilterParam(alc) }).then((response) => {
-    let alldrinks: {
-      idDrink: string;
-      strDrink: string;
-      strDrinkThumb: string;
-    }[] = [];
-    alldrinks = response.data.alcoholFilter.drinks;
-    /* console.log("alldrinks ", alldrinks[0]); */
-    alldrinks.map((drink) =>
-      drinks.push({
-        id: parseInt(drink.idDrink),
-        name: drink.strDrink,
-        image: drink.strDrinkThumb,
-      })
-    );
+const filterByAlc = (
+  drinks: {
+    id: number;
+    name: string;
+    image: string;
+  }[],
+  alc: string
+) => {
+  if (alc === "") {
+    drinks = drinks;
+  } else {
+    client.query({ query: alcoholFilterParam(alc) }).then((response) => {
+      let alldrinks: {
+        idDrink: string;
+        strDrink: string;
+        strDrinkThumb: string;
+      }[] = [];
+      alldrinks = response.data.alcoholFilter.drinks;
+      alldrinks.map((drink) =>
+        drinks.push({
+          id: parseInt(drink.idDrink),
+          name: drink.strDrink,
+          image: drink.strDrinkThumb,
+        })
+      );
 
-    console.log(alc, "DRINKS: ", drinks);
-    /* return response.data.alcoholFilter.drinks; */
-    return drinks;
-  });
-}
+      /* console.log(alc, "DRINKS: ", drinks); */
+    });
+  }
+  return drinks;
+};
 
 const AllCocktailsPage = () => {
   const [query, setQuery] = useState("");
   const cocktails = dummyCocktails;
   const filteredCocktails = filterCocktails(cocktails, query);
 
-  let alcohol: String = "gin";
-  const yumyum = filterByAlc(alcohol);
+  let alcohol: string = "tequila";
+  let dranks: {
+    id: number;
+    name: string;
+    image: string;
+  }[] = [];
+  const yumyum = filterByAlc(dranks, alcohol);
   console.log("in allcocktailspage: ", yumyum);
 
   return (
