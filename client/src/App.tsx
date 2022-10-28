@@ -25,44 +25,28 @@ client.query({ query: RandomDrinkQuery }).then((response) => {
  */
 
 client.query({ query: VodkaDrinksQuery }).then((response) => {
-  console.log("vodka drink: ", response.data.vodkaDrinks.drinks[1].strDrink);
+  console.log(
+    "first vodka drink: ",
+    response.data.vodkaDrinks.drinks[0].strDrink
+  );
 });
 client.query({ query: GinDrinksQuery }).then((response) => {
-  console.log("gin drink: ", response.data.ginDrinks.drinks[1].strDrink);
+  console.log("first gin drink: ", response.data.ginDrinks.drinks[0].strDrink);
 });
 client.query({ query: RumDrinksQuery }).then((response) => {
-  console.log("rum drink: ", response.data.rumDrinks.drinks[1].strDrink);
+  console.log("first rum drink: ", response.data.rumDrinks.drinks[0].strDrink);
 });
 client.query({ query: TequilaDrinksQuery }).then((response) => {
   console.log(
-    "tequila drink: ",
-    response.data.tequilaDrinks.drinks[1].strDrink
+    "first tequila drink: ",
+    response.data.tequilaDrinks.drinks[0].strDrink
   );
 });
-let alc: String = "Vodka";
+/* let alc: String = "Vodka";
 client.query({ query: alcoholFilterParam(alc) }).then((response) => {
   console.log("vodka drink by filter: ", response.data.alcoholFilter.drinks);
 });
-
-/**
- * Try fetch drinks by alcohol (in same file):
  */
-/* export const DrinkByAlc = (ingredient: String) => {
-  const { loading, error, data } = useQuery(AlcoholFilterQuery, {
-    variables: { alcohol: ingredient },
-  });
-  if (loading) return console.log("loading..");
-  if (error) return console.log("error");
-  return data?.drinks[0].strDrink;
-}; */
-/* client.query({ query: AlcoholFilterQuery }).then((response) => {
-  console.log(
-    "alcohol filter: ",
-    response.data.alcoholFilter.drinks[0].strDrink
-  );
-}); */
-
-/* console.log(DrinkByAlc("Gin")); */
 
 export default function App() {
   return (

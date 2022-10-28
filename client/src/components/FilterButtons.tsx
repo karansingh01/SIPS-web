@@ -14,7 +14,13 @@ import { client } from "../api/client";
 import { FaAngleRight, FaAngleDown } from "react-icons/fa";
 import AllCocktailsPage from "../pages/AllCocktailsPage";
 
-export default function FilterButtons() {
+export default function FilterButtons({
+  setFilteredCocktails,
+}: {
+  setFilteredCocktails: Function;
+}) {
+  const alcohols: string[] = ["Vodka", "Gin", "Tequila", "Rum"];
+
   /**
    *
    * @param drinks all cocktails
@@ -22,17 +28,21 @@ export default function FilterButtons() {
    * @returns array of drinks with certain alcohol
    */
   const filterByAlcohol = (
-    drinks: {
+    /* drinks: {
       id: number;
       name: string;
       image: string;
-    }[],
+    }[], */
     alc: string
   ) => {
+    let drinks: {
+      id: number;
+      name: string;
+      image: string;
+    }[] = [];
     if (alc === "") {
       drinks = drinks;
     } else {
-      /* drinks = []; */
       client.query({ query: alcoholFilterParam(alc) }).then((response) => {
         let alldrinks: {
           idDrink: string;
@@ -47,37 +57,14 @@ export default function FilterButtons() {
             image: drink.strDrinkThumb,
           })
         );
-
-        /* console.log(alc, "DRINKS: ", drinks); */
       });
     }
-    /* return drinks*/
-    return console.log("filterbyalcohol: ", drinks);
+    console.log("drinks in filterbyalcohol: ", drinks);
+    /* setFilteredCocktails(drinks); */
+    return drinks;
   };
 
-  let dranks: {
-    id: number;
-    name: string;
-    image: string;
-  }[] = [];
-
-  const alcohols: string[] = ["Vodka", "Gin", "Tequila", "Rum"];
-
   return (
-    /*     <VStack>
-      <Text color={"beige"}> Filter by liquor </Text>
-      <ButtonGroup spacing={6} colorScheme={"black"} variant={"solid"}>
-        <Button onClick={console.log(filterByAlcohol(dranks, "vodka"))}>
-          Vodka
-        </Button>
-        <Button onClick={filterByAlcohol(dranks, "tequila")}>
-          Tequila
-        </Button>
-        <Button onClick={filterByAlcohol(dranks, "rum")}>Rum</Button>
-        <Button onClick={filterByAlcohol(dranks, "gin")}>Gin</Button>
-      </ButtonGroup>
-    </VStack> */
-
     <Menu>
       {({ isOpen }) => (
         <>
@@ -92,8 +79,10 @@ export default function FilterButtons() {
             {alcohols.map((alcohol) => (
               <MenuItem
                 key={alcohol}
-                onClick={
-                  () => /* alert( */ filterByAlcohol([], alcohol) /* ) */
+                onClick={() =>
+                  /* filterByAlcohol(
+                      alcohol
+                    ) */ setFilteredCocktails(filterByAlcohol(alcohol))
                 }
               >
                 {alcohol}

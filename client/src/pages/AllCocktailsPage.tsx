@@ -15,20 +15,22 @@ import FilterButtons from "../components/FilterButtons";
 
 /**
  * search filter method
- * @param cocktails all cocktails
+ * @param cocktails all (currently shown?) cocktails
  * @param query string entered in search field
  * @returns all cocktails containing the search param
  */
+
 const filterCocktails = (
   cocktails: {
     id: number;
     name: string;
-    description: string;
-    favorite: boolean;
+    /*     description: string;
+    favorite: boolean; */
     image: string;
   }[],
   query: string
 ) => {
+  console.log("FilterCocktails: ", cocktails);
   if (query === "") {
     return cocktails;
   } else {
@@ -42,59 +44,12 @@ const filterCocktails = (
   }
 };
 
-/**
- *
- * @param drinks all cocktails
- * @param alc button pressed (gin | tequila | rum | vodka | none)
- * @returns array of drinks with certain alcohol
- */
-const filterByAlc = (
-  drinks: {
-    id: number;
-    name: string;
-    image: string;
-  }[],
-  alc: string
-) => {
-  if (alc === "") {
-    drinks = drinks;
-  } else {
-    client.query({ query: alcoholFilterParam(alc) }).then((response) => {
-      let alldrinks: {
-        idDrink: string;
-        strDrink: string;
-        strDrinkThumb: string;
-      }[] = [];
-      alldrinks = response.data.alcoholFilter.drinks;
-      alldrinks.map((drink) =>
-        drinks.push({
-          id: parseInt(drink.idDrink),
-          name: drink.strDrink,
-          image: drink.strDrinkThumb,
-        })
-      );
-
-      /* console.log(alc, "DRINKS: ", drinks); */
-    });
-  }
-  return drinks;
-};
-
 const AllCocktailsPage = () => {
   const [query, setQuery] = useState("");
-  const cocktails = dummyCocktails;
-  const [filteredCocktails, setFilteredCocktails] = useState(
-    filterCocktails(cocktails, query)
+  const [cocktails, setCocktails] = useState(
+    filterCocktails(dummyCocktails, query)
   );
-
-  let alcohol: string = "tequila";
-  let dranks: {
-    id: number;
-    name: string;
-    image: string;
-  }[] = [];
-  const yumyum = filterByAlc(dranks, alcohol);
-  console.log("in allcocktailspage: ", yumyum);
+  const filteredCocktails = filterCocktails(cocktails, query);
 
   return (
     <Flex flexDirection="column">
@@ -112,7 +67,8 @@ const AllCocktailsPage = () => {
           <SearchBar q={query} setQuery={setQuery} />
         </GridItem>
         <GridItem colSpan={1}>
-          <FilterButtons />
+          <FilterButtons setFilteredCocktails={setCocktails} />
+          {/*  denne funker bare etter å søke?? typ søk " ", og alt kommer opp */}
         </GridItem>
         <GridItem colSpan={4}>
           <CocktailCardsDisplay cocktails={filteredCocktails} />
