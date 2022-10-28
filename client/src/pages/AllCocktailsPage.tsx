@@ -11,6 +11,7 @@ import { RumDrinksQuery } from "../api/graphql/rumDrinks";
 import { TequilaDrinksQuery } from "../api/graphql/tequilaDrinks";
 import { GinDrinksQuery } from "../api/graphql/ginDrinks";
 import { alcoholFilterParam } from "../api/graphql/alcoholFilter";
+import FilterButtons from "../components/FilterButtons";
 
 /**
  * search filter method
@@ -82,7 +83,9 @@ const filterByAlc = (
 const AllCocktailsPage = () => {
   const [query, setQuery] = useState("");
   const cocktails = dummyCocktails;
-  const filteredCocktails = filterCocktails(cocktails, query);
+  const [filteredCocktails, setFilteredCocktails] = useState(
+    filterCocktails(cocktails, query)
+  );
 
   let alcohol: string = "tequila";
   let dranks: {
@@ -105,8 +108,11 @@ const AllCocktailsPage = () => {
         gap={4}
         mt={5}
       >
-        <GridItem colSpan={4}>
+        <GridItem colSpan={3}>
           <SearchBar q={query} setQuery={setQuery} />
+        </GridItem>
+        <GridItem colSpan={1}>
+          <FilterButtons />
         </GridItem>
         <GridItem colSpan={4}>
           <CocktailCardsDisplay cocktails={filteredCocktails} />

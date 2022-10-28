@@ -41,10 +41,7 @@ client.query({ query: TequilaDrinksQuery }).then((response) => {
 });
 let alc: String = "Vodka";
 client.query({ query: alcoholFilterParam(alc) }).then((response) => {
-  console.log(
-    "vodka drink by filter: ",
-    response.data.alcoholFilter.drinks /*.drinks[1]  .strDrink */
-  );
+  console.log("vodka drink by filter: ", response.data.alcoholFilter.drinks);
 });
 
 /**
