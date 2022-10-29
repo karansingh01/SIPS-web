@@ -20,8 +20,10 @@ import { useQuery } from "@apollo/client";
 
 export default function FilterButtons({
   setFilteredCocktails,
+  setQuery,
 }: {
   setFilteredCocktails: Function;
+  setQuery: Function;
 }) {
   const alcohols: string[] = ["Vodka", "Gin", "Tequila", "Rum", "All"];
 
@@ -33,9 +35,10 @@ export default function FilterButtons({
    */
   const filterByAlcohol = (alc: string) => {
     /**
-     * prøver å re-initialisere (tømme) listen,
+     * Prøver å re-initialisere (tømme) listen av drinker (som skal vises i UI),
      * men den beholder drinks fra første knappetrykk.
-     * dersom en trykker "none" gir dette tom drinks-liste.
+     * Dersom en trykker "none" gir dette tom drinks-liste,
+     * men ved nytt knappetrykk er vi tilbake til første alkoholvalg.
      */
     let drinks: {
       id: number;
@@ -47,10 +50,10 @@ export default function FilterButtons({
      * drinks[] inneholder drinker fra første valgte alkohol,
      * men drinks[].length er allikevel 0?
      */
-    console.log("1. filterbyAlc", alc, " drinks:", drinks);
+    console.log("1. filterbyAlc:", alc, " drinks:", drinks);
     console.log("2. filterbyAlc drinks.length :", drinks.length);
     if (alc === "All") {
-      /**fremtidig: vise alle cocktails her */
+      /**fremtidig: vise alle cocktails fra hele api-et (opprinnelig liste) her */
       return drinks;
     } else {
       /**
@@ -59,10 +62,9 @@ export default function FilterButtons({
        * Returnerer kun den første listen inntil man refresher siden.
        * (allDrinks fylles med drinks fra første query, uavhengig av hva man trykker på)
        *
-       * Fix alt.1: Refetch query (som prøvd i await-funksjon under)
+       * Fix alt.1: Refetch query (som prøvd i await-funksjon i kommentar nedenfor)
        * Fix alt.2: Refreshe siden for hver gang (ikke optimalt mad andre ord)
        */
-      /* if (drinks.length === 0) { */
       client.query({ query: alcoholFilterParam(alc) }).then((response) => {
         let alldrinks: {
           idDrink: string;
@@ -79,10 +81,7 @@ export default function FilterButtons({
         );
       });
 
-      /* } */
-
-      /* else {
-
+      /*
         await client.refetchQueries({
           include: [alcoholFilterParam(alc)],
         });

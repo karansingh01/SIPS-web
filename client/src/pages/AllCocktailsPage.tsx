@@ -24,8 +24,11 @@ const filterCocktails = (
   cocktails: {
     id: number;
     name: string;
-    /*     description: string;
-    favorite: boolean; */
+    /*     
+    description: string;
+    favorite: boolean; 
+    (ikke tilgjengelig i api-et, måtte derfor fjernes)
+    */
     image: string;
   }[],
   query: string
@@ -67,7 +70,10 @@ const AllCocktailsPage = () => {
           <SearchBar q={query} setQuery={setQuery} />
         </GridItem>
         <GridItem colSpan={1}>
-          <FilterButtons setFilteredCocktails={setCocktails} />
+          <FilterButtons
+            setFilteredCocktails={setCocktails}
+            setQuery={setQuery}
+          />
         </GridItem>
         <GridItem colSpan={4}>
           <CocktailCardsDisplay cocktails={filteredCocktails} />
