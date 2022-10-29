@@ -30,7 +30,7 @@ const filterCocktails = (
   }[],
   query: string
 ) => {
-  console.log("FilterCocktails: ", cocktails);
+  /* console.log("cocktails in filterCocktails: ", cocktails); */
   if (query === "") {
     return cocktails;
   } else {
@@ -68,7 +68,6 @@ const AllCocktailsPage = () => {
         </GridItem>
         <GridItem colSpan={1}>
           <FilterButtons setFilteredCocktails={setCocktails} />
-          {/*  denne funker bare etter å søke?? typ søk " ", og alt kommer opp */}
         </GridItem>
         <GridItem colSpan={4}>
           <CocktailCardsDisplay cocktails={filteredCocktails} />

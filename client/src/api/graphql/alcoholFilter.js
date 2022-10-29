@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.alcoholFilterParam = void 0;
+exports.refetchAlcoholFilterParam = exports.alcoholFilterParam = void 0;
 const client_1 = require("@apollo/client");
 // path is the endpoint, maybe add .php
 // strIngredient1 is the first ingredient, strIngredient2 is the second ingredient, etc
@@ -17,19 +17,12 @@ function alcoholFilterParam(alcohol) {
     return AlcoholFilterQuery;
 }
 exports.alcoholFilterParam = alcoholFilterParam;
-/*
-export const AlcoholFilterQuery = gql`
- query AlcoholFilter($alcohol : String!) {
-  alcoholFilter(alcohol : $alcohol) @rest(type: "drinks", path: "filter.php?i=$alcohol"){
-    drinks
-  }}
-`;
-
-export function DrinkByAlc( ingredient : String)  {
-    const { loading, error, data } = useQuery(AlcoholFilterQuery, {
-        variables: { alcohol: ingredient}
-    })
-    if (loading) return console.log("loading..");
-    if (error) return console.log("error");
-     return data?.drinks[0].strDrink;
-} */ 
+/**
+ * Tror man trenger å bruke hoosks om useQuery for å oppdatere cache,
+ * men jeg får feilmelding i konsollen hver gang jeg bruker det??
+ */
+function refetchAlcoholFilterParam(alcohol) {
+    const { data: alcoholFilterData, loading: alcoholFilterLoading, refetch: alcoholFilterRefetch } = (0, client_1.useQuery)(alcoholFilterParam(alcohol));
+    return alcoholFilterRefetch;
+}
+exports.refetchAlcoholFilterParam = refetchAlcoholFilterParam;

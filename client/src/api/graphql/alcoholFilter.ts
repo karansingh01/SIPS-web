@@ -14,19 +14,13 @@ export function alcoholFilterParam (alcohol : String) {
     `;
     return AlcoholFilterQuery;
 }
-/* 
-export const AlcoholFilterQuery = gql`
- query AlcoholFilter($alcohol : String!) {
-  alcoholFilter(alcohol : $alcohol) @rest(type: "drinks", path: "filter.php?i=$alcohol"){ 
-    drinks
-  }}
-`;
 
-export function DrinkByAlc( ingredient : String)  {
-    const { loading, error, data } = useQuery(AlcoholFilterQuery, {
-        variables: { alcohol: ingredient}
-    })
-    if (loading) return console.log("loading..");
-    if (error) return console.log("error"); 
-     return data?.drinks[0].strDrink;   
-} */
+/**
+ * Tror man trenger å bruke hoosks om useQuery for å oppdatere cache, 
+ * men jeg får feilmelding i konsollen hver gang jeg bruker det??
+ */
+export function refetchAlcoholFilterParam(alcohol : String) {
+  const { data: alcoholFilterData, loading: alcoholFilterLoading, refetch: alcoholFilterRefetch } = useQuery(alcoholFilterParam(alcohol));
+
+  return alcoholFilterRefetch;
+}
