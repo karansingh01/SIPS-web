@@ -24,63 +24,47 @@ import { log } from "console";
 
 
 
-
 export default function CocktailDetails() {
   
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [imageUrl, setImageUrl] = useState('');
-  const [drinkIngredients, setIngredient] = useState('[]');
-  const [glass, setGlass] = useState('[]');
+  const [drinkIngredients, setDrinkIngredient] = useState(['']);
+  const [glass, setGlass] = useState('');
   
-  let ingredients: string[] = [];
 
+  useEffect(() => {
+    client.query({
+      query: RandomDrinkQuery
+    }).then((result) => {
+      console.log(result);
+      const drink = result.data.randomDrink.drinks[0];
+      setName(drink.strDrink);
+      setDescription(drink.strInstructions);
+      setImageUrl(drink.strDrinkThumb);
+      setGlass(drink.strGlass);
 
-  client.query({ query: RandomDrinkQuery }).then(response => {
-    const link = response.data.randomDrink.drinks[0];
-    console.log(link);
-    setName(link.strDrink);
-    setDescription(link.strInstructions);
-    setImageUrl(link.strDrinkThumb);
-    setIngredient(link.strMeasure1 + link.strIngredient1)
-    setGlass(link.strGlass)
-
-    let count = 1;
-    for (let i in link){
-      let ingredient = ""
-      let measurment = ""
-      if (i.startsWith("strIngredient") && link[i]){
-        ingredient = link[i];
-        if (link['strMeasure'+ count]){
-          measurment = link['strMeasure' + count];
-        } else {
-          measurment = "";
+      const ingredients = [];
+      for (let i = 1; i <= 10; i++) {
+        const ingredient = drink[`strIngredient${i}`];
+        const measurement = drink[`strMeasure${i}`];
+        if (ingredient) {
+          ingredients.push(measurement+  " "+ ingredient);
         }
-        count +=1;
-        ingredients.push(`${measurment} ${ingredient}`);
-/*         setIngredient(`${measurment} ${ingredient}`)
- */        
       }
-    
-      let ingredientsCon = document.querySelector(".ingredients");
-      ingredients.forEach(element => {
-        let item =document.createElement("li");
-        item.innerText = element;
-        ingredientsCon?.appendChild(item);
-      });
-    
-      console.log(ingredients);
-      
-    }
+
+      setDrinkIngredient(ingredients);
+    });
+  }, []);
 
 
-  
+/*   let ingredientsCon = document.querySelector(".ingredients");
+  ingredients.forEach(element => {
+    let item =document.createElement("li");
+    item.innerText = element;
+    ingredientsCon?.appendChild(item);
+  }); */
 
-  }
-  );
-
-/*   console.log(drinkIngredients);
- */
 
   return (
     <Container maxW={"5xl"} py={12}>
@@ -111,10 +95,16 @@ export default function CocktailDetails() {
               />
             }
           >
-            <Text color={"beige"}>1 lime</Text>
-            <Text color={"beige"}>12oz tonic water</Text>
-            <ul className="ingredients">  
-            <Text color={"white"}>{ingredients}</Text>
+            {
+              drinkIngredients.map((ingredient, index) => {
+                return (
+                  <Text key={index} color={"#e0f7fa"} fontSize={"lg"}>
+                    {ingredient}
+                  </Text>
+                )
+              }
+            )}
+            <ul className="ingredients">                
             </ul>
 
           </Stack>
@@ -135,27 +125,3 @@ export default function CocktailDetails() {
     </Container>
   );
 }
-
-/* interface CocktailRecipe {
-  text: string;
-  iconBg: string;
-  icon?: ReactElement;
-}
-
-const Feature = ({ text, icon, iconBg }: CocktailRecipe) => {
-  return (
-    <Stack direction={"row"} align={"center"}>
-      <Flex
-        w={8}
-        h={8}
-        align={"center"}
-        justify={"center"}
-        rounded={"full"}
-        bg={iconBg}
-      >
-        {icon}
-      </Flex>
-      <Text fontWeight={600}>{text}</Text>
-    </Stack>
-  );
-}; */
