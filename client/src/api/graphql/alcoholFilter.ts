@@ -18,6 +18,8 @@ export function alcoholFilterParam (alcohol : String) {
 /**
  * Tror man trenger å bruke hoosks om useQuery for å oppdatere cache, 
  * men jeg får feilmelding i konsollen hver gang jeg bruker det??
+ * 
+ * Mulig denne også kan brukes direkte i filen (FilterButtons.tsx)
  */
 export function refetchAlcoholFilterParam(alcohol : String) {
   const { data: alcoholFilterData, loading: alcoholFilterLoading, refetch: alcoholFilterRefetch } = useQuery(alcoholFilterParam(alcohol));
