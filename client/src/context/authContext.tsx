@@ -45,9 +45,10 @@ function authReducer(state: any, action: any) {
     }
 }
 
+
 // react hook that has a state and a dispatch that comes from useReducer
 // dispatch lets us dispatch actions to the reducer
-function AuthProvider(props: any) {
+function AuthProvider(props: any ) {
     const [state, dispatch] = useReducer(authReducer, initialState);
 
     // when this login function is called it means we have what we need from the server to log in

@@ -7,8 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import {
   Alert,
   AlertIcon,
-  AlertTitle,
-  AlertDescription,
   Flex,
   Box,
   FormControl,
@@ -42,16 +40,25 @@ const REGISTER_USER = gql`
 export default function Register(props: any){
   const context = useContext(AuthContext);
   let navigate = useNavigate();
+
+  const gotoLogin = () => {
+    navigate("/login");
+  };
+
+  // The error array. Any errors will be pushed to this array.
+  // We use <any> here because it doesn't matter as it will only get errors anyways.
   const [errors, setErrors] = useState<any>([]);
 
+  // Enables us to show and hide password.
   const [show, setShow] = React.useState(false)
   const handleClick = () => setShow(!show)
   
+  // Fires the mutation REGISTER_USER, defined below.
   function registerUserCallback(){
-      console.log("Callback hit.");
       registerUser();
   }
 
+    // Decides what is sent to the server.
     const { onChange, onSubmit, values } = useForm(registerUserCallback, {
         username: '',
         email: '',
@@ -59,13 +66,14 @@ export default function Register(props: any){
         confirmPassword: ''
     });
 
-    const [registerUser, { loading }] = useMutation(REGISTER_USER, {
+    const [registerUser] = useMutation(REGISTER_USER, {
         update(proxy: any, {data : {registerUser: userData}}: any){
             context.login(userData);
             navigate('/');
         },
-        // IT ALWAYS RETURNS ERROR, EVEN IF FORM IS CORRECT
-        // WHA TTHE FUCJDSIOXCDJIOMSJOIDSJKNCDSKJNSD FUCK FUCK FUCK FUCK FUCK FUCK 
+        
+        // Sets errors in an array. If there are no errors, then the errors array will be empty.
+        // The errors array is displayed in the UI if there are any errors to display.
         onError({graphQLErrors, networkError}: any){
             console.log(graphQLErrors);
             console.log(JSON.stringify(networkError, null, 2));
@@ -93,15 +101,15 @@ export default function Register(props: any){
             boxShadow={'lg'}
             p={8}>
             <Stack spacing={4}>
-              <FormControl id="email">
+              <FormControl isRequired id="username">
                 <FormLabel>Username</FormLabel>
                 <Input type="Username" aria-label='username' name="username" onChange={onChange} />
               </FormControl>
-              <FormControl id="email">
+              <FormControl isRequired id="email">
                 <FormLabel>Email address</FormLabel>
                 <Input type="Email" name="email" aria-label='email' onChange={onChange}/>
               </FormControl>
-              <FormControl id="password">
+              <FormControl isRequired id="password">
                 <FormLabel>Password</FormLabel>
                 <InputGroup size="md">
                   <Input type={show ? 'text' : 'password'} name="password" aria-label='password' onChange={onChange} />
@@ -111,7 +119,7 @@ export default function Register(props: any){
                   </InputRightElement>
                 </InputGroup>
               </FormControl>
-              <FormControl id="confirmPassword">
+              <FormControl isRequired id="confirmPassword">
                 <FormLabel>Confirm Password</FormLabel>
                 <InputGroup size="md">
                   <Input type={show ? 'text' : 'password'} name="confirmPassword" aria-label='confirmPassword' onChange={onChange} />
@@ -126,7 +134,7 @@ export default function Register(props: any){
                   direction={{ base: 'column', sm: 'row' }}
                   align={'start'}
                   justify={'space-between'}>
-                  <Link color={'blue.400'}>Already have an account?</Link>
+                  <Link onClick={gotoLogin} color={'blue.400'}>Already have an account?</Link>
                 </Stack>
                 <Button
                   onClick={onSubmit}
@@ -137,9 +145,10 @@ export default function Register(props: any){
                   }}>
                   Register
                 </Button>
-                {errors.map(function(error: any){
+                {errors.map(function(error: any){ // shows error on the page
                   return (
                     <Alert status="error">
+                      <AlertIcon />
                       {error.message}
                     </Alert>
                   )

@@ -8,6 +8,7 @@ import AllCocktailsPage from "./pages/AllCocktailsPage";
 import CocktailRecipePage from "./pages/CocktailRecipePage";
 import FavoriteCocktailsPage from "./pages/FavoriteCocktailsPage";
 import RegisterPage from './pages/RegisterPage';
+import LoginPage from './pages/LoginPage';
 import { ApolloProvider } from '@apollo/client';
 import { AuthProvider } from './context/authContext';
 import client1 from './apolloClient';
@@ -32,6 +33,7 @@ export default function App() {
               <Route path="/cr" element={<CocktailRecipePage />} />
               <Route path="/fav" element={<FavoriteCocktailsPage />} />
               <Route path="/register" element={<RegisterPage />} />
+              <Route path="/login" element={<LoginPage />} />
             </Routes>
           </HashRouter>
         </ApolloProvider>
