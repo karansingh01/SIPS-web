@@ -21,8 +21,8 @@ export function alcoholFilterParam (alcohol : String) {
  * 
  * Mulig denne også kan brukes direkte i filen (FilterButtons.tsx)
  */
-export function refetchAlcoholFilterParam(alcohol : String) {
-  const { data: alcoholFilterData, loading: alcoholFilterLoading, refetch: alcoholFilterRefetch } = useQuery(alcoholFilterParam(alcohol));
+/* export function refetchAlcoholFilterParam(alcohol : String) {
+  const { data, loading, refetch } = useQuery(alcoholFilterParam(alcohol));
 
-  return alcoholFilterRefetch;
-}
+  return refetch(alcohol);
+} */

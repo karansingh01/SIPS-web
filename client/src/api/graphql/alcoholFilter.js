@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.refetchAlcoholFilterParam = exports.alcoholFilterParam = void 0;
+exports.alcoholFilterParam = void 0;
 const client_1 = require("@apollo/client");
 // path is the endpoint, maybe add .php
 // strIngredient1 is the first ingredient, strIngredient2 is the second ingredient, etc
@@ -20,9 +20,11 @@ exports.alcoholFilterParam = alcoholFilterParam;
 /**
  * Tror man trenger å bruke hoosks om useQuery for å oppdatere cache,
  * men jeg får feilmelding i konsollen hver gang jeg bruker det??
+ *
+ * Mulig denne også kan brukes direkte i filen (FilterButtons.tsx)
  */
-function refetchAlcoholFilterParam(alcohol) {
-    const { data: alcoholFilterData, loading: alcoholFilterLoading, refetch: alcoholFilterRefetch } = (0, client_1.useQuery)(alcoholFilterParam(alcohol));
-    return alcoholFilterRefetch;
-}
-exports.refetchAlcoholFilterParam = refetchAlcoholFilterParam;
+/* export function refetchAlcoholFilterParam(alcohol : String) {
+  const { data, loading, refetch } = useQuery(alcoholFilterParam(alcohol));
+
+  return refetch(alcohol);
+} */

@@ -20,6 +20,10 @@ import FilterButtons from "../components/FilterButtons";
  * @returns all cocktails containing the search param
  */
 
+/**
+ * P.S: ved filtrering av alkohol må en legge inn " " i søkefeltet for å rendre nåværende drinker.
+ * Skal fikse det lover
+ */
 const filterCocktails = (
   cocktails: {
     id: number;
