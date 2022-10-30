@@ -6,7 +6,9 @@ import "./Pages.css";
 import Navbar from "../components/Navbar/Navbar";
 import { BsArrowLeft } from "react-icons/bs";
 
+
 const CocktailRecipePage = () => {
+
   return (
     <div className="lol">
       <Flex flexDirection="column">

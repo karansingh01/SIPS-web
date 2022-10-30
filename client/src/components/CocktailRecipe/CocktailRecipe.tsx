@@ -15,35 +15,57 @@ import {
   IoLogoBitcoin,
   IoSearchSharp,
 } from "react-icons/io5";
-import { ReactElement } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import "./CocktailRecipe.css";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
+import { client } from '../../api/client';
+import { RandomDrinkQuery } from '../../api/graphql/randomDrink';
+import { log } from "console";
 
-/* interface CocktailRecipe {
-  text: string;
-  iconBg: string;
-  icon?: ReactElement;
-}
 
-const Feature = ({ text, icon, iconBg }: CocktailRecipe) => {
-  return (
-    <Stack direction={"row"} align={"center"}>
-      <Flex
-        w={8}
-        h={8}
-        align={"center"}
-        justify={"center"}
-        rounded={"full"}
-        bg={iconBg}
-      >
-        {icon}
-      </Flex>
-      <Text fontWeight={600}>{text}</Text>
-    </Stack>
-  );
-}; */
 
 export default function CocktailDetails() {
+  
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
+  const [drinkIngredients, setDrinkIngredient] = useState(['']);
+  const [glass, setGlass] = useState('');
+  
+
+  useEffect(() => {
+    client.query({
+      query: RandomDrinkQuery
+    }).then((result) => {
+      console.log(result);
+      const drink = result.data.randomDrink.drinks[0];
+      setName(drink.strDrink);
+      setDescription(drink.strInstructions);
+      setImageUrl(drink.strDrinkThumb);
+      setGlass(drink.strGlass);
+
+      const ingredients = [];
+      for (let i = 1; i <= 10; i++) {
+        const ingredient = drink[`strIngredient${i}`];
+        const measurement = drink[`strMeasure${i}`];
+        if (ingredient) {
+          ingredients.push(measurement+  " "+ ingredient);
+        }
+      }
+
+      setDrinkIngredient(ingredients);
+    });
+  }, []);
+
+
+/*   let ingredientsCon = document.querySelector(".ingredients");
+  ingredients.forEach(element => {
+    let item =document.createElement("li");
+    item.innerText = element;
+    ingredientsCon?.appendChild(item);
+  }); */
+
+
   return (
     <Container maxW={"5xl"} py={12}>
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
@@ -52,14 +74,14 @@ export default function CocktailDetails() {
             rounded={"md"}
             alt={"cocktail image"}
             src={
-              "https://www.liquor.com/thmb/fO-COKLw_iEA28v8K4XQjzMhkfw=/735x0/very-sexy-martini-720x720-primary-b1212ebf73f54f898a56f7f0b60c0a34.jpg"
+              imageUrl
             }
             objectFit={"cover"}
           />
         </Flex>
         <Stack spacing={4}>
           <Heading /* textTransform={"uppercase"} */ color={"beige"}>
-            Raspberry Spritz
+            {name}
           </Heading>
           <FaHeart color={"lightpink"} />
           <Text color={"gray.500"} fontSize={"lg"}>
@@ -73,9 +95,18 @@ export default function CocktailDetails() {
               />
             }
           >
-            <Text color={"beige"}>4oz liquor</Text>
-            <Text color={"beige"}>1 lime</Text>
-            <Text color={"beige"}>12oz tonic water</Text>
+            {
+              drinkIngredients.map((ingredient, index) => {
+                return (
+                  <Text key={index} color={"#e0f7fa"} fontSize={"lg"}>
+                    {ingredient}
+                  </Text>
+                )
+              }
+            )}
+            <ul className="ingredients">                
+            </ul>
+
           </Stack>
         </Stack>
       </SimpleGrid>
@@ -86,9 +117,10 @@ export default function CocktailDetails() {
           color={"beige"}
           marginBottom={"10px"}
         >
-          How I'm made...
         </Text>
-        <Text color={"gray.500"}>Fremgangsmåte her</Text>
+        <Text color={"beige"}>Glass: {glass}</Text>
+        <Text color={"gray.500"}>Recipe</Text>
+        <Text color={"white"}>{description}</Text>
       </Stack>
     </Container>
   );

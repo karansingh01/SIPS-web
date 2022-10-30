@@ -1,16 +1,22 @@
-import { gql } from '@apollo/client';
-
-// path is the endpoint, maybe add .php
-// strIngredient1 is the first ingredient, strIngredient2 is the second ingredient, etc
-// we are currently only fetching drinks, which is the parent of all the atrributes. 
-// There are a max of 15 ingredients,
-// where those that are not used are "null". We probably need to fetch these later though...
+const { gql } = require('apollo-server');
 
 export const RandomDrinkQuery = gql`
- query RandomDrink {
-  randomDrink @rest(type: "drinks", path: "random.php"){ 
-    drinks {
-      strDrink: String!
+  type Query {
+    "Query to get tracks array for the homepage grid"
+    tracksForHome: [Track!]!
+  }
+
+
+  "All drinks"
+  type drinks {
+    idDrink: ID!
+    strDrink: String!
+    strDrinkThumb: String!
+}
+
+type oneDrink{
+        idDrink: String!{
+            strDrink: String!
             strCategory": String!
             strAlcoholic": String!
             strGlass": String
@@ -25,6 +31,8 @@ export const RandomDrinkQuery = gql`
             strIngredient8: String
             strIngredient9: String
             strIngredient10: String
-    }
-  }}
+            }
+        }
+
 `;
+
