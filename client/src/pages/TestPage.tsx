@@ -4,7 +4,6 @@ import AlphabetButtons from "../components/AlphabetButtons";
 import CocktailCardsDisplay from "../components/CocktailCardsDisplay";
 import FilterButtons from "../components/FilterButtons";
 import Header from "../components/Header";
-import { LetterAQuery } from "../api/graphql/letterA";
 import { client } from "../api/client";
 import React from 'react';
 import { useQuery, gql } from '@apollo/client';
