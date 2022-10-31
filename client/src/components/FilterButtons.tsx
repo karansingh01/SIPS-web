@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   ButtonGroup,
   Button,
@@ -18,6 +18,7 @@ import { client } from "../api/client";
 import { FaAngleRight, FaAngleDown } from "react-icons/fa";
 import AllCocktailsPage from "../pages/AllCocktailsPage";
 import { useQuery } from "@apollo/client";
+import { log } from "console";
 
 /**
  * Issue i FilterButtons er å refetche query for alkohol (alcoholFilterParam(alcohol) fra alcoholFilter.ts).
@@ -36,7 +37,8 @@ export default function FilterButtons({
 }: {
   setFilteredCocktails: Function;
   setQuery: Function;
-}) {
+}) 
+{
   const alcohols: string[] = ["Vodka", "Gin", "Tequila", "Rum", "All"];
 
   /**
@@ -48,27 +50,25 @@ export default function FilterButtons({
     const { loading, error, data, refetch } = useQuery(
       alcoholFilterParam(alcohol)
     );
-
     if (loading) return console.log("Loading...");
     if (error) return console.log(`Error! ${error.message}`);
-
-    refetch({ alcohol });
+    refetch({alcohol});
     return console.log("data Alcohol():", data.drinks);
   }
-
   /**
    *
    * @param drinks all cocktails
    * @param alc button pressed (gin | tequila | rum | vodka | none)
    * @returns array of drinks with certain alcohol
    */
-  const filterByAlcohol = async (alc: string) => {
+  const FilterByAlcohol = async (alc: string) => {
     /**
      * Prøver å re-initialisere (tømme) listen av drinker (som skal vises i UI),
      * men den beholder drinks fra første knappetrykk.
      * Dersom en trykker "none" gir dette tom drinks-liste,
      * men ved nytt knappetrykk er vi tilbake til første alkoholvalg.
      */
+    
     let drinks: {
       id: number;
       name: string;
@@ -79,24 +79,33 @@ export default function FilterButtons({
      * drinks[] inneholder drinker fra første valgte alkohol,
      * men drinks[].length er allikevel 0?
      */
-    console.log("1. filterbyAlcohol:", alc, " gir drinks:", drinks);
-    console.log("2. filterbyAlc drinks.length :", drinks.length);
     if (alc === "All") {
       /**fremtidig: vise alle cocktails fra hele api-et (opprinnelig liste) her */
       /* refetchAlcoholFilterParam(alc); */
       /* return drinks; */
       Alcohol({ alcohol: alc });
     } else {
-      /**
-       * TROR DET ER HER PROBLEMET LIGGER:
-       * response.data virker å "henge seg opp" i første query.
-       * Returnerer kun den første listen inntil man refresher siden.
-       * (allDrinks fylles med drinks fra første query, uavhengig av hva man trykker på)
-       *
-       * Fix alt.1: Refetch query (som prøvd i await-funksjon i kommentar nedenfor)
-       * Fix alt.2: Refreshe siden for hver gang (ikke optimalt mad andre ord)
-       */
-      client.query({ query: alcoholFilterParam(alc) }).then((response) => {
+      const result = await client.refetchQueries({
+        include: "all",
+        updateCache(cache) {
+          cache.evict({fieldName: "alcoholFilter"});
+        },
+      });
+      const { data } = await client.query({
+        query: alcoholFilterParam(alc),
+      });
+      console.log("data:", data);
+      const drinkList = data.alcoholFilter.drinks;
+      console.log("drinkList:", drinkList);
+      drinks = drinkList.map((drink: any) => {
+        return {
+          id: drink.idDrink,
+          name: drink.strDrink,
+          image: drink.strDrinkThumb,
+        };
+      });
+
+/*       client.query({ query: alcoholFilterParam(alc) }).then((response) => {
         let alldrinks: {
           idDrink: string;
           strDrink: string;
@@ -112,22 +121,14 @@ export default function FilterButtons({
           })
         );
       });
-
-      /**
+ */
+      /*
        * prøver å refetche query.
        * får i konsollen at query ikke ble funnet.
        */
-      const results = await client.refetchQueries({
-        include: [alcoholFilterParam(alc)],
-        updateCache(cache) {
-          cache.evict({ fieldName: "drinks" });
-        },
-      });
-      console.log("client.refetchQueries results:", results);
-    }
-
-    return drinks;
-  };
+  
+  }
+    };
 
   return (
     <Menu>
@@ -144,7 +145,7 @@ export default function FilterButtons({
             {alcohols.map((alcohol) => (
               <MenuItem
                 key={alcohol}
-                onClick={() => setFilteredCocktails(filterByAlcohol(alcohol))}
+                onClick={() => setFilteredCocktails(FilterByAlcohol(alcohol))}
               >
                 {alcohol}
               </MenuItem>
@@ -154,4 +155,6 @@ export default function FilterButtons({
       )}
     </Menu>
   );
+  
 }
+
