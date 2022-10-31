@@ -41,10 +41,6 @@ export default function Header() {
       ></Stack>
       <Container height="600px" position="relative" marginLeft={25}>
         <Stack
-          /* 
-                mulig vi trenger disse senere:
-                spacing={150}
-                w={'full'}*/
           maxW={"xs"}
           position="absolute"
           marginTop={"-50px"}

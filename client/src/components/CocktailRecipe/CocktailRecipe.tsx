@@ -1,26 +1,8 @@
-import {
-  Container,
-  SimpleGrid,
-  Image,
-  Flex,
-  Heading,
-  Text,
-  Stack,
-  StackDivider,
-  Icon,
-  useColorModeValue,
-} from "@chakra-ui/react";
-import {
-  IoAnalyticsSharp,
-  IoLogoBitcoin,
-  IoSearchSharp,
-} from "react-icons/io5";
-import { ReactElement, useEffect, useState } from "react";
-import "./CocktailRecipe.css";
-import { FaRegHeart, FaHeart } from "react-icons/fa";
+import { Container, Flex, Heading, Image, SimpleGrid, Stack, StackDivider, Text, useColorModeValue } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
+import { FaHeart } from 'react-icons/fa';
 import { client } from '../../api/client';
 import { RandomDrinkQuery } from '../../api/graphql/randomDrink';
-import { log } from "console";
 
 
 
@@ -33,7 +15,15 @@ export default function CocktailDetails() {
   const [glass, setGlass] = useState('');
   
 
-  useEffect(() => {
+  useEffect( () => {
+    
+    const result = client.refetchQueries({
+      include: "all",
+      updateCache(cache) {
+        cache.evict({ fieldName: "randomDrink" });
+      },
+    });
+    
     client.query({
       query: RandomDrinkQuery
     }).then((result) => {
@@ -47,7 +37,10 @@ export default function CocktailDetails() {
       const ingredients = [];
       for (let i = 1; i <= 10; i++) {
         const ingredient = drink[`strIngredient${i}`];
-        const measurement = drink[`strMeasure${i}`];
+        let measurement = drink[`strMeasure${i}`];
+        if (measurement == null){
+          measurement = ""
+        }
         if (ingredient) {
           ingredients.push(measurement+  " "+ ingredient);
         }

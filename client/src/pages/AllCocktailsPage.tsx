@@ -1,17 +1,12 @@
-import React from "react";
-import { Flex, Grid, GridItem } from "@chakra-ui/react";
-import { client } from "../api/client";
-import Header from "../components/Header";
-import SearchBar from "../components/SearchBar";
-import { useState, useEffect } from "react";
-import dummyCocktails from "../DummyData";
-import CocktailCardsDisplay from "../components/CocktailCardsDisplay";
-import { VodkaDrinksQuery } from "../api/graphql/vodkaDrinks";
-import { RumDrinksQuery } from "../api/graphql/rumDrinks";
-import { TequilaDrinksQuery } from "../api/graphql/tequilaDrinks";
-import { GinDrinksQuery } from "../api/graphql/ginDrinks";
-import { alcoholFilterParam } from "../api/graphql/alcoholFilter";
-import FilterButtons from "../components/FilterButtons";
+import { Flex, Grid, GridItem } from '@chakra-ui/react';
+import React from 'react';
+import { useEffect, useState } from 'react';
+
+import CocktailCardsDisplay from '../components/CocktailCardsDisplay';
+import FilterButtons from '../components/FilterButtons';
+import Header from '../components/Header';
+import SearchBar from '../components/SearchBar';
+import dummyCocktails from '../DummyData';
 
 /**
  * search filter method
@@ -23,11 +18,6 @@ const filterCocktails = (
   cocktails: {
     id: number;
     name: string;
-    /*     
-    description: string;
-    favorite: boolean; 
-    (ikke tilgjengelig i api-et, måtte derfor fjernes)
-    */
     image: string;
   }[],
   query: string
