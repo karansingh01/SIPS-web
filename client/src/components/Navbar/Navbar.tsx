@@ -1,27 +1,22 @@
-import { ReactNode, useContext } from "react";
-import { Link as RouterLink } from "react-router-dom";
 import {
-  Box,
-  Flex,
   Avatar,
-  Link,
+  Box,
   Button,
+  Center,
+  Flex,
+  Link,
   Menu,
   MenuButton,
-  MenuList,
-  MenuItem,
   MenuDivider,
-  useDisclosure,
-  useColorModeValue,
+  MenuItem,
+  MenuList,
   Stack,
   useColorMode,
-  Center,
-} from "@chakra-ui/react";
-import { FaHeart } from "react-icons/fa";
-import "./Navbar.css";
-import { AuthContext } from "../../context/authContext";
-import { useNavigate } from "react-router-dom";
-
+  useDisclosure,
+} from '@chakra-ui/react';
+import { ReactNode, useContext } from 'react';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/authContext';
 const TITLE: string = "SIPS";
 const BUTTONTEXT: string = "Favorites";
 
@@ -45,9 +40,7 @@ export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   // For checking if user is logged in or not
-
   let navigate = useNavigate();
-
   const { user, logout } = useContext<{
     user: any;
     login: (userData: any) => void;
@@ -63,7 +56,6 @@ export default function Navbar() {
     navigate("/login");
   };
   
-
   return (
     <>
       <Box backgroundColor={"transparent"} px={10}>
@@ -77,14 +69,7 @@ export default function Navbar() {
           <Flex alignItems={"center"}>
             <Stack direction={"row"} spacing={7}>
               <RouterLink to="/fav">
-                <Button
-                  backgroundColor={"transparent"}
-                  color={"beige"}
-                  leftIcon={<FaHeart color={"lightpink"} size={18} />}
-                  variant={"outline"}
-                >
-                  {BUTTONTEXT}
-                </Button>
+              
               </RouterLink>
 
               <Menu>
@@ -96,7 +81,7 @@ export default function Navbar() {
                   minW={0}
                 >
                   <Avatar
-                    size={"sm"}
+                    size={"md"}
                     src={
                       "https://i.pinimg.com/originals/c6/ce/f6/c6cef63923ff0193948c75c7807eda89.jpg"
                     }

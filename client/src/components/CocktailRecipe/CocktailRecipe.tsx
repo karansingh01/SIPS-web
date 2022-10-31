@@ -1,26 +1,8 @@
-import {
-  Container,
-  SimpleGrid,
-  Image,
-  Flex,
-  Heading,
-  Text,
-  Stack,
-  StackDivider,
-  Icon,
-  useColorModeValue,
-} from "@chakra-ui/react";
-import {
-  IoAnalyticsSharp,
-  IoLogoBitcoin,
-  IoSearchSharp,
-} from "react-icons/io5";
-import { ReactElement, useEffect, useState } from "react";
-import "./CocktailRecipe.css";
-import { FaRegHeart, FaHeart } from "react-icons/fa";
+import { Container, Flex, Heading, Image, SimpleGrid, Stack, StackDivider, Text, useColorModeValue } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
+import { FaHeart } from 'react-icons/fa';
 import { client } from '../../api/client';
 import { RandomDrinkQuery } from '../../api/graphql/randomDrink';
-import { log } from "console";
 
 
 
