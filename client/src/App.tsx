@@ -22,14 +22,16 @@ import client1 from "./apolloClient";
 // format: response.data.<queryName>.drinks[0].<whateverYouWantToCollect>
 // drinks[0] gives you the first drink in the array, which is the only drink since we
 // are only querying for one random drink.
-client.query({ query: RandomDrinkQuery }).then((response) => {
+
+
+/* client.query({ query: RandomDrinkQuery }).then((response) => {
   console.log("random drink: ", response.data.randomDrink.drinks[0].strDrink);
-});
+}); */
 
 /**
  * Fetch drinks by alcohol (in different files):
  */
-
+/* 
 client.query({ query: VodkaDrinksQuery }).then((response) => {
   console.log(
     "first vodka drink: ",
@@ -48,8 +50,7 @@ client.query({ query: TequilaDrinksQuery }).then((response) => {
     response.data.tequilaDrinks.drinks[0].strDrink
   );
 });
-
-console.log("reportwebVitals: ", reportWebVitals);
+ */
 
 export default function App() {
   return (
