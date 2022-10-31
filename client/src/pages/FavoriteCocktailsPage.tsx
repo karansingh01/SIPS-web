@@ -49,12 +49,12 @@ const FavoriteCocktailsPage = () => {
   /**
    * Filtrerer ut alle favoritter
    */
-  const favoriteCocktails = dummyCocktails.filter(
+  /*   const favoriteCocktails = dummyCocktails.filter(
     (cocktail) => cocktail.favorite
   );
-
+ */
   const [query, setQuery] = useState("");
-  const filteredFavCocktails = filterFavCocktails(favoriteCocktails, query);
+  /*   const filteredFavCocktails = filterFavCocktails(favoriteCocktails, query); */
 
   return (
     <div className="lol">
@@ -87,7 +87,7 @@ const FavoriteCocktailsPage = () => {
             <SearchBar q={query} setQuery={setQuery} />
           </GridItem>
           <GridItem colSpan={4}>
-            <CocktailCardsDisplay cocktails={filteredFavCocktails} />
+            {/*    <CocktailCardsDisplay cocktails={filteredFavCocktails} /> */}
           </GridItem>
         </Grid>
       </Flex>
