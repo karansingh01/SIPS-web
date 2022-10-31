@@ -88,6 +88,7 @@ const filterCocktails = (
 };
 
 const AllCocktailsPage = () => {
+  console.log("all drinks", allDrinks);
   /* const cocktails = allDrinks; */
   const [query, setQuery] = useState("");
   const [cocktails, setCocktails] = useState(
