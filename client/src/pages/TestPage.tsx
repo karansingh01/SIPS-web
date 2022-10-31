@@ -49,9 +49,18 @@ const TestPage = () => {
   //   variables: { recipename: "501 Blue" },
   // });
 
+  // gets all drinks
   const { loading, error, data } = useQuery(GET_ALL_DRINKS);
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    // Handle error?
+    return <p>{error as any}</p>;
+  }
   
-  console.log(data);
+  console.log(data.getAllDrinks);
     
     return (
       <Flex flexDirection="column">
