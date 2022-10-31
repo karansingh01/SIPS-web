@@ -10,12 +10,12 @@ export const RandomDrinkQuery = gql`
  query RandomDrink {
   randomDrink @rest(type: "drinks", path: "random.php"){ 
     drinks {
-      strDrink: String!
-            strCategory: String!
-            strAlcoholic: String!
+      strDrink: String
+            strCategory: String
+            strAlcoholic: String
             strGlass: String
             strInstructions: String
-            strIngredient1: String!
+            strIngredient1: String
             strIngredient2: String
             strIngredient3: String
             strIngredient4: String

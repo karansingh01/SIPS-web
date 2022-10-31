@@ -10,9 +10,22 @@ const client_1 = require("@apollo/client");
 exports.RandomDrinkQuery = (0, client_1.gql) `
  query RandomDrink {
   randomDrink @rest(type: "drinks", path: "random.php"){ 
-    drinks
-#    whatever other fields we need {
-#      name
-#    }
+    drinks {
+      strDrink: String
+            strCategory: String
+            strAlcoholic: String
+            strGlass: String
+            strInstructions: String
+            strIngredient1: String
+            strIngredient2: String
+            strIngredient3: String
+            strIngredient4: String
+            strIngredient5: String
+            strIngredient6: String
+            strIngredient7: String
+            strIngredient8: String
+            strIngredient9: String
+            strIngredient10: String
+    }
   }}
 `;

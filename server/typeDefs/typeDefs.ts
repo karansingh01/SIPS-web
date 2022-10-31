@@ -2,33 +2,57 @@ const { gql } = require('apollo-server');
 
 module.exports = gql`
 
-
-"All drinks"
-  type drinks {
-    idDrink: ID!
-    strDrink: String!
-    strDrinkThumb: String!
+type Drinks {
+  idDrink: String
+  strDrink: String
+  strDrinkAlternate: String
+  strTags: String
+  strVideo: String
+  strCategory: String
+  strIBA: String
+  strAlcoholic: String
+  strGlass: String
+  strInstructions: String
+  strInstructionsES: String
+  strInstructionsDE: String
+  strInstructionsFR: String
+  strInstructionsIT: String
+  strDrinkThumb: String
+  strIngredient1: String
+  strIngredient2: String
+  strIngredient3: String
+  strIngredient4: String
+  strIngredient5: String
+  strIngredient6: String
+  strIngredient7: String
+  strIngredient8: String
+  strIngredient9: String
+  strIngredient10: String
+  strIngredient11: String
+  strIngredient12: String
+  strIngredient13: String
+  strIngredient14: String
+  strIngredient15: String
+  strMeasure1: String
+  strMeasure2: String
+  strMeasure3: String
+  strMeasure4: String
+  strMeasure5: String
+  strMeasure6: String
+  strMeasure7: String
+  strMeasure8: String
+  strMeasure9: String
+  strMeasure10: String
+  strMeasure11: String
+  strMeasure12: String
+  strMeasure13: String
+  strMeasure14: String
+  strMeasure15: String
+  strImageSource: String
+  strImageAttribution: String
+  strCreativeCommonsConfirmed: String
+  dateModified: String
 }
-
-type oneDrink{
-        idDrink: String!{
-            strDrink: String!
-            strCategory: String!
-            strAlcoholic: String!
-            strGlass: String
-            strInstructions: String
-            strIngredient1: String!
-            strIngredient2: String
-            strIngredient3: String
-            strIngredient4: String
-            strIngredient5: String
-            strIngredient6: String
-            strIngredient7: String
-            strIngredient8: String
-            strIngredient9: String
-            strIngredient10: String
-            }
-        }
 
 type Message {
     text: String
@@ -59,9 +83,21 @@ input MessageInput {
     username: String
 }
 type Query {
-    message(id: ID!): Message
-    user(id: ID!): User 
+  # takes a ID and returns a Drinks object
+  drinks(ID: ID!): Drinks
+  # takes an amount (example 5) and returns that many Drink objects in array
+  getDrinks(amount: Int): [Drinks]
+  # takes a name and returns info about that drink
+  getDrinksByName(recipename: String): [Drinks]
+  # returns all drinks
+  getAllDrinks: [Drinks]
+  # returns all drinks with a specific ingredient
+  getDrinksByIngredient(ingredient: String): [Drinks]
+
+  message(id: ID!): Message
+  user(id: ID!): User 
 }
+
 type Mutation {
     createMessage(messageInput: MessageInput): Message!
     registerUser(registerInput: RegisterInput): User

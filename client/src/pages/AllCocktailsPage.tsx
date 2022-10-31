@@ -22,8 +22,6 @@ const filterCocktails = (
   }[],
   query: string
 ) => {
-  console.log("query in filterCocktails: ", query);
-  console.log("cocktails in filterCocktails: ", cocktails);
   if (query === "") {
     return cocktails;
   } else {
