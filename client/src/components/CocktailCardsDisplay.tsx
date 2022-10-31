@@ -29,6 +29,7 @@ export default function CocktailCardsDisplay({
   const [sortedDown, setSortedDown] = useState(true);
 
   const toggleSort = () => {
+    cocktails.reverse();
     setSortedDown(!sortedDown);
   };
   /* For søk. Denne funker ikke helt som jeg vil atm */
