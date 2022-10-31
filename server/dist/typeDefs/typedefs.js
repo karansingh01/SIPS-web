@@ -91,6 +91,8 @@ type Query {
   getDrinksByName(recipename: String): [Drinks]
   # returns all drinks
   getAllDrinks: [Drinks]
+  # returns all drinks with a specific ingredient
+  getDrinksByIngredient(ingredient: String): [Drinks]
 
   message(id: ID!): Message
   user(id: ID!): User 

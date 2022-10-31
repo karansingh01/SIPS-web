@@ -31,13 +31,38 @@ const GET_ALL_DRINKS = gql`
       idDrink
       strDrink
       strDrinkThumb
+      strIngredient1
+      strIngredient2
+      strIngredient3
+      strIngredient4
+      strIngredient5
+      strIngredient6
     }
   }
 `;
 
-console.log("what the fuck")
-
-
+const GET_DRINKS_BY_INGREDIENT = gql`
+  query GetDrinksByIngredient($ingredient: String) {
+    getDrinksByIngredient(ingredient: $ingredient) {
+      idDrink
+      strDrink
+      strInstructions
+      strDrinkThumb
+      strIngredient1
+      strIngredient2
+      strIngredient3
+      strIngredient4
+      strIngredient5
+      strIngredient6
+      strMeasure1
+      strMeasure2
+      strMeasure3
+      strMeasure4
+      strMeasure5
+      strMeasure6
+    }
+  }
+  `;
 
 const TestPage = () => {
   
@@ -50,7 +75,12 @@ const TestPage = () => {
   // });
 
   // gets all drinks
-  const { loading, error, data } = useQuery(GET_ALL_DRINKS);
+  // const { loading, error, data } = useQuery(GET_ALL_DRINKS);
+
+  // gets all drinks with a specific ingredient
+  const { loading, error, data} = useQuery(GET_DRINKS_BY_INGREDIENT , {
+    variables: { ingredient: "Vodka" },
+    });
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -60,7 +90,7 @@ const TestPage = () => {
     return <p>{error as any}</p>;
   }
   
-  console.log(data.getAllDrinks);
+  console.log(data.getDrinksByIngredient);
     
     return (
       <Flex flexDirection="column">

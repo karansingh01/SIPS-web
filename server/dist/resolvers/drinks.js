@@ -31,8 +31,14 @@ module.exports = {
         },
         getAllDrinks(_) {
             return __awaiter(this, void 0, void 0, function* () {
-                // returns array of recipes
+                // returns all recipes
                 return yield Drink.find();
+            });
+        },
+        getDrinksByIngredient(_, { ingredient }) {
+            return __awaiter(this, void 0, void 0, function* () {
+                // returns all recipes with a specific ingredient
+                return yield Drink.find({ $or: [{ strIngredient1: ingredient }, { strIngredient2: ingredient }, { strIngredient3: ingredient }, { strIngredient4: ingredient }, { strIngredient5: ingredient }, { strIngredient6: ingredient }, { strIngredient7: ingredient }, { strIngredient8: ingredient }, { strIngredient9: ingredient }, { strIngredient10: ingredient }] });
             });
         }
     }
