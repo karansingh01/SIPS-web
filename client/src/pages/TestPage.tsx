@@ -95,19 +95,7 @@ const TestPage = () => {
     return (
       <Flex flexDirection="column">
         <Header />
-        <Grid
-          transform="translate(0px, -150px)"
-          margin={"30px"}
-          rounded={20}
-          templateRows="repeat(1fr)"
-          templateColumns="repeat(1fr)"
-          gap={4}
-          mt={5}
-        >
-          <GridItem colSpan={1}>
-          </GridItem>
-          <GridItem colSpan={4}>
-          </GridItem>
+        <Grid>
         </Grid>
       </Flex>
     );
