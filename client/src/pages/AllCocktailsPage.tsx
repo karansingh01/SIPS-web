@@ -19,7 +19,14 @@ let allDrinks: {
   id: number;
   name: string;
   image: string;
-}[] = [];
+}[] = [
+  {
+    id: 9999,
+    name: "yolo",
+    image:
+      "https://www.liquor.com/thmb/fO-COKLw_iEA28v8K4XQjzMhkfw=/735x0/very-sexy-martini-720x720-primary-b1212ebf73f54f898a56f7f0b60c0a34.jpg",
+  },
+];
 
 client.query({ query: AlcoholicDrinkQuery }).then((response) => {
   const alcoholicDrinkList = response.data.alcoholicDrink.drinks;
@@ -36,8 +43,6 @@ client.query({ query: AlcoholicDrinkQuery }).then((response) => {
     image:
       "https://www.liquor.com/thmb/fO-COKLw_iEA28v8K4XQjzMhkfw=/735x0/very-sexy-martini-720x720-primary-b1212ebf73f54f898a56f7f0b60c0a34.jpg",
   });
-
-  console.log(allDrinks);
 });
 
 client.query({ query: NonAlcoholicDrinkQuery }).then((response) => {
@@ -49,8 +54,6 @@ client.query({ query: NonAlcoholicDrinkQuery }).then((response) => {
       image: drink.strDrinkThumb,
     });
   });
-
-  console.log(allDrinks);
 });
 
 /**
@@ -64,7 +67,6 @@ const filterCocktails = (
     id: number;
     name: string;
     /*     
-    description: string;
     favorite: boolean; 
     (ikke tilgjengelig i api-et, måtte derfor fjernes)
     */
@@ -72,8 +74,6 @@ const filterCocktails = (
   }[],
   query: string
 ) => {
-  console.log("query in filterCocktails: ", query);
-  console.log("cocktails in filterCocktails: ", cocktails);
   if (query === "") {
     return cocktails;
   } else {
@@ -83,18 +83,23 @@ const filterCocktails = (
         .toLowerCase()
         .includes(query.toLowerCase());
     });
+
     return filtered;
   }
 };
 
 const AllCocktailsPage = () => {
-  console.log("all drinks", allDrinks);
-  /* const cocktails = allDrinks; */
   const [query, setQuery] = useState("");
-  const [cocktails, setCocktails] = useState(
-    filterCocktails(dummyCocktails, query)
-  );
-  const filteredCocktails = filterCocktails(cocktails, query);
+  const [cocktails, setCocktails] = useState(allDrinks);
+  const [filteredCocktails, setFilteredCocktails] = useState(cocktails);
+
+  console.log("all drinks length", cocktails.length, cocktails);
+  console.log("filtered cocktails", filteredCocktails);
+
+  useEffect(() => {
+    let filter = filterCocktails(cocktails, query);
+    setFilteredCocktails(filter);
+  }, [query, setQuery]);
 
   /*   const { loading, error, data } = useQuery(GET_GEN_3);
   console.log(data); */
