@@ -47,6 +47,214 @@ const dummyCocktails = [
     image:
       "https://www.theendlessmeal.com/wp-content/uploads/2022/07/aperol-spritz-recipe-2.jpg",
   },
+  {
+    id: 7,
+    name: "Sunnivas sommerdrink",
+    /*         description: "Diiigg favoritt",
+        favorite: true, */
+    image:
+      "https://www.theendlessmeal.com/wp-content/uploads/2022/07/aperol-spritz-recipe-2.jpg",
+  },
+  {
+    id: 8,
+    name: "Sunnivas sommerdrink",
+    /*         description: "Diiigg favoritt",
+        favorite: true, */
+    image:
+      "https://www.theendlessmeal.com/wp-content/uploads/2022/07/aperol-spritz-recipe-2.jpg",
+  },
+  {
+    id: 9,
+    name: "Sunnivas sommerdrink",
+    /*         description: "Diiigg favoritt",
+        favorite: true, */
+    image:
+      "https://www.theendlessmeal.com/wp-content/uploads/2022/07/aperol-spritz-recipe-2.jpg",
+  },
+  {
+    id: 10,
+    name: "Sunnivas sommerdrink",
+    /*         description: "Diiigg favoritt",
+        favorite: true, */
+    image:
+      "https://www.theendlessmeal.com/wp-content/uploads/2022/07/aperol-spritz-recipe-2.jpg",
+  },
+  {
+    id: 11,
+    name: "Sunnivas sommerdrink",
+    /*         description: "Diiigg favoritt",
+        favorite: true, */
+    image:
+      "https://www.theendlessmeal.com/wp-content/uploads/2022/07/aperol-spritz-recipe-2.jpg",
+  },
+  {
+    id: 12,
+    name: "Sunnivas sommerdrink",
+    /*         description: "Diiigg favoritt",
+        favorite: true, */
+    image:
+      "https://www.theendlessmeal.com/wp-content/uploads/2022/07/aperol-spritz-recipe-2.jpg",
+  },
+  {
+    id: 13,
+    name: "Sunnivas sommerdrink",
+    /*         description: "Diiigg favoritt",
+        favorite: true, */
+    image:
+      "https://www.theendlessmeal.com/wp-content/uploads/2022/07/aperol-spritz-recipe-2.jpg",
+  },
+  {
+    id: 14,
+    name: "Sunnivas sommerdrink",
+    /*         description: "Diiigg favoritt",
+        favorite: true, */
+    image:
+      "https://www.theendlessmeal.com/wp-content/uploads/2022/07/aperol-spritz-recipe-2.jpg",
+  },
+  {
+    id: 15,
+    name: "Sunnivas sommerdrink",
+    /*         description: "Diiigg favoritt",
+        favorite: true, */
+    image:
+      "https://www.theendlessmeal.com/wp-content/uploads/2022/07/aperol-spritz-recipe-2.jpg",
+  },
+  {
+    id: 16,
+    name: "Sunnivas sommerdrink",
+    /*         description: "Diiigg favoritt",
+        favorite: true, */
+    image:
+      "https://www.theendlessmeal.com/wp-content/uploads/2022/07/aperol-spritz-recipe-2.jpg",
+  },
+  {
+    id: 17,
+    name: "Sunnivas sommerdrink",
+    /*         description: "Diiigg favoritt",
+        favorite: true, */
+    image:
+      "https://www.theendlessmeal.com/wp-content/uploads/2022/07/aperol-spritz-recipe-2.jpg",
+  },
+  {
+    id: 18,
+    name: "Sunnivas sommerdrink",
+    /*         description: "Diiigg favoritt",
+        favorite: true, */
+    image:
+      "https://www.theendlessmeal.com/wp-content/uploads/2022/07/aperol-spritz-recipe-2.jpg",
+  },
+  {
+    id: 19,
+    name: "Sunnivas sommerdrink",
+    /*         description: "Diiigg favoritt",
+        favorite: true, */
+    image:
+      "https://www.theendlessmeal.com/wp-content/uploads/2022/07/aperol-spritz-recipe-2.jpg",
+  },
+  {
+    id: 20,
+    name: "Sunnivas sommerdrink",
+    /*         description: "Diiigg favoritt",
+        favorite: true, */
+    image:
+      "https://www.theendlessmeal.com/wp-content/uploads/2022/07/aperol-spritz-recipe-2.jpg",
+  },
+  {
+    id: 21,
+    name: "Sunnivas sommerdrink",
+    /*         description: "Diiigg favoritt",
+        favorite: true, */
+    image:
+      "https://www.theendlessmeal.com/wp-content/uploads/2022/07/aperol-spritz-recipe-2.jpg",
+  },
+  {
+    id: 22,
+    name: "Sunnivas sommerdrink",
+    /*         description: "Diiigg favoritt",
+        favorite: true, */
+    image:
+      "https://www.theendlessmeal.com/wp-content/uploads/2022/07/aperol-spritz-recipe-2.jpg",
+  },
+  {
+    id: 23,
+    name: "Sunnivas sommerdrink",
+    /*         description: "Diiigg favoritt",
+        favorite: true, */
+    image:
+      "https://www.theendlessmeal.com/wp-content/uploads/2022/07/aperol-spritz-recipe-2.jpg",
+  },
+  {
+    id: 24,
+    name: "Sunnivas sommerdrink",
+    /*         description: "Diiigg favoritt",
+        favorite: true, */
+    image:
+      "https://www.theendlessmeal.com/wp-content/uploads/2022/07/aperol-spritz-recipe-2.jpg",
+  },
+  {
+    id: 25,
+    name: "Sunnivas sommerdrink",
+    /*         description: "Diiigg favoritt",
+        favorite: true, */
+    image:
+      "https://www.theendlessmeal.com/wp-content/uploads/2022/07/aperol-spritz-recipe-2.jpg",
+  },
+  {
+    id: 6,
+    name: "Sunnivas sommerdrink",
+    /*         description: "Diiigg favoritt",
+        favorite: true, */
+    image:
+      "https://www.theendlessmeal.com/wp-content/uploads/2022/07/aperol-spritz-recipe-2.jpg",
+  },
+  {
+    id: 6,
+    name: "Sunnivas sommerdrink",
+    /*         description: "Diiigg favoritt",
+        favorite: true, */
+    image:
+      "https://www.theendlessmeal.com/wp-content/uploads/2022/07/aperol-spritz-recipe-2.jpg",
+  },
+  {
+    id: 6,
+    name: "Sunnivas sommerdrink",
+    /*         description: "Diiigg favoritt",
+        favorite: true, */
+    image:
+      "https://www.theendlessmeal.com/wp-content/uploads/2022/07/aperol-spritz-recipe-2.jpg",
+  },
+  {
+    id: 6,
+    name: "Sunnivas sommerdrink",
+    /*         description: "Diiigg favoritt",
+        favorite: true, */
+    image:
+      "https://www.theendlessmeal.com/wp-content/uploads/2022/07/aperol-spritz-recipe-2.jpg",
+  },
+  {
+    id: 6,
+    name: "Sunnivas sommerdrink",
+    /*         description: "Diiigg favoritt",
+        favorite: true, */
+    image:
+      "https://www.theendlessmeal.com/wp-content/uploads/2022/07/aperol-spritz-recipe-2.jpg",
+  },
+  {
+    id: 6,
+    name: "Sunnivas sommerdrink",
+    /*         description: "Diiigg favoritt",
+        favorite: true, */
+    image:
+      "https://www.theendlessmeal.com/wp-content/uploads/2022/07/aperol-spritz-recipe-2.jpg",
+  },
+  {
+    id: 6,
+    name: "Sunnivas sommerdrink",
+    /*         description: "Diiigg favoritt",
+        favorite: true, */
+    image:
+      "https://www.theendlessmeal.com/wp-content/uploads/2022/07/aperol-spritz-recipe-2.jpg",
+  },
 ];
 
 export default dummyCocktails;

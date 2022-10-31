@@ -14,6 +14,7 @@ import client1 from './apolloClient';
 import { AuthProvider } from './context/authContext';
 import AllCocktailsPage from './pages/AllCocktailsPage';
 import CocktailRecipePage from './pages/CocktailRecipePage';
+import CocktailDetails from './components/CocktailRecipe/AllCocktailRecipes';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import reportWebVitals from './reportWebVitals';
@@ -59,6 +60,7 @@ export default function App() {
             <Routes>
               <Route path="/" element={<AllCocktailsPage />} />
               <Route path="/cr" element={<CocktailRecipePage />} />
+              <Route path="/oneCocktail" element={<CocktailDetails/>} />
               <Route path="/register" element={<RegisterPage />} />
               <Route path="/login" element={<LoginPage />} />
             </Routes>

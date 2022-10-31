@@ -1,5 +1,7 @@
 import { Box, Center, Container, Image, Stack, Text, useColorModeValue } from '@chakra-ui/react';
 import { useState } from 'react';
+import { LinkBox, LinkOverlay } from '@chakra-ui/react'
+import CocktailDetails from '../components/CocktailRecipe/AllCocktailRecipes';
 
 export default function CocktailCard({
   cocktail,
@@ -14,6 +16,8 @@ export default function CocktailCard({
   let name: string = cocktail.name;
 
   return (
+
+
     <Center py={12}>
       <Box
         role={"group"}
