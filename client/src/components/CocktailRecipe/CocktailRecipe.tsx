@@ -15,7 +15,15 @@ export default function CocktailDetails() {
   const [glass, setGlass] = useState('');
   
 
-  useEffect(() => {
+  useEffect( () => {
+    
+    const result = client.refetchQueries({
+      include: "all",
+      updateCache(cache) {
+        cache.evict({ fieldName: "randomDrink" });
+      },
+    });
+    
     client.query({
       query: RandomDrinkQuery
     }).then((result) => {
@@ -29,7 +37,10 @@ export default function CocktailDetails() {
       const ingredients = [];
       for (let i = 1; i <= 10; i++) {
         const ingredient = drink[`strIngredient${i}`];
-        const measurement = drink[`strMeasure${i}`];
+        let measurement = drink[`strMeasure${i}`];
+        if (measurement == null){
+          measurement = ""
+        }
         if (ingredient) {
           ingredients.push(measurement+  " "+ ingredient);
         }

@@ -1,27 +1,28 @@
-import { useContext, useState } from 'react';
-import { AuthContext } from '../context/authContext';
-import { useForm } from '../hooks/nameToValue';
 import { useMutation } from '@apollo/react-hooks';
-import { gql } from 'graphql-tag';
-import { useNavigate } from 'react-router-dom';
 import {
   Alert,
   AlertIcon,
-  Flex,
   Box,
+  Button,
+  Flex,
   FormControl,
   FormLabel,
-  Input,
-  Stack,
-  Link,
-  Button,
   Heading,
-  Text,
-  useColorModeValue,
+  Input,
   InputGroup,
   InputRightElement,
+  Link,
+  Stack,
+  Text,
+  useColorModeValue,
 } from '@chakra-ui/react';
+import { gql } from 'graphql-tag';
+import { useContext, useState } from 'react';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { AuthContext } from '../context/authContext';
+import { useForm } from '../hooks/nameToValue';
 
 const REGISTER_USER = gql`
     mutation Mutation (

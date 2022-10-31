@@ -1,23 +1,22 @@
-import "./App.css";
-import { client } from "./api/client";
-import { alcoholFilterParam } from "./api/graphql/alcoholFilter";
-import { RandomDrinkQuery } from "./api/graphql/randomDrink";
-import { VodkaDrinksQuery } from "./api/graphql/vodkaDrinks";
-import { GinDrinksQuery } from "./api/graphql/ginDrinks";
-import { RumDrinksQuery } from "./api/graphql/rumDrinks";
-import { TequilaDrinksQuery } from "./api/graphql/tequilaDrinks";
-import reportWebVitals from "./reportWebVitals";
-import { HashRouter, Route, Routes } from "react-router-dom";
-import { ChakraProvider } from "@chakra-ui/react";
-import AllCocktailsPage from "./pages/AllCocktailsPage";
-import CocktailRecipePage from "./pages/CocktailRecipePage";
-import FavoriteCocktailsPage from "./pages/FavoriteCocktailsPage";
-import { gql, useQuery } from "@apollo/client";
-import RegisterPage from "./pages/RegisterPage";
-import LoginPage from "./pages/LoginPage";
-import { ApolloProvider } from "@apollo/client";
-import { AuthProvider } from "./context/authContext";
-import client1 from "./apolloClient";
+import './App.css';
+
+import { ApolloProvider } from '@apollo/client';
+import { ChakraProvider } from '@chakra-ui/react';
+import { HashRouter, Route, Routes } from 'react-router-dom';
+
+import { client } from './api/client';
+import { GinDrinksQuery } from './api/graphql/ginDrinks';
+import { RandomDrinkQuery } from './api/graphql/randomDrink';
+import { RumDrinksQuery } from './api/graphql/rumDrinks';
+import { TequilaDrinksQuery } from './api/graphql/tequilaDrinks';
+import { VodkaDrinksQuery } from './api/graphql/vodkaDrinks';
+import client1 from './apolloClient';
+import { AuthProvider } from './context/authContext';
+import AllCocktailsPage from './pages/AllCocktailsPage';
+import CocktailRecipePage from './pages/CocktailRecipePage';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import reportWebVitals from './reportWebVitals';
 
 // format: response.data.<queryName>.drinks[0].<whateverYouWantToCollect>
 // drinks[0] gives you the first drink in the array, which is the only drink since we
@@ -60,7 +59,6 @@ export default function App() {
             <Routes>
               <Route path="/" element={<AllCocktailsPage />} />
               <Route path="/cr" element={<CocktailRecipePage />} />
-              <Route path="/fav" element={<FavoriteCocktailsPage />} />
               <Route path="/register" element={<RegisterPage />} />
               <Route path="/login" element={<LoginPage />} />
             </Routes>
