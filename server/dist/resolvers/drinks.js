@@ -19,7 +19,7 @@ module.exports = {
         },
         getDrinks(_, { amount }) {
             return __awaiter(this, void 0, void 0, function* () {
-                // returns array of recipes
+                // returns array of recipes with limited amount
                 return yield Drink.find().limit(amount);
             });
         },
@@ -29,5 +29,11 @@ module.exports = {
                 return yield Drink.find({ strDrink: recipename });
             });
         },
+        getAllDrinks(_) {
+            return __awaiter(this, void 0, void 0, function* () {
+                // returns array of recipes
+                return yield Drink.find();
+            });
+        }
     }
 };

@@ -8,12 +8,16 @@ module.exports = {
             return await Drink.findById(ID);
         }, 
         async getDrinks(_: any, {amount}: any) {
-            // returns array of recipes
+            // returns array of recipes with limited amount
             return await Drink.find().limit(amount);
         },
         async getDrinksByName(_: any, {recipename}: any) {
             // returns array of recipes
             return await Drink.find({strDrink: recipename});
         },
+        async getAllDrinks(_: any) {
+            // returns array of recipes
+            return await Drink.find();
+        }
     }
 }

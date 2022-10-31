@@ -54,20 +54,6 @@ type Drinks {
   dateModified: String
 }
 
-type Recipe {
-  name: String,
-  description: String,
-  createdAt: String,
-  thumbsUp: Int,
-  thumbsDown: Int,
-}
-
-input RecipeInput {
-  name: String,
-  description: String,
-}
-
-
 type Message {
     text: String
     createdAt: String
@@ -103,10 +89,13 @@ type Query {
   getDrinks(amount: Int): [Drinks]
   # takes a name and returns info about that drink
   getDrinksByName(recipename: String): [Drinks]
+  # returns all drinks
+  getAllDrinks: [Drinks]
 
   message(id: ID!): Message
   user(id: ID!): User 
 }
+
 type Mutation {
     createMessage(messageInput: MessageInput): Message!
     registerUser(registerInput: RegisterInput): User
