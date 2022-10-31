@@ -1,19 +1,8 @@
-import React from "react";
-import {
-  SimpleGrid,
-  Flex,
-  Grid,
-  GridItem,
-  Text,
-  Container,
-  Stack,
-} from "@chakra-ui/react";
-import CocktailCard from "./CocktailCard";
-import Header from "./Header";
-import SearchBar from "./SearchBar";
-import { useState, useEffect } from "react";
-import dummyCocktails from "../DummyData";
-import { FaSortAlphaDown, FaSortAlphaUp } from "react-icons/fa";
+import { SimpleGrid, Text } from '@chakra-ui/react';
+import React from 'react';
+import { useEffect, useState } from 'react';
+import { FaSortAlphaDown, FaSortAlphaUp } from 'react-icons/fa';
+import CocktailCard from './CocktailCard';
 
 export default function CocktailCardsDisplay({
   cocktails,
@@ -21,8 +10,6 @@ export default function CocktailCardsDisplay({
   cocktails: {
     id: number;
     name: string;
-    /*     description: string;
-    favorite: boolean; */
     image: string;
   }[];
 }) {

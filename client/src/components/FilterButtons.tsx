@@ -1,21 +1,9 @@
-import React, { useEffect, useState } from "react";
-import {
-  ButtonGroup,
-  Button,
-  Stack,
-  Text,
-  VStack,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-} from "@chakra-ui/react";
-import { alcoholFilterParam } from "../api/graphql/alcoholFilter";
-import { client } from "../api/client";
-import { FaAngleRight, FaAngleDown } from "react-icons/fa";
-import AllCocktailsPage from "../pages/AllCocktailsPage";
-import { useQuery } from "@apollo/client";
-import { log } from "console";
+import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
+import React, { useEffect, useState } from 'react';
+import { FaAngleRight } from 'react-icons/fa';
+
+import { client } from '../api/client';
+import { alcoholFilterParam } from '../api/graphql/alcoholFilter';
 
 export default function FilterButtons({
   setFilteredCocktails,
@@ -40,8 +28,24 @@ export default function FilterButtons({
     }[] = [];
 
     if (alc === "All") {
-      /**fremtidig: vise alle cocktails fra hele api-et (opprinnelig liste) her */
-      drinks = drinks;
+      const result = await client.refetchQueries({
+        include: "all",
+        updateCache(cache) {
+          cache.evict({ fieldName: "alcoholFilter" });
+        },
+      });
+      const { data } = await client.query({
+        query: alcoholFilterParam("Vodka")
+      });
+      const drinkList = data.alcoholFilter.drinks;
+      drinkList.map((drink: any) => {
+        drinks.push({
+          id: parseInt(drink.idDrink),
+          name: drink.strDrink,
+          image: drink.strDrinkThumb,
+        });
+      });
+      console.log("drinks from drinkList:", drinks);
     } else {
       const result = await client.refetchQueries({
         include: "all",

@@ -11,9 +11,9 @@ export const RandomDrinkQuery = gql`
   randomDrink @rest(type: "drinks", path: "random.php"){ 
     drinks {
       strDrink: String!
-            strCategory": String!
-            strAlcoholic": String!
-            strGlass": String
+            strCategory: String!
+            strAlcoholic: String!
+            strGlass: String
             strInstructions: String
             strIngredient1: String!
             strIngredient2: String
@@ -25,6 +25,11 @@ export const RandomDrinkQuery = gql`
             strIngredient8: String
             strIngredient9: String
             strIngredient10: String
+            strIngredient11: String
+            strIngredient12: String
+            strIngredient13: String
+            strIngredient14: String
+            strIngredient15: String
     }
   }}
 `;

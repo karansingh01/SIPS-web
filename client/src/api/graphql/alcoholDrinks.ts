@@ -7,8 +7,8 @@ import { gql } from '@apollo/client';
 // where those that are not used are "null". We probably need to fetch these later though...
 
 export const AlcoholDrinkQuery = gql`
- query RandomDrink {
-  randomDrink @rest(type: "drinks", path: "filter.php?a=Alcoholic"){ 
+ query Alcohol {
+  Alcohol @rest(type: "drinks", path: "filter.php?a=Alcoholic"){ 
     drinks {
       strDrink
       idDrink

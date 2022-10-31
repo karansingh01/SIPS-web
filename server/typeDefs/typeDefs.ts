@@ -13,9 +13,9 @@ module.exports = gql`
 type oneDrink{
         idDrink: String!{
             strDrink: String!
-            strCategory": String!
-            strAlcoholic": String!
-            strGlass": String
+            strCategory: String!
+            strAlcoholic: String!
+            strGlass: String
             strInstructions: String
             strIngredient1: String!
             strIngredient2: String

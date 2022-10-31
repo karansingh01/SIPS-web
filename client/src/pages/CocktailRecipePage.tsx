@@ -1,16 +1,18 @@
-import React from "react";
-import { SimpleGrid, Flex, Text, HStack } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
-import CocktailRecipe from "../components/CocktailRecipe/CocktailRecipe";
-import "./Pages.css";
-import Navbar from "../components/Navbar/Navbar";
-import { BsArrowLeft } from "react-icons/bs";
+import './Pages.css';
+
+import { Flex, HStack } from '@chakra-ui/react';
+import React from 'react';
+import { BsArrowLeft } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
+
+import CocktailRecipe from '../components/CocktailRecipe/CocktailRecipe';
+import Navbar from '../components/Navbar/Navbar';
 
 
 const CocktailRecipePage = () => {
 
   return (
-    <div className="lol">
+    <div className="drinkPage">
       <Flex flexDirection="column">
         <Navbar />
         <HStack
