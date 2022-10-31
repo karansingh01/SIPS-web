@@ -21,8 +21,8 @@ export default function CocktailCardsDisplay({
   cocktails: {
     id: number;
     name: string;
-    description: string;
-    favorite: boolean;
+    /*     description: string;
+    favorite: boolean; */
     image: string;
   }[];
 }) {
