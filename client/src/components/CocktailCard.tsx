@@ -16,24 +16,24 @@ export default function CocktailCard({
   cocktail: {
     id: number;
     name: string;
-    description: string;
-    favorite: boolean;
+    /*description: string;
+    favorite: boolean;*/
     image: string;
   };
 }) {
   const IMAGE = cocktail.image;
   let name: string = cocktail.name;
-  let description: string = cocktail.description;
-  let favorite: boolean = cocktail.favorite;
+  /*let description: string = cocktail.description;
+  let favorite: boolean = cocktail.favorite;*/
 
   /**
    * toggler favoritt-knapp (ikke faktisk logikk så langt obv)
    */
-  const [isFav, setFav] = useState(favorite);
+ /* const [isFav, setFav] = useState(favorite);
   const toggleFav = () => {
     setFav(!isFav);
     cocktail.favorite = isFav;
-  };
+  };*/
 
   return (
     <Center py={12}>
@@ -47,13 +47,13 @@ export default function CocktailCard({
         borderColor={"beige"}
         pos={"relative"}
       >
-        <Stack style={{ flexDirection: "row-reverse" }} marginBottom={-20}>
+       {/*  <Stack style={{ flexDirection: "row-reverse" }} marginBottom={-20}>
           {isFav ? (
             <FaHeart color={"lightpink"} size={20} onClick={toggleFav} />
           ) : (
             <FaRegHeart color={"lightpink"} size={20} onClick={toggleFav} />
           )}
-        </Stack>
+        </Stack> */}
         <Stack pt={20} align={"center"} marginBottom={10} marginTop={0}>
           <Text color={"gray.500"} fontSize={"lg"} textTransform={"uppercase"}>
             {name}
@@ -105,8 +105,8 @@ export default function CocktailCard({
             fontFamily={"body"}
             fontWeight={100}
           >
-            {description.slice(0, 20)}
-            {description[21] ? "..." : null}
+         {/*   {description.slice(0, 20)}
+            {description[21] ? "..." : null}*/}
           </Container>
           <Text
             textTransform={"uppercase"}

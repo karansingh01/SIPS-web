@@ -3,8 +3,48 @@ import { Flex, Grid, GridItem } from "@chakra-ui/react";
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
 import { useState, useEffect } from "react";
-import dummyCocktails from "../DummyData";
 import CocktailCardsDisplay from "../components/CocktailCardsDisplay";
+import { client } from "../api/client";
+import { AlcoholicDrinkQuery } from "../api/graphql/alcoholicDrinks";
+import { NonAlcoholicDrinkQuery } from "../api/graphql/nonAlcoholicDrinks";
+
+let allDrinks: {
+  id: number;
+  name: string;
+  image: string;
+}[] = [];
+
+client.query({ query: AlcoholicDrinkQuery }).then((response) => {
+  const alcoholicDrinkList = response.data.alcoholicDrink.drinks;
+  alcoholicDrinkList.map((drink: any) => {
+    allDrinks.push({
+      id: parseInt(drink.idDrink),
+      name: drink.strDrink,
+      image: drink.strDrinkThumb,
+    });
+  });
+  allDrinks.push({
+    id: 1,
+    name: "test",
+    image:
+      "https://www.liquor.com/thmb/fO-COKLw_iEA28v8K4XQjzMhkfw=/735x0/very-sexy-martini-720x720-primary-b1212ebf73f54f898a56f7f0b60c0a34.jpg",
+  });
+
+  console.log(allDrinks);
+});
+
+client.query({ query: NonAlcoholicDrinkQuery }).then((response) => {
+  const nonAlcoholicDrinkList = response.data.nonAlcoholicDrink.drinks;
+  nonAlcoholicDrinkList.map((drink: any) => {
+    allDrinks.push({
+      id: parseInt(drink.idDrink),
+      name: drink.strDrink,
+      image: drink.strDrinkThumb,
+    });
+  });
+
+  console.log(allDrinks);
+});
 
 /**
  * search filter method
@@ -16,8 +56,8 @@ const filterCocktails = (
   cocktails: {
     id: number;
     name: string;
-    description: string;
-    favorite: boolean;
+    /*description: string;
+    favorite: boolean;*/
     image: string;
   }[],
   query: string
@@ -36,11 +76,11 @@ const filterCocktails = (
 };
 
 const AllCocktailsPage = () => {
+  const cocktails = allDrinks;
   const [query, setQuery] = useState("");
-  const cocktails = dummyCocktails;
   const filteredCocktails = filterCocktails(cocktails, query);
 
-/*   const { loading, error, data } = useQuery(GET_GEN_3);
+  /*   const { loading, error, data } = useQuery(GET_GEN_3);
   console.log(data); */
 
   return (
