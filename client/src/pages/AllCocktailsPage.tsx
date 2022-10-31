@@ -19,11 +19,6 @@ import FilterButtons from "../components/FilterButtons";
  * @param query string entered in search field
  * @returns all cocktails containing the search param
  */
-
-/**
- * P.S: ved filtrering av alkohol må en legge inn " " i søkefeltet for å rendre nåværende drinker.
- * Skal fikse det lover
- */
 const filterCocktails = (
   cocktails: {
     id: number;
@@ -37,7 +32,8 @@ const filterCocktails = (
   }[],
   query: string
 ) => {
-  /* console.log("cocktails in filterCocktails: ", cocktails); */
+  console.log("query in filterCocktails: ", query);
+  console.log("cocktails in filterCocktails: ", cocktails);
   if (query === "") {
     return cocktails;
   } else {
