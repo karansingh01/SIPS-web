@@ -11,6 +11,10 @@ module.exports = {
             // returns array of recipes with limited amount
             return await Drink.find().limit(amount);
         },
+        // returns array starting at a certain index
+        async getDrinksFromIndex(_: any, {amount, index}: any) {
+            return await Drink.find().skip(index).limit(amount);
+        },
         async getDrinksByName(_: any, {recipename}: any) {
             // returns array of recipes
             return await Drink.find({strDrink: recipename});

@@ -5,13 +5,13 @@ export default function CocktailCard({
   cocktail,
 }: {
   cocktail: {
-    id: number;
-    name: string;
-    image: string;
+    idDrink: string;
+    strDrink: string;
+    strDrinkThumb: string;
   };
 }) {
-  const IMAGE = cocktail.image;
-  let name: string = cocktail.name;
+  const IMAGE = cocktail.strDrinkThumb;
+  let name: string = cocktail.strDrink;
 
   return (
     <Center py={12}>
