@@ -35,6 +35,12 @@ module.exports = {
                 return yield Drink.find({ strDrink: recipename });
             });
         },
+        getDrinksByNameContains(_, { recipename }) {
+            return __awaiter(this, void 0, void 0, function* () {
+                // returns array of recipes
+                return yield Drink.find({ strDrink: { $regex: recipename, $options: 'i' } });
+            });
+        },
         getAllDrinks(_) {
             return __awaiter(this, void 0, void 0, function* () {
                 // returns all recipes
