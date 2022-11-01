@@ -1,74 +1,66 @@
-import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
-import { FaAngleRight } from 'react-icons/fa';
+import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
+import { FaAngleRight } from "react-icons/fa";
+import { useQuery, gql } from "@apollo/client";
+import { client } from "../api/client";
+import { alcoholFilterParam } from "../api/graphql/alcoholFilter";
 
-import { client } from '../api/client';
-import { alcoholFilterParam } from '../api/graphql/alcoholFilter';
-
-export default function FilterButtons({
-  setFilteredCocktails,
-  setQuery,
-}: {
-  setFilteredCocktails: Function;
-  setQuery: Function;
-}) {
-  const alcohols: string[] = ["Vodka", "Gin", "Tequila", "Rum", "All"];
-
-  /**
-   *
-   * @param drinks all cocktails
-   * @param alc button pressed (gin | tequila | rum | vodka | none)
-   * @returns array of drinks with certain alcohol
-   */
-  const FilterByAlcohol = async (alc: string) => {
-    let drinks: {
-      id: number;
-      name: string;
-      image: string;
-    }[] = [];
-
-    if (alc === "All") {
-      const result = await client.refetchQueries({
-        include: "all",
-        updateCache(cache) {
-          cache.evict({ fieldName: "alcoholFilter" });
-        },
-      });
-      const { data } = await client.query({
-        query: alcoholFilterParam("Vodka")
-      });
-      const drinkList = data.alcoholFilter.drinks;
-      drinkList.map((drink: any) => {
-        drinks.push({
-          id: parseInt(drink.idDrink),
-          name: drink.strDrink,
-          image: drink.strDrinkThumb,
-        });
-      });
-      console.log("drinks from drinkList:", drinks);
-    } else {
-      const result = await client.refetchQueries({
-        include: "all",
-        updateCache(cache) {
-          cache.evict({ fieldName: "alcoholFilter" });
-        },
-      });
-      const { data } = await client.query({
-        query: alcoholFilterParam(alc),
-      });
-      const drinkList = data.alcoholFilter.drinks;
-      console.log("drinkList:", drinkList);
-      drinkList.map((drink: any) => {
-        drinks.push({
-          id: parseInt(drink.idDrink),
-          name: drink.strDrink,
-          image: drink.strDrinkThumb,
-        });
-      });
-      console.log("drinks from drinkList:", drinks);
+const GET_DRINKS_BY_INGREDIENT = gql`
+  query GetDrinksByIngredient($ingredient: String) {
+    getDrinksByIngredient(ingredient: $ingredient) {
+      idDrink
+      strDrink
+      strDrinkThumb
     }
-    setFilteredCocktails(drinks);
-  };
+  }
+`;
+
+const GET_ALL_DRINKS = gql`
+  query GetAllDrinks {
+    getAllDrinks {
+      idDrink
+      strDrink
+      strDrinkThumb
+    }
+  }
+`;
+
+
+
+
+
+
+
+ /*  useEffect(() => {
+    if (alcohol === "All") {
+      console.log("show all cocktails", allData.getAllDrinks);
+    } 
+    else {
+      console.log("show filtered cocktails", data.getDrinksByIngredient);
+        alcoholRefetch({ ingredient: alcohol });
+        console.log(
+          "filter cocktails by",
+          alcohol,
+          ":",
+          data.getDrinksByIngredient
+        );
+      }
+  }, [alcohol]); 
+ */
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    // Handle error?
+    return <p>{error as any}</p>;
+  }
+
+  console.log("AAAAAA ",data);
+console.log("alcohol", alcohol);
+
+
 
   return (
     <Menu>
@@ -82,9 +74,9 @@ export default function FilterButtons({
             {isOpen ? "Close" : "Filter by liquor"}
           </MenuButton>
           <MenuList>
-            {alcohols.map((alcohol) => (
-              <MenuItem key={alcohol} onClick={() => FilterByAlcohol(alcohol)}>
-                {alcohol}
+            {options.map((option) => (
+              <MenuItem key={option} onClick={() => handleChange(option)}>
+                {option}
               </MenuItem>
             ))}
           </MenuList>
@@ -92,4 +84,6 @@ export default function FilterButtons({
       )}
     </Menu>
   );
-}
+};
+
+export default FilterButtons;
