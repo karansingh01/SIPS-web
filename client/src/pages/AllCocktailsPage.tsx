@@ -47,6 +47,7 @@ const AllCocktailsPage = () => {
         gap={4}
         mt={5}
       >
+        <FilterButtons />
         <GridItem colSpan={3}>
           {/* <SearchBar q={query} setQuery={setQuery} /> */}
         </GridItem>

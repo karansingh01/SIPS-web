@@ -4,7 +4,6 @@ import { FaAngleRight } from "react-icons/fa";
 import { useQuery, gql } from "@apollo/client";
 import { client } from "../api/client";
 import { alcoholFilterParam } from "../api/graphql/alcoholFilter";
-import { filterCocktails } from "../pages/AllCocktailsPage";
 
 const GET_DRINKS_BY_INGREDIENT = gql`
   query GetDrinksByIngredient($ingredient: String) {
@@ -16,103 +15,67 @@ const GET_DRINKS_BY_INGREDIENT = gql`
   }
 `;
 
-const FilterByAlcohol = (alcohol: string) => {
-  // Get filter to initialize select value
-  let cocktails: {
-    id: number;
-    name: string;
-    image: string;
-  }[] = [];
-  const [selectedAlcohol, setSelectedAlcohol] = useState("");
-  const [drinksByAlcohol, setDrinksByAlcohol] = useState(cocktails);
+const GET_ALL_DRINKS = gql`
+  query GetAllDrinks {
+    getAllDrinks {
+      idDrink
+      strDrink
+      strDrinkThumb
+    }
+  }
+`;
+
+const FilterButtons = () => {
+  const options = ["Vodka", "Rum", "Tequila", "Gin", "All"];
+  const [alcohol, setAlcohol] = useState("All");
   const {
     loading,
     error,
     data,
-    refetch: cocktailsRefetch,
+    refetch: alcoholRefetch,
   } = useQuery(GET_DRINKS_BY_INGREDIENT, {
     variables: { ingredient: alcohol },
+    /*  fetchPolicy: "network-only", */
   });
+  const {
+    loading: allLoading,
+    error: allError,
+    data: allData,
+    refetch: allRefetch,
+  } = useQuery(GET_ALL_DRINKS /* , { fetchPolicy: "network-only" } */);
+
+  const handleChange = (chosenAlcohol: string) => {
+    if (alcohol !== chosenAlcohol) {
+      setAlcohol(chosenAlcohol);
+    }
+  };
 
   useEffect(() => {
-    let filtered: {
-      id: number;
-      name: string;
-      image: string;
-    }[] = [];
-    data.getDrinksByIngredient.map((drink: any) => {
-      filtered.push({
-        id: parseInt(drink.idDrink),
-        name: drink.strDrink,
-        image: drink.strDrinkThumb,
-      });
-    });
+    if (alcohol === "All") {
+      console.log("show all cocktails", allData.getAllDrinks);
+    } else {
+      if (loading) {
+        console.log("loading");
+      } else {
+        alcoholRefetch({ ingredient: alcohol });
+        console.log(
+          "filter cocktails by",
+          alcohol,
+          ":",
+          data.getDrinksByIngredient
+        );
+      }
+    }
+  }, [alcohol]);
 
-    setDrinksByAlcohol(filtered);
-  }, [data]);
-
-  const updateCocktails = (alcohol: string) => {
-    cocktailsRefetch({ ingredient: alcohol });
-  };
-};
-
-/* 
-const GetByAlcohol = (alcohol: string) => {
-  const { loading, error, data } = useQuery(GET_DRINKS_BY_INGREDIENT, {
-    variables: { ingredient: alcohol },
-  });
   if (loading) {
-    console.log("loading ...");
+    return <p>Loading...</p>;
   }
 
   if (error) {
     // Handle error?
-    console.log("error, ", error.message);
+    return <p>{error as any}</p>;
   }
-
-  let drinkz: {
-    id: number;
-    name: string;
-    image: string;
-  }[] = [];
-
-  data.getDrinksByIngredient.map((drink: any) => {
-    drinkz.push({
-      id: parseInt(drink.idDrink),
-      name: drink.strDrink,
-      image: drink.strDrinkThumb,
-    });
-  });
-
-  return drinkz;
-
-}; */
-
-export default function FilterButtons({
-  setFilteredCocktails,
-  setQuery,
-}: {
-  setFilteredCocktails: Function;
-  setQuery: Function;
-}) {
-  const alcohols: string[] = ["Vodka", "Gin", "Tequila", "Rum", "All"];
-  /*
-  const FilterByAlcohol = (alcohol: string) => {
-    let drinks: {
-      id: number;
-      name: string;
-      image: string;
-    }[] = [];
-
-    if (alcohol === "All") {
-      drinks = drinks;
-    } else {
-      drinks = GetByAlcohol(alcohol);
-    }
-
-    console.log("alcohol: ", alcohol, "drinks: ", drinks);
-    setFilteredCocktails(drinks);
-  }; */
 
   return (
     <Menu>
@@ -126,9 +89,9 @@ export default function FilterButtons({
             {isOpen ? "Close" : "Filter by liquor"}
           </MenuButton>
           <MenuList>
-            {alcohols.map((alcohol) => (
-              <MenuItem key={alcohol} onClick={() => FilterByAlcohol(alcohol)}>
-                {alcohol}
+            {options.map((option) => (
+              <MenuItem key={option} onClick={() => handleChange(option)}>
+                {option}
               </MenuItem>
             ))}
           </MenuList>
@@ -136,4 +99,6 @@ export default function FilterButtons({
       )}
     </Menu>
   );
-}
+};
+
+export default FilterButtons;
