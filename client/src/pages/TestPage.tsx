@@ -75,12 +75,12 @@ const TestPage = () => {
   // });
 
   // gets all drinks
-  // const { loading, error, data } = useQuery(GET_ALL_DRINKS);
+  const { loading, error, data } = useQuery(GET_ALL_DRINKS);
 
   // gets all drinks with a specific ingredient
-  const { loading, error, data} = useQuery(GET_DRINKS_BY_INGREDIENT , {
-    variables: { ingredient: "Vodka" },
-    });
+  // const { loading, error, data} = useQuery(GET_DRINKS_BY_INGREDIENT , {
+  //   variables: { ingredient: "Vodka" },
+  //   });
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -90,7 +90,7 @@ const TestPage = () => {
     return <p>{error as any}</p>;
   }
   
-  console.log(data.getDrinksByIngredient);
+  console.log(data);
     
     return (
       <Flex flexDirection="column">

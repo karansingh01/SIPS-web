@@ -8,9 +8,9 @@ export default function CocktailCardsDisplay({
   cocktails,
 }: {
   cocktails: {
-    id: number;
-    name: string;
-    image: string;
+    idDrink: string;
+    strDrink: string;
+    strDrinkThumb: string;
   }[];
 }) {
   const [sortedDown, setSortedDown] = useState(true);
@@ -70,8 +70,13 @@ export default function CocktailCardsDisplay({
         {cocktails.length > 0 ? (
           <>
             {cocktails[0] ? (
-              cocktails.map((cocktail) => (
-                <CocktailCard key={cocktail.id} cocktail={cocktail} />
+              cocktails.map((cocktail, index) => (
+                console.log("cocktail", cocktail),
+                console.log("index", index),
+                console.log("cocktail id", cocktail.idDrink),
+                console.log("cocktail name", cocktail.strDrink),
+                console.log("cocktail image", cocktail.strDrinkThumb),
+                <CocktailCard key={index} cocktail={cocktail} />
               ))
             ) : (
               <Text>There are no cocktails available</Text>
