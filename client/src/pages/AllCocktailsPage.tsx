@@ -83,10 +83,6 @@ const AllCocktailsPage = () => {
     return <p>{error as any}</p>;
   }
   
-  if (query.length>1) {
-    getQuery();
-  }
-
   return (
     <Flex flexDirection="column">
       {/* <SearchBar /> */}
