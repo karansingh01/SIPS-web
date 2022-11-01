@@ -1,13 +1,13 @@
-import { Flex, Grid, GridItem } from '@chakra-ui/react';
-import React from 'react';
-import { useEffect, useState } from 'react';
-import {gql, useQuery} from '@apollo/client';
+import { Flex, Grid, GridItem } from "@chakra-ui/react";
+import React from "react";
+import { useEffect, useState } from "react";
+import { gql, useQuery } from "@apollo/client";
 
-import CocktailCardsDisplay from '../components/CocktailCardsDisplay';
-import FilterButtons from '../components/FilterButtons';
-import Header from '../components/Header';
-import SearchBar from '../components/SearchBar';
-import dummyCocktails from '../DummyData';
+import CocktailCardsDisplay from "../components/CocktailCardsDisplay";
+import FilterButtons from "../components/FilterButtons";
+import Header from "../components/Header";
+import SearchBar from "../components/SearchBar";
+import dummyCocktails from "../DummyData";
 
 const GET_ALL_DRINKS = gql`
   query GetAllDrinks {
@@ -32,7 +32,6 @@ const GET_ALL_DRINKS = gql`
 `;
 
 const AllCocktailsPage = () => {
-  
   const { loading, error, data } = useQuery(GET_ALL_DRINKS);
 
   // gets all drinks with a specific ingredient
@@ -47,7 +46,6 @@ const AllCocktailsPage = () => {
     // Handle error?
     return <p>{error as any}</p>;
   }
-
 
   return (
     <Flex flexDirection="column">

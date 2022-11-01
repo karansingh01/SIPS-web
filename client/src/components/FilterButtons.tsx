@@ -1,9 +1,9 @@
-import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
-import { FaAngleRight } from 'react-icons/fa';
+import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
+import { FaAngleRight } from "react-icons/fa";
 
-import { client } from '../api/client';
-import { alcoholFilterParam } from '../api/graphql/alcoholFilter';
+import { client } from "../api/client";
+import { alcoholFilterParam } from "../api/graphql/alcoholFilter";
 
 export default function FilterButtons({
   setFilteredCocktails,
@@ -35,7 +35,7 @@ export default function FilterButtons({
         },
       });
       const { data } = await client.query({
-        query: alcoholFilterParam("Vodka")
+        query: alcoholFilterParam("Vodka"),
       });
       const drinkList = data.alcoholFilter.drinks;
       drinkList.map((drink: any) => {
