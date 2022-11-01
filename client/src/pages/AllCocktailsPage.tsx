@@ -17,6 +17,18 @@ const GET_ALL_DRINKS = gql`
       idDrink
       strDrink
       strDrinkThumb
+      strGlass
+      strIngredient1
+      strIngredient2
+      strIngredient3
+      strIngredient4
+      strIngredient5
+      strIngredient6
+      strIngredient7
+      strIngredient8
+      strIngredient9
+      strIngredient10
+      strInstructions
     }
   }
 `;
