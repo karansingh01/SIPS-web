@@ -25,6 +25,7 @@ export default function Header() {
       /**
        * Bakgrunnsbilde som boks, med knapper, tittel og beskrivelse over
        */
+      id={"header"}
       key={1}
       height={"2xl"}
       position="relative"
@@ -40,11 +41,7 @@ export default function Header() {
         marginRight={"30px"}
       ></Stack>
       <Container height="600px" position="relative" marginLeft={25}>
-        <Stack
-          maxW={"xs"}
-          position="absolute"
-          marginTop={"-50px"}
-        >
+        <Stack maxW={"xs"} position="absolute" marginTop={"-50px"}>
           <Text marginTop={150} fontSize={"15px"} color={"grey"}>
             {text}
           </Text>

@@ -1,4 +1,5 @@
-import { Box,
+import {
+  Box,
   Center,
   Container,
   Image,
@@ -15,9 +16,16 @@ import { Box,
   Flex,
   Heading,
   SimpleGrid,
-  StackDivider } from '@chakra-ui/react';
-import { JSXElementConstructor, Key, ReactElement, ReactFragment, ReactPortal, useState } from 'react';
-
+  StackDivider,
+} from "@chakra-ui/react";
+import {
+  JSXElementConstructor,
+  Key,
+  ReactElement,
+  ReactFragment,
+  ReactPortal,
+  useState,
+} from "react";
 
 export default function CocktailCard({
   cocktail,
@@ -40,7 +48,6 @@ export default function CocktailCard({
     strInstructions: string;
   };
 }) {
-  
   const IMAGE: string = cocktail.strDrinkThumb;
   const name: string = cocktail.strDrink;
   const strGlass: string = cocktail.strGlass;
@@ -56,54 +63,77 @@ export default function CocktailCard({
   const strIngredient10: string = cocktail.strIngredient10;
   const strInstructions: string = cocktail.strInstructions;
 
-  const drinkIngredients = [strIngredient1, strIngredient2, strIngredient3, strIngredient4, strIngredient5, strIngredient6, strIngredient7, strIngredient8, strIngredient9, strIngredient10];
+  const drinkIngredients = [
+    strIngredient1,
+    strIngredient2,
+    strIngredient3,
+    strIngredient4,
+    strIngredient5,
+    strIngredient6,
+    strIngredient7,
+    strIngredient8,
+    strIngredient9,
+    strIngredient10,
+  ];
 
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
 
   return (
     <Center py={12}>
       <Modal isOpen={isOpen} onClose={onClose}>
-        <SimpleGrid columns={{base: 1, md: 2}} spacing={10}>
-          <Flex> 
+        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
+          <Flex>
             <ModalOverlay />
             <ModalContent>
               <ModalHeader color={"brown"}>{name}</ModalHeader>
-              <ModalCloseButton />
+              <ModalCloseButton className={"buttonCloseCocktailCard"} />
               <ModalBody>
-                <Image rounded={"md"} src={IMAGE} alt={name} objectFit={"cover"} />
+                <Image
+                  rounded={"md"}
+                  src={IMAGE}
+                  alt={name}
+                  objectFit={"cover"}
+                />
                 <Stack spacing={4}>
                   <Heading color={"brown"}>{name}</Heading>
-                  <Text color={"gray.500"} fontSize={"lg"}>
+                  <Text
+                    id={"ingredientsText"}
+                    color={"gray.500"}
+                    fontSize={"lg"}
+                  >
                     Ingredients
                   </Text>
                   <Stack
-                  spacing={4}
-                  divider={
-                    <StackDivider
-                      borderColor={useColorModeValue("gray.100", "gray.700")}
-                  />
-                  }
+                    spacing={4}
+                    divider={
+                      <StackDivider
+                        borderColor={useColorModeValue("gray.100", "gray.700")}
+                      />
+                    }
                   >
                     {
                       // Removes null and undefined values from array
                       // so stackdivider wont make too many lines
-                    drinkIngredients.filter((n) => n).map((ingredient, index) => {
-                      return (
-                        <Text key={index} color={"black"} fontSize={"lg"}>
-                          {ingredient}
-                        </Text>
-                      )
+                      drinkIngredients
+                        .filter((n) => n)
+                        .map((ingredient, index) => {
+                          return (
+                            <Text key={index} color={"black"} fontSize={"lg"}>
+                              {ingredient}
+                            </Text>
+                          );
+                        })
                     }
-                    )}
-                    <ul className="ingredients">
-                    </ul>
+                    <ul className="ingredients"></ul>
                   </Stack>
                 </Stack>
                 <Stack marginBottom={"20px"}>
-                <Text color={"gray.500"} fontSize={"lg"}>Recipe</Text>
-                <Text color={"black"}>{strInstructions}</Text>
-                <Text color={"brown"}>Glass: {strGlass}</Text>
+                  <Text color={"gray.500"} fontSize={"lg"}>
+                    Recipe
+                  </Text>
+                  <Text color={"black"}>{strInstructions}</Text>
+                  <Text color={"brown"}>Glass: {strGlass}</Text>
                 </Stack>
               </ModalBody>
             </ModalContent>
@@ -123,7 +153,6 @@ export default function CocktailCard({
         borderColor={"beige"}
         pos={"relative"}
       >
-
         <Stack pt={20} align={"center"} marginBottom={10} marginTop={0}>
           <Text color={"gray.500"} fontSize={"lg"} textTransform={"uppercase"}>
             {name}

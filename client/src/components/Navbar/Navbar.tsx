@@ -13,13 +13,12 @@ import {
   Stack,
   useColorMode,
   useDisclosure,
-} from '@chakra-ui/react';
-import { ReactNode, useContext } from 'react';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../context/authContext';
+} from "@chakra-ui/react";
+import { ReactNode, useContext } from "react";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/authContext";
 const TITLE: string = "SIPS";
 const BUTTONTEXT: string = "Favorites";
-
 
 const NavLink = ({ children }: { children: ReactNode }) => (
   <Link
@@ -55,22 +54,25 @@ export default function Navbar() {
   const onLogin = () => {
     navigate("/login");
   };
-  
+
   return (
     <>
-      <Box backgroundColor={"transparent"} px={10}>
+      <Box backgroundColor={"transparent"} px={10} id={"navbar"}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <RouterLink to="/">
-            <Box color={"beige"} fontSize={"60px"} fontWeight={"bold"}>
+            <Box
+              color={"beige"}
+              fontSize={"60px"}
+              fontWeight={"bold"}
+              id={"logo"}
+            >
               {TITLE}
             </Box>
           </RouterLink>
 
           <Flex alignItems={"center"}>
             <Stack direction={"row"} spacing={7}>
-              <RouterLink to="/fav">
-              
-              </RouterLink>
+              <RouterLink to="/fav"></RouterLink>
 
               <Menu>
                 <MenuButton
@@ -98,7 +100,7 @@ export default function Navbar() {
                     />
                   </Center>
                   <br />
-                  
+
                   {/* if user is logged in, show email, if not show Guest */}
                   {user ? (
                     <Center>
@@ -111,7 +113,7 @@ export default function Navbar() {
                   )}
                   <br />
                   <MenuDivider />
-                  
+
                   {/* if user exists, show logout button */}
                   {user ? (
                     <MenuItem onClick={onLogout}>Logout</MenuItem>

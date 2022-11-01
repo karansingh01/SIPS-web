@@ -1,8 +1,8 @@
-import { SimpleGrid, Text } from '@chakra-ui/react';
-import React from 'react';
-import { useEffect, useState } from 'react';
-import { FaSortAlphaDown, FaSortAlphaUp } from 'react-icons/fa';
-import CocktailCard from './CocktailCard';
+import { SimpleGrid, Text } from "@chakra-ui/react";
+import React from "react";
+import { useEffect, useState } from "react";
+import { FaSortAlphaDown, FaSortAlphaUp } from "react-icons/fa";
+import CocktailCard from "./CocktailCard";
 
 export default function CocktailCardsDisplay({
   cocktails,
@@ -50,7 +50,7 @@ export default function CocktailCardsDisplay({
        }; */
 
   return (
-    <div>
+    <div id={"cocktailCardsDisplay"}>
       {/* <Stack marginLeft={20} marginTop={20}> */}
       {sortedDown ? (
         <FaSortAlphaDown
@@ -78,6 +78,7 @@ export default function CocktailCardsDisplay({
         spacing={1}
         backgroundColor={"#ede6df"}
         rounded={20}
+        id={"cocktailCardsGrid"}
       >
         {cocktails.length > 0 ? (
           <>
