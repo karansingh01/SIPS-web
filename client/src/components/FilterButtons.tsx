@@ -16,19 +16,29 @@ const GET_DRINKS_BY_INGREDIENT = gql`
   }
 `;
 
-/*
-const FilterByAlcohol = (alcohol : string) => {
+const FilterByAlcohol = (alcohol: string) => {
   // Get filter to initialize select value
-  const [selectedAlcohol, setSelectedAlcohol] = useState("");
-  const [drinksByAlcohol, setDrinksByAlcohol] = useState([]);
-  const { loading, error, data, refetch : cocktailsRefetch } = useQuery(GET_DRINKS_BY_INGREDIENT, { variables: { ingredient : alcohol},});
-  
-
-    useEffect(() => {
-      let filtered: {
+  let cocktails: {
     id: number;
     name: string;
     image: string;
+  }[] = [];
+  const [selectedAlcohol, setSelectedAlcohol] = useState("");
+  const [drinksByAlcohol, setDrinksByAlcohol] = useState(cocktails);
+  const {
+    loading,
+    error,
+    data,
+    refetch: cocktailsRefetch,
+  } = useQuery(GET_DRINKS_BY_INGREDIENT, {
+    variables: { ingredient: alcohol },
+  });
+
+  useEffect(() => {
+    let filtered: {
+      id: number;
+      name: string;
+      image: string;
     }[] = [];
     data.getDrinksByIngredient.map((drink: any) => {
       filtered.push({
@@ -36,22 +46,17 @@ const FilterByAlcohol = (alcohol : string) => {
         name: drink.strDrink,
         image: drink.strDrinkThumb,
       });
+    });
 
-        setDrinksByAlcohol(filtered)
-    }, [data])
-    
-    const updateCocktails = () => {
-        cocktailRefetch()
-    }
+    setDrinksByAlcohol(filtered);
+  }, [data]);
 
+  const updateCocktails = (alcohol: string) => {
+    cocktailsRefetch({ ingredient: alcohol });
+  };
+};
 
-
-
-  }
-
-
-*/
-
+/* 
 const GetByAlcohol = (alcohol: string) => {
   const { loading, error, data } = useQuery(GET_DRINKS_BY_INGREDIENT, {
     variables: { ingredient: alcohol },
@@ -79,10 +84,9 @@ const GetByAlcohol = (alcohol: string) => {
     });
   });
 
-  /*  console.log("alcohol: ", alcohol, "drinks: ", drinkz); */
   return drinkz;
-  /* setFilteredCocktails(drinks); */
-};
+
+}; */
 
 export default function FilterButtons({
   setFilteredCocktails,
@@ -92,13 +96,7 @@ export default function FilterButtons({
   setQuery: Function;
 }) {
   const alcohols: string[] = ["Vodka", "Gin", "Tequila", "Rum", "All"];
-
-  /**
-   *
-   * @param drinks all cocktails
-   * @param alc button pressed (gin | tequila | rum | vodka | none)
-   * @returns array of drinks with certain alcohol
-   */
+  /*
   const FilterByAlcohol = (alcohol: string) => {
     let drinks: {
       id: number;
@@ -114,7 +112,7 @@ export default function FilterButtons({
 
     console.log("alcohol: ", alcohol, "drinks: ", drinks);
     setFilteredCocktails(drinks);
-  };
+  }; */
 
   return (
     <Menu>
