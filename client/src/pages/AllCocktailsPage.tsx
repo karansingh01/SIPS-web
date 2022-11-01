@@ -14,7 +14,7 @@ import dummyCocktails from "../DummyData";
  * @param query string entered in search field
  * @returns all cocktails containing the search param
  */
-const filterCocktails = (
+export const filterCocktails = (
   cocktails: {
     id: number;
     name: string;

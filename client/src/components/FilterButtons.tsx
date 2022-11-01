@@ -4,6 +4,7 @@ import { FaAngleRight } from "react-icons/fa";
 import { useQuery, gql } from "@apollo/client";
 import { client } from "../api/client";
 import { alcoholFilterParam } from "../api/graphql/alcoholFilter";
+import { filterCocktails } from "../pages/AllCocktailsPage";
 
 const GET_DRINKS_BY_INGREDIENT = gql`
   query GetDrinksByIngredient($ingredient: String) {
@@ -14,6 +15,42 @@ const GET_DRINKS_BY_INGREDIENT = gql`
     }
   }
 `;
+
+/*
+const FilterByAlcohol = (alcohol : string) => {
+  // Get filter to initialize select value
+  const [selectedAlcohol, setSelectedAlcohol] = useState("");
+  const [drinksByAlcohol, setDrinksByAlcohol] = useState([]);
+  const { loading, error, data, refetch : cocktailsRefetch } = useQuery(GET_DRINKS_BY_INGREDIENT, { variables: { ingredient : alcohol},});
+  
+
+    useEffect(() => {
+      let filtered: {
+    id: number;
+    name: string;
+    image: string;
+    }[] = [];
+    data.getDrinksByIngredient.map((drink: any) => {
+      filtered.push({
+        id: parseInt(drink.idDrink),
+        name: drink.strDrink,
+        image: drink.strDrinkThumb,
+      });
+
+        setDrinksByAlcohol(filtered)
+    }, [data])
+    
+    const updateCocktails = () => {
+        cocktailRefetch()
+    }
+
+
+
+
+  }
+
+
+*/
 
 const GetByAlcohol = (alcohol: string) => {
   const { loading, error, data } = useQuery(GET_DRINKS_BY_INGREDIENT, {
