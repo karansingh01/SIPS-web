@@ -19,6 +19,12 @@ module.exports = {
             // returns array of recipes
             return await Drink.find({strDrink: recipename});
         },
+
+        async getDrinksByNameContains(_: any, {recipename}: any) {
+            // returns array of recipes
+            return await Drink.find({strDrink: {$regex: recipename, $options: 'i'}});
+        },
+
         async getAllDrinks(_: any) {
             // returns all recipes
             return await Drink.find();

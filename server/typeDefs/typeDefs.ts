@@ -95,6 +95,8 @@ type Query {
   getDrinksByIngredient(ingredient: String): [Drinks]
   # returns drinks from a certain index
   getDrinksFromIndex(amount: Int, index: Int): [Drinks]
+  # returns drinks if name contains
+  getDrinksByNameContains(recipename: String): [Drinks]
 
   message(id: ID!): Message
   user(id: ID!): User 
