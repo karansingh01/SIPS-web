@@ -23,6 +23,12 @@ module.exports = {
                 return yield Drink.find().limit(amount);
             });
         },
+        // returns array starting at a certain index
+        getDrinksFromIndex(_, { amount, index }) {
+            return __awaiter(this, void 0, void 0, function* () {
+                return yield Drink.find().skip(index).limit(amount);
+            });
+        },
         getDrinksByName(_, { recipename }) {
             return __awaiter(this, void 0, void 0, function* () {
                 // returns array of recipes
