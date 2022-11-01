@@ -1,5 +1,19 @@
-import { Box, Center, Container, Image, Stack, Text, useColorModeValue } from '@chakra-ui/react';
+import { Box,
+  Center,
+  Container,
+  Image,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
+  Stack,
+  Text,
+  useColorModeValue,
+  useDisclosure } from '@chakra-ui/react';
 import { useState } from 'react';
+
 
 export default function CocktailCard({
   cocktail,
@@ -10,12 +24,31 @@ export default function CocktailCard({
     strDrinkThumb: string;
   };
 }) {
+  
   const IMAGE = cocktail.strDrinkThumb;
   let name: string = cocktail.strDrink;
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
     <Center py={12}>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>{name}</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Image src={IMAGE} alt={name} />
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+
       <Box
+      // this onclick consolelogs the name of the cocktail
+        // onClick={() => {
+        //   console.log(name);
+        // }}
+        onClick={onOpen}
+        as="button"
         role={"group"}
         p={6}
         maxW={"330px"}
