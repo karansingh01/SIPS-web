@@ -93,6 +93,8 @@ type Query {
   getAllDrinks: [Drinks]
   # returns all drinks with a specific ingredient
   getDrinksByIngredient(ingredient: String): [Drinks]
+  # returns drinks from a certain index
+  getDrinksFromIndex(amount: Int, index: Int): [Drinks]
 
   message(id: ID!): Message
   user(id: ID!): User 

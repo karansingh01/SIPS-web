@@ -35,7 +35,6 @@ const AllCocktailsPage = () => {
     // Handle error?
     return <p>{error as any}</p>;
   }
-  console.log(data.getAllDrinks);
 
 
   return (

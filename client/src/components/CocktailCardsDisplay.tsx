@@ -71,11 +71,6 @@ export default function CocktailCardsDisplay({
           <>
             {cocktails[0] ? (
               cocktails.map((cocktail, index) => (
-                console.log("cocktail", cocktail),
-                console.log("index", index),
-                console.log("cocktail id", cocktail.idDrink),
-                console.log("cocktail name", cocktail.strDrink),
-                console.log("cocktail image", cocktail.strDrinkThumb),
                 <CocktailCard key={index} cocktail={cocktail} />
               ))
             ) : (
