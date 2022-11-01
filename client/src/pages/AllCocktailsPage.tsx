@@ -1,12 +1,12 @@
-import { Flex, Grid, GridItem } from '@chakra-ui/react';
-import React from 'react';
-import { useEffect, useState } from 'react';
+import { filter, Flex, Grid, GridItem } from "@chakra-ui/react";
+import React from "react";
+import { useEffect, useState } from "react";
 
-import CocktailCardsDisplay from '../components/CocktailCardsDisplay';
-import FilterButtons from '../components/FilterButtons';
-import Header from '../components/Header';
-import SearchBar from '../components/SearchBar';
-import dummyCocktails from '../DummyData';
+import CocktailCardsDisplay from "../components/CocktailCardsDisplay";
+import FilterButtons from "../components/FilterButtons";
+import Header from "../components/Header";
+import SearchBar from "../components/SearchBar";
+import dummyCocktails from "../DummyData";
 
 /**
  * search filter method
@@ -40,9 +40,15 @@ const AllCocktailsPage = () => {
   const [cocktails, setCocktails] = useState(
     filterCocktails(dummyCocktails, query)
   );
-  const filteredCocktails = filterCocktails(cocktails, query);
+  const [filteredCocktails, setFilteredCocktails] = useState(
+    filterCocktails(cocktails, query)
+  );
 
-/*   const { loading, error, data } = useQuery(GET_GEN_3);
+  useEffect(() => {
+    const filter = filterCocktails(cocktails, query);
+    setFilteredCocktails(filter);
+  }, [query, setQuery]);
+  /*   const { loading, error, data } = useQuery(GET_GEN_3);
   console.log(data); */
 
   return (
@@ -62,7 +68,7 @@ const AllCocktailsPage = () => {
         </GridItem>
         <GridItem colSpan={1}>
           <FilterButtons
-            setFilteredCocktails={setCocktails}
+            setFilteredCocktails={setFilteredCocktails}
             setQuery={setQuery}
           />
         </GridItem>

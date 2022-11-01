@@ -1,9 +1,51 @@
-import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
-import { FaAngleRight } from 'react-icons/fa';
+import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
+import { FaAngleRight } from "react-icons/fa";
+import { useQuery, gql } from "@apollo/client";
+import { client } from "../api/client";
+import { alcoholFilterParam } from "../api/graphql/alcoholFilter";
 
-import { client } from '../api/client';
-import { alcoholFilterParam } from '../api/graphql/alcoholFilter';
+const GET_DRINKS_BY_INGREDIENT = gql`
+  query GetDrinksByIngredient($ingredient: String) {
+    getDrinksByIngredient(ingredient: $ingredient) {
+      idDrink
+      strDrink
+      strDrinkThumb
+    }
+  }
+`;
+
+const GetByAlcohol = (alcohol: string) => {
+  const { loading, error, data } = useQuery(GET_DRINKS_BY_INGREDIENT, {
+    variables: { ingredient: alcohol },
+  });
+  if (loading) {
+    console.log("loading ...");
+  }
+
+  if (error) {
+    // Handle error?
+    console.log("error, ", error.message);
+  }
+
+  let drinkz: {
+    id: number;
+    name: string;
+    image: string;
+  }[] = [];
+
+  data.getDrinksByIngredient.map((drink: any) => {
+    drinkz.push({
+      id: parseInt(drink.idDrink),
+      name: drink.strDrink,
+      image: drink.strDrinkThumb,
+    });
+  });
+
+  /*  console.log("alcohol: ", alcohol, "drinks: ", drinkz); */
+  return drinkz;
+  /* setFilteredCocktails(drinks); */
+};
 
 export default function FilterButtons({
   setFilteredCocktails,
@@ -20,53 +62,20 @@ export default function FilterButtons({
    * @param alc button pressed (gin | tequila | rum | vodka | none)
    * @returns array of drinks with certain alcohol
    */
-  const FilterByAlcohol = async (alc: string) => {
+  const FilterByAlcohol = (alcohol: string) => {
     let drinks: {
       id: number;
       name: string;
       image: string;
     }[] = [];
 
-    if (alc === "All") {
-      const result = await client.refetchQueries({
-        include: "all",
-        updateCache(cache) {
-          cache.evict({ fieldName: "alcoholFilter" });
-        },
-      });
-      const { data } = await client.query({
-        query: alcoholFilterParam("Vodka")
-      });
-      const drinkList = data.alcoholFilter.drinks;
-      drinkList.map((drink: any) => {
-        drinks.push({
-          id: parseInt(drink.idDrink),
-          name: drink.strDrink,
-          image: drink.strDrinkThumb,
-        });
-      });
-      console.log("drinks from drinkList:", drinks);
+    if (alcohol === "All") {
+      drinks = drinks;
     } else {
-      const result = await client.refetchQueries({
-        include: "all",
-        updateCache(cache) {
-          cache.evict({ fieldName: "alcoholFilter" });
-        },
-      });
-      const { data } = await client.query({
-        query: alcoholFilterParam(alc),
-      });
-      const drinkList = data.alcoholFilter.drinks;
-      console.log("drinkList:", drinkList);
-      drinkList.map((drink: any) => {
-        drinks.push({
-          id: parseInt(drink.idDrink),
-          name: drink.strDrink,
-          image: drink.strDrinkThumb,
-        });
-      });
-      console.log("drinks from drinkList:", drinks);
+      drinks = GetByAlcohol(alcohol);
     }
+
+    console.log("alcohol: ", alcohol, "drinks: ", drinks);
     setFilteredCocktails(drinks);
   };
 
