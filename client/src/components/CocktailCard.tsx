@@ -60,6 +60,7 @@ export default function CocktailCard({
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
+
   return (
     <Center py={12}>
       <Modal isOpen={isOpen} onClose={onClose}>

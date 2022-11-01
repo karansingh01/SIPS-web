@@ -7,13 +7,11 @@ import CocktailCardsDisplay from "../components/CocktailCardsDisplay";
 import FilterButtons from "../components/FilterButtons";
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
-import dummyCocktails from "../DummyData";
-import { resolveProjectReferencePath } from "typescript";
-import { FaSortNumericDownAlt } from "react-icons/fa";
 import { offset } from "../cache";
-const GET_ALL_DRINKS = gql`
-  query GetAllDrinks {
-    getAllDrinks {
+
+const GET_DRINKS_FROM_INDEX = gql`
+  query GetDrinksFromIndex($amount: Int, $index: Int) {
+    getDrinksFromIndex(amount: $amount, index: $index) {
       idDrink
       strDrink
       strDrinkThumb
@@ -33,16 +31,6 @@ const GET_ALL_DRINKS = gql`
   }
 `;
 
-const GET_DRINKS_FROM_INDEX = gql`
-  query GetDrinksFromIndex($amount: Int, $index: Int) {
-    getDrinksFromIndex(amount: $amount, index: $index) {
-      idDrink
-      strDrink
-      strDrinkThumb
-    }
-  }
-`;
-
 const AllCocktailsPage = () => {
   const { loading, error, data } = useQuery(GET_DRINKS_FROM_INDEX, {
     variables: { amount: useReactiveVar(offset), index: 0 },
@@ -56,7 +44,7 @@ const AllCocktailsPage = () => {
     // Handle error?
     return <p>{error as any}</p>;
   }
-  console.log(data.getDrinksFromIndex);
+
   return (
     <Flex flexDirection="column">
       <Header />
