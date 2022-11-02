@@ -8,6 +8,7 @@ import FilterButtons from "../components/FilterButtons";
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
 import { offset } from "../cache";
+import VodkaButton from "../components/VodkaButton";
 
 const GET_DRINKS_BY_NAME_CONTAINS = gql`
   query GetDrinksByNameContains($recipename: String) {
@@ -53,13 +54,34 @@ const GET_DRINKS_FROM_INDEX = gql`
   }
 `;
 
+const GET_DRINKS_BY_INGREDIENT = gql`
+  query GetDrinksByIngredient($ingredient: String) {
+    getDrinksByIngredient(ingredient: $ingredient) {
+      idDrink
+      strDrink
+      strDrinkThumb
+    }
+  }
+`;
+
 const AllCocktailsPage = () => {
+  const { loading: loadingVodka, error: errorVodka, data: dataVodka } = useQuery(GET_DRINKS_BY_INGREDIENT, {
+    variables: { ingredient: "Vodka" },
+  });
+
+  const [alcoholQuery, setAlcoholQuery] = useState("");
+
+
+
   const { loading, error, data } = useQuery(GET_DRINKS_FROM_INDEX, {
     variables: { amount: useReactiveVar(offset), index: 0 },
   });
 
   const [query, setQuery] = useState("");
   const [cocktails, setCocktails] = useState([]);
+
+
+
 
   const [getQuery, { loading: loading1, error: error1, data: data1 }] = useLazyQuery(GET_DRINKS_BY_NAME_CONTAINS,{
     variables: { recipename: query },
@@ -83,6 +105,14 @@ const AllCocktailsPage = () => {
     return <p>{error as any}</p>;
   }
   
+  if (dataVodka){
+    setCocktails(dataVodka.getDrinksByIngredient);
+  }
+
+  console.log(dataVodka);
+  console.log(cocktails);
+  
+
   return (
     <Flex flexDirection="column">
       {/* <SearchBar /> */}
@@ -96,6 +126,7 @@ const AllCocktailsPage = () => {
         gap={4}
         mt={5}
       >
+        <VodkaButton setAlcoholQuery={setAlcoholQuery}/>
         <GridItem colSpan={3}>
           <SearchBar q={query} setQuery={setQuery} />
         </GridItem>
