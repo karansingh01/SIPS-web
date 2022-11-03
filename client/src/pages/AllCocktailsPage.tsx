@@ -81,12 +81,13 @@ const AllCocktailsPage = () => {
   const [query, setQuery] = useState("");
   const [cocktails, setCocktails] = useState([]);
 
-  const [getQuery, { loading: loading1, error: error1, data: data1 }] = useLazyQuery(GET_DRINKS_BY_NAME_CONTAINS_ANY,{
-    variables: { recipename: query },
-    onCompleted: (data1) => {
-      setCocktails(data1.getDrinksByNameContains);
-    },
-  });
+  const [getQuery, { loading: loading1, error: error1, data: data1 }] =
+    useLazyQuery(GET_DRINKS_BY_NAME_CONTAINS_ANY, {
+      variables: { recipename: query },
+      onCompleted: (data1) => {
+        setCocktails(data1.getDrinksByNameContains);
+      },
+    });
 
   useEffect(() => {
     if (data) {
@@ -102,10 +103,9 @@ const AllCocktailsPage = () => {
     // Handle error?
     return <p>{error as any}</p>;
   }
-  
+
   return (
     <Flex flexDirection="column">
-      {/* <SearchBar /> */}
       <Header />
 
       <Grid
@@ -120,14 +120,17 @@ const AllCocktailsPage = () => {
         <GridItem colSpan={3}>
           <SearchBar q={query} setQuery={setQuery} setAlcoholType={""} />
         </GridItem>
-          <Button onClick={() => getQuery()}>Search</Button>
-        <FilterButtons/>
+        <GridItem>
+          <Button maxWidth={"fit-content"} onClick={() => getQuery()}>
+            Search
+          </Button>
+        </GridItem>
+        <FilterButtons />
         <GridItem colSpan={4}>
           {/* <CocktailCardsDisplay cocktails={filteredCocktails} /> 
           cocktailcards need {id (som number), name, image}*/}
           <CocktailCardsDisplay cocktails={cocktails} />
         </GridItem>
-
         <Button
           onClick={() => {
             offset(offset() + 8);

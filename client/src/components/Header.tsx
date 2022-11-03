@@ -40,9 +40,14 @@ export default function Header() {
         marginTop={"30px"}
         marginRight={"30px"}
       ></Stack>
-      <Container height="600px" position="relative" marginLeft={25}>
+      <Container
+        height="600px"
+        position="relative"
+        marginLeft={30}
+        marginRight={30}
+      >
         <Stack maxW={"xs"} position="absolute" marginTop={"-50px"}>
-          <Text marginTop={150} fontSize={"15px"} color={"grey"}>
+          <Text marginTop={150} fontSize={"l"} color={"lightpink"}>
             {text}
           </Text>
           {/* 
@@ -60,7 +65,7 @@ export default function Header() {
               color={"beige"}
               variant={"outline"} /* maxWidth={'150px'} */
             >
-              Mix me a drink!
+              Mix a random drink!
             </Button>
           </Link>
         </Stack>

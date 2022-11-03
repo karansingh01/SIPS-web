@@ -1,3 +1,4 @@
+import "./Navbar.css";
 import {
   Avatar,
   Box,
@@ -65,15 +66,14 @@ export default function Navbar() {
               fontSize={"60px"}
               fontWeight={"bold"}
               id={"logo"}
+              marginTop={5}
             >
               {TITLE}
             </Box>
           </RouterLink>
 
-          <Flex alignItems={"center"}>
+          <Flex id={"idButton"} alignItems={"center"}>
             <Stack direction={"row"} spacing={7}>
-              <RouterLink to="/fav"></RouterLink>
-
               <Menu>
                 <MenuButton
                   as={Button}
@@ -81,6 +81,7 @@ export default function Navbar() {
                   variant={"link"}
                   cursor={"pointer"}
                   minW={0}
+                  marginTop={5}
                 >
                   <Avatar
                     size={"md"}

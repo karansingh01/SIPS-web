@@ -9,7 +9,7 @@ import { client } from "../api/client";
 import { alcoholFilterParam } from "../api/graphql/alcoholFilter";
 import VodkaPage from "../pages/VodkaPage";
 
-export default function FilterButtons () {
+export default function FilterButtons() {
   const alcohols: string[] = ["All", "Vodka", "Gin", "Liqueur", "Rum"];
 
   return (
@@ -20,15 +20,16 @@ export default function FilterButtons () {
             isActive={isOpen}
             as={Button}
             rightIcon={<FaAngleRight />}
+            maxWidth={"160px"}
+            margin={0}
           >
             {isOpen ? "Close" : "Filter by liquor"}
           </MenuButton>
           <MenuList>
-
             {alcohols.map((alcohol) => (
-                <MenuItem key={alcohol} as={Link} to={"/"+ alcohol}>
-                {alcohol}    
-                </MenuItem>
+              <MenuItem key={alcohol} as={Link} to={"/" + alcohol}>
+                {alcohol}
+              </MenuItem>
             ))}
           </MenuList>
         </>

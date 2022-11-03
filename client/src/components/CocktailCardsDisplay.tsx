@@ -62,7 +62,7 @@ export default function CocktailCardsDisplay({
   return (
     <div id={"cocktailCardsDisplay"}>
       {/* <Stack marginLeft={20} marginTop={20}> */}
-      {sortedDown ? (
+      {/*{sortedDown ? (
         <FaSortAlphaDown
           onClick={toggleSort}
           style={{
@@ -80,7 +80,7 @@ export default function CocktailCardsDisplay({
             right: "20px",
           }}
         />
-      )}
+        )}*/}
       {/*  </Stack> */}
       <SimpleGrid
         columns={[1, 2, 3]}
