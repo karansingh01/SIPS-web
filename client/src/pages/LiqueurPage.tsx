@@ -28,6 +28,13 @@ const GET_DRINKS_BY_NAME_CONTAINS = gql`
       strIngredient8
       strIngredient9
       strIngredient10
+      strMeasure1
+      strMeasure2
+      strMeasure3
+      strMeasure4
+      strMeasure5
+      strMeasure6
+      strMeasure7
       strInstructions
     }
   }
