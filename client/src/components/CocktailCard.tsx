@@ -1,7 +1,8 @@
 import {
   Box,
   Center,
-  Container,
+  Flex,
+  Heading,
   Image,
   Modal,
   ModalBody,
@@ -9,23 +10,14 @@ import {
   ModalContent,
   ModalHeader,
   ModalOverlay,
+  SimpleGrid,
   Stack,
+  StackDivider,
   Text,
   useColorModeValue,
   useDisclosure,
-  Flex,
-  Heading,
-  SimpleGrid,
-  StackDivider,
-} from "@chakra-ui/react";
-import {
-  JSXElementConstructor,
-  Key,
-  ReactElement,
-  ReactFragment,
-  ReactPortal,
-  useState,
-} from "react";
+} from '@chakra-ui/react';
+import { JSXElementConstructor, Key, ReactElement, ReactFragment, ReactPortal, useState } from 'react';
 
 export default function CocktailCard({
   cocktail,
@@ -46,6 +38,17 @@ export default function CocktailCard({
     strIngredient9: string;
     strIngredient10: string;
     strInstructions: string;
+    strMeasure1: string;
+    strMeasure2: string;
+    strMeasure3: string;
+    strMeasure4: string;
+    strMeasure5: string;
+    strMeasure6: string;
+    strMeasure7: string;
+    strMeasure8: string;
+    strMeasure9: string;
+    strMeasure10: string;
+
   };
 }) {
   const IMAGE: string = cocktail.strDrinkThumb;
@@ -62,21 +65,35 @@ export default function CocktailCard({
   const strIngredient9: string = cocktail.strIngredient9;
   const strIngredient10: string = cocktail.strIngredient10;
   const strInstructions: string = cocktail.strInstructions;
+  const strMeasure1: string = cocktail.strMeasure1;
+  const strMeasure2: string = cocktail.strMeasure2;
+  const strMeasure3: string = cocktail.strMeasure3;
+  const strMeasure4: string = cocktail.strMeasure4;
+  const strMeasure5: string = cocktail.strMeasure5;
+  const strMeasure6: string = cocktail.strMeasure6;
+  const strMeasure7: string = cocktail.strMeasure7;
+  const strMeasure8: string = cocktail.strMeasure8;
+  const strMeasure9: string = cocktail.strMeasure9;
+  const strMeasure10: string = cocktail.strMeasure10;
+
 
   const drinkIngredients = [
-    strIngredient1,
-    strIngredient2,
-    strIngredient3,
-    strIngredient4,
-    strIngredient5,
-    strIngredient6,
-    strIngredient7,
-    strIngredient8,
-    strIngredient9,
-    strIngredient10,
+    strMeasure1 +  strIngredient1,
+    strMeasure2 +  strIngredient2,
+    strMeasure3 +  strIngredient3,
+    strMeasure4 +  strIngredient4,
+    strMeasure5 +  strIngredient5,
+    strMeasure6 +  strIngredient6,
+    strMeasure7 +  strIngredient7,
+    strMeasure8 +  strIngredient8,
+    strMeasure9 +  strIngredient9,
+    strMeasure10 + strIngredient10,
   ];
 
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+
+console.log(strMeasure1)
 
 
   return (

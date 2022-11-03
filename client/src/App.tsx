@@ -5,7 +5,6 @@ import { RandomDrinkQuery } from "./api/graphql/randomDrink";
 import { VodkaDrinksQuery } from "./api/graphql/vodkaDrinks";
 import { GinDrinksQuery } from "./api/graphql/ginDrinks";
 import { RumDrinksQuery } from "./api/graphql/rumDrinks";
-import { TequilaDrinksQuery } from "./api/graphql/tequilaDrinks";
 import reportWebVitals from "./reportWebVitals";
 import { HashRouter, Route, Routes } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
@@ -19,6 +18,11 @@ import { AuthProvider } from "./context/authContext";
 import client1 from "./apolloClient";
 import TestPage from "./pages/TestPage";
 import './App.css';
+import VodkaPage from './pages/VodkaPage';
+import GinPage from './pages/GinPage';
+import RumPage from './pages/RumPage';
+import LiqueurPage from './pages/LiqueurPage';
+
 
 // format: response.data.<queryName>.drinks[0].<whateverYouWantToCollect>
 // drinks[0] gives you the first drink in the array, which is the only drink since we
@@ -42,6 +46,11 @@ export default function App() {
               <Route path="/register" element={<RegisterPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/test" element={<TestPage />} />
+              <Route path="/Vodka" element={<VodkaPage />} />
+              <Route path="/Rum" element={<RumPage />} />
+              <Route path="/Gin" element={<GinPage />} />
+              <Route path="/Liqueur" element={<LiqueurPage />} />
+              <Route path="/All" element={<AllCocktailsPage />} />
             </Routes>
           </HashRouter>
         </ApolloProvider>

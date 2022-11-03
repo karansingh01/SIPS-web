@@ -9,9 +9,10 @@ import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
 import { offset } from "../cache";
 
-const GET_DRINKS_BY_NAME_CONTAINS_ANY = gql`
-  query getDrinksByNameContainsAny($recipename: String) {
-    getDrinksByNameContainsAny(recipename: $recipename) {
+/* 
+const GET_DRINKS_BY_NAME_CONTAINS = gql`
+  query GetDrinksByNameContains($recipename: String, $alcohol: String ) {
+    getDrinksByNameContains(recipename: $recipename, alcohol: $ingredient) {
       idDrink
       strDrink
       strDrinkThumb
@@ -27,23 +28,13 @@ const GET_DRINKS_BY_NAME_CONTAINS_ANY = gql`
       strIngredient9
       strIngredient10
       strInstructions
-      strMeasure1
-      strMeasure2
-      strMeasure3
-      strMeasure4
-      strMeasure5
-      strMeasure6
-      strMeasure7
-      strMeasure8
-      strMeasure9
-      strMeasure10
     }
   }
-`;
+`; */
 
-const GET_DRINKS_FROM_INDEX = gql`
-  query GetDrinksFromIndex($amount: Int, $index: Int) {
-    getDrinksFromIndex(amount: $amount, index: $index) {
+const GET_DRINKS_BY_NAME_CONTAINS = gql`
+  query GetDrinksByNameContains($recipename: String) {
+    getDrinksByNameContains(recipename: $recipename) {
       idDrink
       strDrink
       strDrinkThumb
@@ -59,38 +50,60 @@ const GET_DRINKS_FROM_INDEX = gql`
       strIngredient9
       strIngredient10
       strInstructions
+    }
+  }
+`;
+
+
+const GET_DRINKS_BY_INGREDIENT = gql`
+  query GetDrinksByIngredient($ingredient: String) {
+    getDrinksByIngredient(ingredient: $ingredient) {
+      idDrink
+      strDrink
+      strInstructions
+      strDrinkThumb
+      strIngredient1
+      strIngredient2
+      strIngredient3
+      strIngredient4
+      strIngredient5
+      strIngredient6
       strMeasure1
       strMeasure2
       strMeasure3
       strMeasure4
       strMeasure5
       strMeasure6
-      strMeasure7
-      strMeasure8
-      strMeasure9
-      strMeasure10
     }
   }
 `;
 
-const AllCocktailsPage = () => {
-  const { loading, error, data } = useQuery(GET_DRINKS_FROM_INDEX, {
-    variables: { amount: useReactiveVar(offset), index: 0 },
-  });
+const LiqueurPage = () => {
 
-  const [query, setQuery] = useState("");
+const [query, setQuery] = useState("");
+  const [alcohol, setAlcohol] = useState(""); 
   const [cocktails, setCocktails] = useState([]);
 
-  const [getQuery, { loading: loading1, error: error1, data: data1 }] = useLazyQuery(GET_DRINKS_BY_NAME_CONTAINS_ANY,{
-    variables: { recipename: query },
+/*   setAlcohol("Vodka"); */
+
+  const [getQuery, { loading: loading1, error: error1, data: data1 }] = useLazyQuery(GET_DRINKS_BY_NAME_CONTAINS,{
+    variables: { recipename: query},
     onCompleted: (data1) => {
       setCocktails(data1.getDrinksByNameContains);
     },
   });
 
+
+const  { loading,  error, data } = useQuery(GET_DRINKS_BY_INGREDIENT,{
+    variables: { ingredient: "Liqueur" },
+    onCompleted: (data) => {
+    setCocktails(data.getDrinksByIngredient);
+    },
+});
+
   useEffect(() => {
     if (data) {
-      setCocktails(data.getDrinksFromIndex);
+      setCocktails(data.getDrinksByIngredient);
     }
   }, [data]);
 
@@ -103,11 +116,13 @@ const AllCocktailsPage = () => {
     return <p>{error as any}</p>;
   }
   
+console.log("cocktailssss",cocktails)
+
+
+
   return (
     <Flex flexDirection="column">
-      {/* <SearchBar /> */}
       <Header />
-
       <Grid
         transform="translate(0px, -150px)"
         margin={"30px"}
@@ -118,26 +133,18 @@ const AllCocktailsPage = () => {
         mt={5}
       >
         <GridItem colSpan={3}>
-          <SearchBar q={query} setQuery={setQuery} setAlcoholType={""} />
+          <SearchBar q={query} setQuery={setQuery} setAlcoholType={"Liqueur"} />
         </GridItem>
-          <Button onClick={() => getQuery()}>Search</Button>
+        <Button onClick={() => getQuery()}>Search</Button>
         <FilterButtons/>
         <GridItem colSpan={4}>
-          {/* <CocktailCardsDisplay cocktails={filteredCocktails} /> 
-          cocktailcards need {id (som number), name, image}*/}
           <CocktailCardsDisplay cocktails={cocktails} />
         </GridItem>
-
-        <Button
-          onClick={() => {
-            offset(offset() + 8);
-          }}
-        >
-          View more...
-        </Button>
       </Grid>
     </Flex>
   );
 };
 
-export default AllCocktailsPage;
+export default LiqueurPage;
+
+

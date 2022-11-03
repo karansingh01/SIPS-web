@@ -23,6 +23,16 @@ export default function CocktailCardsDisplay({
     strIngredient9: string;
     strIngredient10: string;
     strInstructions: string;
+    strMeasure1: string;
+    strMeasure2: string;
+    strMeasure3: string;
+    strMeasure4: string;
+    strMeasure5: string;
+    strMeasure6: string;
+    strMeasure7: string;
+    strMeasure8: string;
+    strMeasure9: string;
+    strMeasure10: string;
   }[];
 }) {
   const [sortedDown, setSortedDown] = useState(true);
