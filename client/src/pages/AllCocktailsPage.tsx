@@ -8,6 +8,7 @@ import FilterButtons from "../components/FilterButtons";
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
 import { offset } from "../cache";
+import { log } from "console";
 
 const GET_DRINKS_BY_NAME_CONTAINS_ANY = gql`
   query getDrinksByNameContainsAny($recipename: String) {
@@ -80,6 +81,8 @@ const AllCocktailsPage = () => {
 
   const [query, setQuery] = useState("");
   const [cocktails, setCocktails] = useState([]);
+  const [visible, setVisible] = useState(true);
+
 
   const [getQuery, { loading: loading1, error: error1, data: data1 }] = useLazyQuery(GET_DRINKS_BY_NAME_CONTAINS_ANY,{
     variables: { recipename: query },
@@ -103,6 +106,15 @@ const AllCocktailsPage = () => {
     return <p>{error as any}</p>;
   }
   
+
+  const removeElement = () => {
+    offset(offset() + 26);
+    setVisible((prev) => !prev);
+    console.log("visible: ", visible);
+    console.log("removed: ");
+  };
+
+
   return (
     <Flex flexDirection="column">
       {/* <SearchBar /> */}
@@ -127,14 +139,13 @@ const AllCocktailsPage = () => {
           cocktailcards need {id (som number), name, image}*/}
           <CocktailCardsDisplay cocktails={cocktails} />
         </GridItem>
-
+        {visible && (
         <Button
-          onClick={() => {
-            offset(offset() + 8);
-          }}
-        >
-          View more...
-        </Button>
+        onClick={removeElement}
+      >
+        View more
+      </Button>
+      )}
       </Grid>
     </Flex>
   );

@@ -54,27 +54,29 @@ export default function CocktailCard({
   const IMAGE: string = cocktail.strDrinkThumb;
   const name: string = cocktail.strDrink;
   const strGlass: string = cocktail.strGlass;
-  const strIngredient1: string = cocktail.strIngredient1;
-  const strIngredient2: string = cocktail.strIngredient2;
-  const strIngredient3: string = cocktail.strIngredient3;
-  const strIngredient4: string = cocktail.strIngredient4;
-  const strIngredient5: string = cocktail.strIngredient5;
-  const strIngredient6: string = cocktail.strIngredient6;
-  const strIngredient7: string = cocktail.strIngredient7;
-  const strIngredient8: string = cocktail.strIngredient8;
-  const strIngredient9: string = cocktail.strIngredient9;
-  const strIngredient10: string = cocktail.strIngredient10;
-  const strInstructions: string = cocktail.strInstructions;
-  const strMeasure1: string = cocktail.strMeasure1;
-  const strMeasure2: string = cocktail.strMeasure2;
-  const strMeasure3: string = cocktail.strMeasure3;
-  const strMeasure4: string = cocktail.strMeasure4;
-  const strMeasure5: string = cocktail.strMeasure5;
-  const strMeasure6: string = cocktail.strMeasure6;
-  const strMeasure7: string = cocktail.strMeasure7;
-  const strMeasure8: string = cocktail.strMeasure8;
-  const strMeasure9: string = cocktail.strMeasure9;
-  const strMeasure10: string = cocktail.strMeasure10;
+  let strIngredient1: string = cocktail.strIngredient1;
+  let strIngredient2: string = cocktail.strIngredient2;
+  let strIngredient3: string = cocktail.strIngredient3;
+  let strIngredient4: string = cocktail.strIngredient4;
+  let strIngredient5: string = cocktail.strIngredient5;
+  let strIngredient6: string = cocktail.strIngredient6;
+  let strIngredient7: string = cocktail.strIngredient7;
+  let strIngredient8: string = cocktail.strIngredient8;
+  let strIngredient9: string = cocktail.strIngredient9;
+  let strIngredient10: string = cocktail.strIngredient10;
+  let strInstructions: string = cocktail.strInstructions;
+  let strMeasure1: string = cocktail.strMeasure1;
+  let strMeasure2: string = cocktail.strMeasure2;
+  let strMeasure3: string = cocktail.strMeasure3;
+  let strMeasure4: string = cocktail.strMeasure4;
+  let strMeasure5: string = cocktail.strMeasure5;
+  let strMeasure6: string = cocktail.strMeasure6;
+  let strMeasure7: string = cocktail.strMeasure7;
+  let strMeasure8: string = cocktail.strMeasure8;
+  let strMeasure9: string = cocktail.strMeasure9;
+  let strMeasure10: string = cocktail.strMeasure10;
+
+
 
 
   const drinkIngredients = [
@@ -89,6 +91,10 @@ export default function CocktailCard({
     strMeasure9 +  strIngredient9,
     strMeasure10 + strIngredient10,
   ];
+
+
+
+
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -177,33 +183,6 @@ console.log(strMeasure1)
         </Stack>
         <Box
           alignContent={"center"}
-          /* boxShadow={'base'} */
-          /**
-           * Her er det mye hentet fra chakra. Tror det er for mobil-versjon, men usikker?
-           */
-          /* marginTop={'20px'}
-            mt={-12}
-            pos={'relative'}
-            color={'red'}
-            borderRadius={'full'}
-            height={'230px'}
-            _after={{
-              transition: 'all .3s ease',
-              content: '""',
-              w: 'full',
-              h: 'full',
-              pos: 'absolute',
-              top: 5,
-              left: 0,
-              backgroundImage: `url(${IMAGE})`, 
-              filter: 'blur(15px)',
-              zIndex: -1,
-            }}
-            _groupHover={{
-              _after: {
-                filter: 'blur(20px)',
-              },
-            }} */
         >
           <Image
             rounded={15}
