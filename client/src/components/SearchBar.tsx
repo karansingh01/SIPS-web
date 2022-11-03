@@ -32,21 +32,50 @@ const GET_DRINKS_BY_NAME_CONTAINS = gql`
     }
   }
 `;
-
+const GET_DRINKS_BY_NAME_CONTAINS_ANY = gql`
+  query getDrinksByNameContainsAny($recipename: String, $alcohol: String ) {
+    getDrinksByNameContainsAny(recipename: $recipename, alcohol: $alcohol) {
+      idDrink
+      strDrink
+      strDrinkThumb
+      strGlass
+      strIngredient1
+      strIngredient2
+      strIngredient3
+      strIngredient4
+      strIngredient5
+      strIngredient6
+      strIngredient7
+      strIngredient8
+      strIngredient9
+      strIngredient10
+      strInstructions
+    }
+  }
+`;
 
 export default function SearchBar( {
   q,
   setQuery,
+  setAlcoholType,
 }: {
   q: string;
   setQuery: Function;
+  setAlcoholType: string;
 }) {
   
-  
   const [searchTerm, setSearchTerm] = useState('');
-  const [getSearchTerm, { loading, error, data }] = useLazyQuery(GET_DRINKS_BY_NAME_CONTAINS,{
-    variables: { recipename: searchTerm },
+  const [alcohol, setAlcohol] = useState('');
+
+/*   setAlcohol("Vodka");
+ */
+  console.log("searchBar", alcohol);
+  
+
+  const [getSearchTerm, { loading, error, data }] = useLazyQuery(GET_DRINKS_BY_NAME_CONTAINS_ANY,{
+    variables: { recipename: searchTerm, alcohol: "Vodka" },
     onCompleted: (data) => {
+      console.log("searchBar", data);
       console.log(data.getDrinksByNameContains);
     },
   });
@@ -81,7 +110,6 @@ export default function SearchBar( {
           // }}
           value={q}
           onChange={(e) => setQuery(e.target.value)}
-
         />
       {/* <Button onClick={() => getSearchTerm({ variables: { recipename: q } })}>
         Search

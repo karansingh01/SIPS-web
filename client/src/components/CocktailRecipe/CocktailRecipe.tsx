@@ -1,7 +1,6 @@
 import { gql, useQuery } from '@apollo/client';
 import { Container, Flex, Heading, Image, SimpleGrid, Stack, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
-import { FaHeart } from 'react-icons/fa';
 
 const GET_ALL_DRINKS = gql`
   query GetAllDrinks {
@@ -86,7 +85,6 @@ export default function CocktailDetails() {
           <Heading color={"beige"}>
             {strDrink}
           </Heading>
-          <FaHeart color={"lightpink"} />
           <Text color={"gray.500"} fontSize={"lg"}>
             ingredients
           </Text>
