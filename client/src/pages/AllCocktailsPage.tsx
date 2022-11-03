@@ -192,6 +192,7 @@ const AllCocktailsPage = () => {
       variables: { recipename: query },
       onCompleted: (data1) => {
         setCocktails(data1.getDrinksByNameContains);
+        console.log(data1.getDrinksByNameContains);
       },
     });
 

@@ -54,12 +54,6 @@ type Drinks {
   dateModified: String
 }
 
-type Message {
-    text: String
-    createdAt: String
-    createdBy: String
-}
-
 type User {
   username: String
   password: String
@@ -78,10 +72,7 @@ input LoginInput {
   password: String
 }
 
-input MessageInput {
-    text: String
-    username: String
-}
+
 type Query {
   # takes a ID and returns a Drinks object
   drinks(ID: ID!): Drinks
@@ -101,12 +92,10 @@ type Query {
   getDrinksByNameContainsAny(recipename: String): [Drinks]
 
 
-  message(id: ID!): Message
   user(id: ID!): User 
 }
 
 type Mutation {
-    createMessage(messageInput: MessageInput): Message!
     registerUser(registerInput: RegisterInput): User
     loginUser(loginInput: LoginInput): User
 }

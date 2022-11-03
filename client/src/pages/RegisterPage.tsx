@@ -64,7 +64,6 @@ export default function Register(props: any){
         username: '',
         email: '',
         password: '',
-        confirmPassword: ''
     });
 
     const [registerUser] = useMutation(REGISTER_USER, {
@@ -114,16 +113,6 @@ export default function Register(props: any){
                 <FormLabel>Password</FormLabel>
                 <InputGroup size="md">
                   <Input type={show ? 'text' : 'password'} name="password" aria-label='password' onChange={onChange} />
-                  <InputRightElement width='4.5rem'>
-                    <Button h='1.75rem' size='sm' onClick={handleClick}>
-                    {show ? 'Hide' : 'Show'}</Button>
-                  </InputRightElement>
-                </InputGroup>
-              </FormControl>
-              <FormControl isRequired id="confirmPassword">
-                <FormLabel>Confirm Password</FormLabel>
-                <InputGroup size="md">
-                  <Input type={show ? 'text' : 'password'} name="confirmPassword" aria-label='confirmPassword' onChange={onChange} />
                   <InputRightElement width='4.5rem'>
                     <Button h='1.75rem' size='sm' onClick={handleClick}>
                     {show ? 'Hide' : 'Show'}</Button>
