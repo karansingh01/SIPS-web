@@ -99,8 +99,6 @@ const  { loading,  error, data } = useQuery(GET_DRINKS_BY_INGREDIENT,{
     // Handle error?
     return <p>{error as any}</p>;
   }
-  
-console.log("cocktailssss",cocktails)
 
 
 

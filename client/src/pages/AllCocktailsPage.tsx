@@ -15,6 +15,7 @@ import SearchBar from "../components/SearchBar";
 import { offset } from "../cache";
 import { log } from "console";
 
+
 const GET_DRINKS_BY_NAME_CONTAINS = gql`
   query getDrinksByNameContainsAny($recipename: String) {
     getDrinksByNameContainsAny(recipename: $recipename) {
@@ -83,12 +84,19 @@ const AllCocktailsPage = () => {
   const { loading, error, data } = useQuery(GET_DRINKS_FROM_INDEX, {
     variables: { amount: useReactiveVar(offset), index: 0 },
   });
-
+  
   const [query, setQuery] = useState("");
   const [cocktails, setCocktails] = useState([]);
   const [visible, setVisible] = useState(true);
-
+  
   const [sortedDown, setSortedDown] = useState(true);
+  
+  window.onload = function () {
+    console.log(cocktails.length + " occktails length");
+    if (cocktails.length > 25) {
+      window.scrollTo(0, document.body.scrollHeight);
+    }
+  };
 
   const toggleSort = () => {
     setSortedDown(!sortedDown);
@@ -180,9 +188,7 @@ const AllCocktailsPage = () => {
         strInstructions: cocktail.strInstructions,
       })
     );
-    console.log(sortedCocktails);
     sortedCocktails.sort((a, b) => (a.strDrink > b.strDrink ? 1 : -1));
-    console.log(sortedCocktails);
     return sortedCocktails;
   };
 
@@ -191,8 +197,8 @@ const AllCocktailsPage = () => {
     useLazyQuery(GET_DRINKS_BY_NAME_CONTAINS, {
       variables: { recipename: query },
       onCompleted: (data1) => {
-        setCocktails(data1.getDrinksByNameContains);
-        console.log(data1.getDrinksByNameContains);
+        setCocktails(data1.getDrinksByNameContainsAny);
+        console.log(data1.getDrinksByNameContainsAny);
       },
     });
 
@@ -200,6 +206,7 @@ const AllCocktailsPage = () => {
     if (data) {
       setCocktails(data.getDrinksFromIndex);
     }
+    window.scrollTo(0, document.body.scrollHeight);
   }, [data]);
 
   if (loading) {
@@ -210,7 +217,6 @@ const AllCocktailsPage = () => {
     // Handle error?
     return <p>{error as any}</p>;
   }
-  
 
   const removeElement = () => {
     offset(offset() + 26);
