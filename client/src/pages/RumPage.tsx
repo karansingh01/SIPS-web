@@ -28,6 +28,14 @@ const GET_DRINKS_BY_NAME_CONTAINS = gql`
       strIngredient8
       strIngredient9
       strIngredient10
+      strMeasure1
+      strMeasure2
+      strMeasure3
+      strMeasure4
+      strMeasure5
+      strMeasure6
+      strMeasure7
+      strMeasure8
       strInstructions
     }
   }
@@ -49,12 +57,14 @@ const GET_DRINKS_BY_INGREDIENT = gql`
       strIngredient4
       strIngredient5
       strIngredient6
+      strIngredient7
       strMeasure1
       strMeasure2
       strMeasure3
       strMeasure4
       strMeasure5
       strMeasure6
+      strMeasure7
     }
   }
 `;
@@ -99,8 +109,7 @@ const  { loading,  error, data } = useQuery(GET_DRINKS_BY_INGREDIENT,{
     // Handle error?
     return <p>{error as any}</p>;
   }
-  
-console.log("cocktailssss",cocktails)
+
 
 
 

@@ -26,7 +26,6 @@ import LiqueurPage from './pages/LiqueurPage';
  * Fetch drinks by alcohol (in different files):
  */
 
-console.log("reportwebVitals: ", reportWebVitals);
 
 export default function App() {
   return (
