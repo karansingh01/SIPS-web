@@ -35,7 +35,13 @@ module.exports = {
                 return yield Drink.find({ strDrink: recipename });
             });
         },
-        getDrinksByNameContains(_, { recipename }) {
+        getDrinksByNameContains(_, { recipename, ingredient }) {
+            return __awaiter(this, void 0, void 0, function* () {
+                return yield Drink.find({ $or: [{ strIngredient1: ingredient }, { strIngredient2: ingredient }, { strIngredient3: ingredient }, { strIngredient4: ingredient }, { strIngredient5: ingredient }, { strIngredient6: ingredient }, { strIngredient7: ingredient }, { strIngredient8: ingredient }, { strIngredient9: ingredient }, { strIngredient10: ingredient }], strDrink: { $regex: recipename, $options: 'i' } });
+                // returns array of recipes
+            });
+        },
+        getDrinksByNameContainsAny(_, { recipename }) {
             return __awaiter(this, void 0, void 0, function* () {
                 // returns array of recipes
                 return yield Drink.find({ strDrink: { $regex: recipename, $options: 'i' } });

@@ -1,17 +1,19 @@
-import { gql, useLazyQuery, useQuery } from '@apollo/client';
-import { Button, Flex, Grid, GridItem } from '@chakra-ui/react';
-import React from 'react';
-import { useEffect, useState } from 'react';
+import { Button, Center, Flex, Grid, GridItem } from "@chakra-ui/react";
+import React from "react";
+import { useEffect, useState } from "react";
+import { gql, useLazyQuery, useQuery, useReactiveVar } from "@apollo/client";
 
-import CocktailCardsDisplay from '../components/CocktailCardsDisplay';
-import FilterButtons from '../components/FilterButtons';
-import Header from '../components/Header';
-import SearchBar from '../components/SearchBar';
+import CocktailCardsDisplay from "../components/CocktailCardsDisplay";
+import FilterButtons from "../components/FilterButtons";
+import Header from "../components/Header";
+import SearchBar from "../components/SearchBar";
+import { offset } from "../cache";
 
 
 const GET_DRINKS_BY_NAME_CONTAINS = gql`
-  query GetDrinksByNameContains($recipename: String) {
-    getDrinksByNameContains(recipename: $recipename) {
+  query GetDrinksByNameContains($recipename: String, $ingredient: String ) {
+    getDrinksByNameContains(recipename: $recipename, ingredient: $ingredient) {
+
       idDrink
       strDrink
       strDrinkThumb
@@ -30,6 +32,8 @@ const GET_DRINKS_BY_NAME_CONTAINS = gql`
     }
   }
 `;
+
+
 
 
 const GET_DRINKS_BY_INGREDIENT = gql`
@@ -54,19 +58,20 @@ const GET_DRINKS_BY_INGREDIENT = gql`
     }
   }
 `;
-
-const RumPage = () => {
+export default function RumPage ( /* {
+    setAlcoholType,
+  }: {
+    setAlcoholType: string;
+  } */) 
+  {
 
 const [query, setQuery] = useState("");
-  const [alcohol, setAlcohol] = useState(""); 
-
 
   const [cocktails, setCocktails] = useState([]);
 
-/*   setAlcohol("Vodka"); */
 
   const [getQuery, { loading: loading1, error: error1, data: data1 }] = useLazyQuery(GET_DRINKS_BY_NAME_CONTAINS,{
-    variables: { recipename: query},
+    variables: { recipename: query, ingredient: "Rum" },
     onCompleted: (data1) => {
       setCocktails(data1.getDrinksByNameContains);
     },
@@ -112,19 +117,16 @@ console.log("cocktailssss",cocktails)
         mt={5}
       >
         <GridItem colSpan={3}>
-          <SearchBar q={query} setQuery={setQuery} setAlcoholType={"Rum"} />
+          <SearchBar q={query} setQuery={setQuery} />
         </GridItem>
         <Button onClick={() => getQuery()}>Search</Button>
         <FilterButtons/>
         <GridItem colSpan={4}>
           <CocktailCardsDisplay cocktails={cocktails} />
         </GridItem>
-
       </Grid>
     </Flex>
   );
 };
-
-export default RumPage;
 
 

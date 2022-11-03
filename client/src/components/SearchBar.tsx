@@ -57,40 +57,13 @@ const GET_DRINKS_BY_NAME_CONTAINS_ANY = gql`
 export default function SearchBar( {
   q,
   setQuery,
-  setAlcoholType,
 }: {
   q: string;
   setQuery: Function;
-  setAlcoholType: string;
 }) {
   
   const [searchTerm, setSearchTerm] = useState('');
-  const [alcohol, setAlcohol] = useState('');
 
-/*   setAlcohol("Vodka");
- */
-  console.log("searchBar", alcohol);
-  
-
-  const [getSearchTerm, { loading, error, data }] = useLazyQuery(GET_DRINKS_BY_NAME_CONTAINS_ANY,{
-    variables: { recipename: searchTerm, alcohol: "Vodka" },
-    onCompleted: (data) => {
-      console.log("searchBar", data);
-      console.log(data.getDrinksByNameContains);
-    },
-  });
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return <p>{error as any}</p>;
-  }
-
-  if (data) {
-    console.log(data);
-  }
 
   return (
     

@@ -9,32 +9,11 @@ import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
 import { offset } from "../cache";
 
-/* 
-const GET_DRINKS_BY_NAME_CONTAINS = gql`
-  query GetDrinksByNameContains($recipename: String, $alcohol: String ) {
-    getDrinksByNameContains(recipename: $recipename, alcohol: $ingredient) {
-      idDrink
-      strDrink
-      strDrinkThumb
-      strGlass
-      strIngredient1
-      strIngredient2
-      strIngredient3
-      strIngredient4
-      strIngredient5
-      strIngredient6
-      strIngredient7
-      strIngredient8
-      strIngredient9
-      strIngredient10
-      strInstructions
-    }
-  }
-`; */
 
 const GET_DRINKS_BY_NAME_CONTAINS = gql`
-  query GetDrinksByNameContains($recipename: String) {
-    getDrinksByNameContains(recipename: $recipename) {
+  query GetDrinksByNameContains($recipename: String, $ingredient: String ) {
+    getDrinksByNameContains(recipename: $recipename, ingredient: $ingredient) {
+
       idDrink
       strDrink
       strDrinkThumb
@@ -53,6 +32,8 @@ const GET_DRINKS_BY_NAME_CONTAINS = gql`
     }
   }
 `;
+
+
 
 
 const GET_DRINKS_BY_INGREDIENT = gql`
@@ -77,17 +58,20 @@ const GET_DRINKS_BY_INGREDIENT = gql`
     }
   }
 `;
-
-const LiqueurPage = () => {
+export default function LiqueurPage ( /* {
+    setAlcoholType,
+  }: {
+    setAlcoholType: string;
+  } */) 
+  {
 
 const [query, setQuery] = useState("");
-  const [alcohol, setAlcohol] = useState(""); 
+
   const [cocktails, setCocktails] = useState([]);
 
-/*   setAlcohol("Vodka"); */
 
   const [getQuery, { loading: loading1, error: error1, data: data1 }] = useLazyQuery(GET_DRINKS_BY_NAME_CONTAINS,{
-    variables: { recipename: query},
+    variables: { recipename: query, ingredient: "Liqueur" },
     onCompleted: (data1) => {
       setCocktails(data1.getDrinksByNameContains);
     },
@@ -133,7 +117,7 @@ console.log("cocktailssss",cocktails)
         mt={5}
       >
         <GridItem colSpan={3}>
-          <SearchBar q={query} setQuery={setQuery} setAlcoholType={"Liqueur"} />
+          <SearchBar q={query} setQuery={setQuery} />
         </GridItem>
         <Button onClick={() => getQuery()}>Search</Button>
         <FilterButtons/>
@@ -144,7 +128,5 @@ console.log("cocktailssss",cocktails)
     </Flex>
   );
 };
-
-export default LiqueurPage;
 
 

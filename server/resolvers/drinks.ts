@@ -20,9 +20,9 @@ module.exports = {
             return await Drink.find({strDrink: recipename});
         },
 
-        async getDrinksByNameContains(_: any, {recipename, alcohol}: any) {
+        async getDrinksByNameContains(_: any, {recipename, ingredient}: any) {
+            return await Drink.find({$or: [{strIngredient1: ingredient}, {strIngredient2: ingredient}, {strIngredient3: ingredient}, {strIngredient4: ingredient}, {strIngredient5: ingredient}, {strIngredient6: ingredient}, {strIngredient7: ingredient}, {strIngredient8: ingredient}, {strIngredient9: ingredient}, {strIngredient10: ingredient}], strDrink: {$regex: recipename, $options: 'i'}});
             // returns array of recipes
-            return await Drink.find({strIngredient1: alcohol}, {strDrink: {$regex: recipename, $options: 'i'}});
         },
         async getDrinksByNameContainsAny(_: any, {recipename}: any) {
             // returns array of recipes
