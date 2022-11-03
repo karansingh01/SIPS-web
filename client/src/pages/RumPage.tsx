@@ -1,36 +1,13 @@
-import { Button, Center, Flex, Grid, GridItem } from "@chakra-ui/react";
-import React from "react";
-import { useEffect, useState } from "react";
-import { gql, useLazyQuery, useQuery, useReactiveVar } from "@apollo/client";
+import { gql, useLazyQuery, useQuery } from '@apollo/client';
+import { Button, Flex, Grid, GridItem } from '@chakra-ui/react';
+import React from 'react';
+import { useEffect, useState } from 'react';
 
-import CocktailCardsDisplay from "../components/CocktailCardsDisplay";
-import FilterButtons from "../components/FilterButtons";
-import Header from "../components/Header";
-import SearchBar from "../components/SearchBar";
-import { offset } from "../cache";
+import CocktailCardsDisplay from '../components/CocktailCardsDisplay';
+import FilterButtons from '../components/FilterButtons';
+import Header from '../components/Header';
+import SearchBar from '../components/SearchBar';
 
-/* 
-const GET_DRINKS_BY_NAME_CONTAINS = gql`
-  query GetDrinksByNameContains($recipename: String, $alcohol: String ) {
-    getDrinksByNameContains(recipename: $recipename, alcohol: $ingredient) {
-      idDrink
-      strDrink
-      strDrinkThumb
-      strGlass
-      strIngredient1
-      strIngredient2
-      strIngredient3
-      strIngredient4
-      strIngredient5
-      strIngredient6
-      strIngredient7
-      strIngredient8
-      strIngredient9
-      strIngredient10
-      strInstructions
-    }
-  }
-`; */
 
 const GET_DRINKS_BY_NAME_CONTAINS = gql`
   query GetDrinksByNameContains($recipename: String) {

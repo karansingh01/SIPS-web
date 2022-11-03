@@ -1,12 +1,8 @@
-import { Flex, Grid, GridItem } from "@chakra-ui/react";
-import { useState } from "react";
-import AlphabetButtons from "../components/AlphabetButtons";
-import CocktailCardsDisplay from "../components/CocktailCardsDisplay";
-import FilterButtons from "../components/FilterButtons";
-import Header from "../components/Header";
-import { client } from "../api/client";
+import { gql, useQuery } from '@apollo/client';
+import { Flex, Grid } from '@chakra-ui/react';
+import { useState } from 'react';
 import React from 'react';
-import { useQuery, gql } from '@apollo/client';
+import Header from '../components/Header';
 
 interface getDrinksByNameInterface{
   idDrink: String;

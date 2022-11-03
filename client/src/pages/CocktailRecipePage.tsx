@@ -5,7 +5,7 @@ import React from 'react';
 import { BsArrowLeft } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 
-import CocktailRecipe from '../components/CocktailRecipe/CocktailRecipe';
+import CocktailRecipe from '../components/CocktailRecipe';
 import Navbar from '../components/Navbar/Navbar';
 
 

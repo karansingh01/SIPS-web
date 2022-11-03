@@ -85,7 +85,6 @@ export default function SearchBar( {
   }
 
   if (error) {
-    // Handle error?
     return <p>{error as any}</p>;
   }
 
