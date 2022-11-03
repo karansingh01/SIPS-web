@@ -123,7 +123,7 @@ export default function LoginPage(props: any) {
                 </InputRightElement>
               </InputGroup>
             </FormControl>
-            <Stack spacing={10}>
+            <Stack spacing={10} id={"loginStack"}>
               <Stack
                 direction={{ base: "column", sm: "row" }}
                 align={"start"}
@@ -134,6 +134,7 @@ export default function LoginPage(props: any) {
                 </Link>
               </Stack>
               <Button
+                id={"loginbutton"}
                 onClick={onSubmit}
                 bg={"blue.400"}
                 color={"white"}

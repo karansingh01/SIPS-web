@@ -13,7 +13,10 @@ describe('Login page test', () => {
         cy.get('input[name="email"]').click();
         cy.get('input[name="email"]').type("test@test.com");
         cy.get('input[name="email"]').should("have.value", "test@test.com");
-
+        cy.get('input[name="password"]').click();
+        cy.get('input[name="password"]').type("test");
+        cy.get("#loginbutton").click();
+        cy.get("#loginStack").should("include.text", "Incorrect password");
       });
   
   
