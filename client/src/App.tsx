@@ -10,7 +10,6 @@ import LoginPage from "./pages/LoginPage";
 import { ApolloProvider } from "@apollo/client";
 import { AuthProvider } from "./context/authContext";
 import client1 from "./apolloClient";
-import TestPage from "./pages/TestPage";
 import './App.css';
 import VodkaPage from './pages/VodkaPage';
 import GinPage from './pages/GinPage';
@@ -38,7 +37,6 @@ export default function App() {
               <Route path="/cr" element={<CocktailRecipePage />} />
               <Route path="/register" element={<RegisterPage />} />
               <Route path="/login" element={<LoginPage />} />
-              <Route path="/test" element={<TestPage />} />
               <Route path="/Vodka" element={<VodkaPage />} />
               <Route path="/Rum" element={<RumPage />} />
               <Route path="/Gin" element={<GinPage />} />

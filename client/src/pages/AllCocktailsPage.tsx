@@ -218,8 +218,6 @@ const AllCocktailsPage = () => {
   const removeElement = () => {
     offset(offset() + 26);
     setVisible((prev) => !prev);
-    console.log("visible: ", visible);
-    console.log("removed: ");
   };
 
   return (
