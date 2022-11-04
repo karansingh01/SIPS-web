@@ -4,39 +4,19 @@ import {
   Button,
   Center,
   Flex,
-  Link,
   Menu,
   MenuButton,
   MenuDivider,
   MenuItem,
   MenuList,
   Stack,
-  useColorMode,
-  useDisclosure,
 } from "@chakra-ui/react";
-import { ReactNode, useContext } from "react";
+import { useContext } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
 const TITLE: string = "SIPS";
-const BUTTONTEXT: string = "Favorites";
-
-const NavLink = ({ children }: { children: ReactNode }) => (
-  <Link
-    px={2}
-    py={1}
-    rounded={"md"}
-    _hover={{
-      textDecoration: "none",
-    }}
-    href={"#"}
-  >
-    {children}
-  </Link>
-);
 
 export default function Navbar() {
-  const { colorMode, toggleColorMode } = useColorMode();
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
   // For checking if user is logged in or not
   let navigate = useNavigate();

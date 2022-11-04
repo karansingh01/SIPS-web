@@ -1,17 +1,12 @@
 import {
   Stack,
-  useDisclosure,
   Input,
   InputGroup,
   InputLeftElement,
-  Button,
-  Text,
 } from "@chakra-ui/react";
 import { FaSearch } from "react-icons/fa";
 import gql from "graphql-tag";
-import { useLazyQuery, useQuery } from "@apollo/client";
-import { useState } from "react";
-import { getQueryDefinition } from "@apollo/client/utilities";
+
 
 const GET_DRINKS_BY_NAME_CONTAINS = gql`
   query GetDrinksByNameContains($recipename: String) {
@@ -63,7 +58,6 @@ export default function SearchBar({
   q: string;
   setQuery: Function;
 }) {
-  const [searchTerm, setSearchTerm] = useState("");
 
   return (
     <Stack marginLeft={1}>
@@ -80,7 +74,6 @@ export default function SearchBar({
           // onChange={(e) => setQuery(e.target.value)}
           // // onchange console log and setquery
           onChange={(e) => {
-            console.log(e.target.value);
             setQuery(e.target.value);
           }}
         />

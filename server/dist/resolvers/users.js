@@ -42,11 +42,6 @@ module.exports = {
         },
         loginUser(_, { loginInput: { email, password } }) {
             return __awaiter(this, void 0, void 0, function* () {
-                /* Do input validation
-                if (!(email && password)) {
-                    res.status(400).send("All input is required");
-                }
-                */
                 const user = yield User.findOne({ email });
                 if (user && (yield bcrypt.compare(password, user.password))) {
                     // Create token
