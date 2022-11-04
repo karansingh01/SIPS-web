@@ -16,8 +16,15 @@ import {
   Text,
   useColorModeValue,
   useDisclosure,
-} from '@chakra-ui/react';
-import { JSXElementConstructor, Key, ReactElement, ReactFragment, ReactPortal, useState } from 'react';
+} from "@chakra-ui/react";
+import {
+  JSXElementConstructor,
+  Key,
+  ReactElement,
+  ReactFragment,
+  ReactPortal,
+  useState,
+} from "react";
 
 export default function CocktailCard({
   cocktail,
@@ -48,7 +55,6 @@ export default function CocktailCard({
     strMeasure8: string;
     strMeasure9: string;
     strMeasure10: string;
-
   };
 }) {
   const IMAGE: string = cocktail.strDrinkThumb;
@@ -78,17 +84,16 @@ export default function CocktailCard({
 
 
 
-
   const drinkIngredients = [
-    strMeasure1 +  strIngredient1,
-    strMeasure2 +  strIngredient2,
-    strMeasure3 +  strIngredient3,
-    strMeasure4 +  strIngredient4,
-    strMeasure5 +  strIngredient5,
-    strMeasure6 +  strIngredient6,
-    strMeasure7 +  strIngredient7,
-    strMeasure8 +  strIngredient8,
-    strMeasure9 +  strIngredient9,
+    strMeasure1 + strIngredient1,
+    strMeasure2 + strIngredient2,
+    strMeasure3 + strIngredient3,
+    strMeasure4 + strIngredient4,
+    strMeasure5 + strIngredient5,
+    strMeasure6 + strIngredient6,
+    strMeasure7 + strIngredient7,
+    strMeasure8 + strIngredient8,
+    strMeasure9 + strIngredient9,
     strMeasure10 + strIngredient10,
   ];
 
@@ -100,13 +105,13 @@ export default function CocktailCard({
 
 
   return (
-    <Center py={12}>
+    <Center py={8} px={4}>
       <Modal isOpen={isOpen} onClose={onClose}>
         <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
           <Flex>
             <ModalOverlay />
             <ModalContent>
-              <ModalHeader color={"brown"}>{name}</ModalHeader>
+              <ModalHeader color={"#251B1C"}>{name}</ModalHeader>
               <ModalCloseButton className={"buttonCloseCocktailCard"} />
               <ModalBody>
                 <Image
@@ -116,7 +121,7 @@ export default function CocktailCard({
                   objectFit={"cover"}
                 />
                 <Stack spacing={4}>
-                  <Heading color={"brown"}>{name}</Heading>
+                  <Heading color={"#251B1C"}>{name}</Heading>
                   <Text
                     id={"ingredientsText"}
                     color={"gray.500"}
@@ -152,8 +157,12 @@ export default function CocktailCard({
                   <Text color={"gray.500"} fontSize={"lg"}>
                     Recipe
                   </Text>
-                  <Text color={"black"}>{strInstructions}</Text>
-                  <Text color={"brown"}>Glass: {strGlass}</Text>
+                  <Text color={"black"} fontSize={"lg"}>
+                    {strInstructions}
+                  </Text>
+                  <Text color={"gray.500"} fontSize={"lg"}>
+                    Glass: {strGlass}
+                  </Text>
                 </Stack>
               </ModalBody>
             </ModalContent>
@@ -174,7 +183,7 @@ export default function CocktailCard({
         pos={"relative"}
       >
         <Stack pt={20} align={"center"} marginBottom={10} marginTop={0}>
-          <Text color={"gray.500"} fontSize={"lg"} textTransform={"uppercase"}>
+          <Text color={"#251B1C"} fontSize={"lg"} textTransform={"uppercase"}>
             {name}
           </Text>
         </Stack>
@@ -193,7 +202,7 @@ export default function CocktailCard({
           <Text
             textTransform={"uppercase"}
             fontSize={"10px"}
-            color={"gray.300"}
+            color={"#251B1C"}
             textAlign={"right"}
             marginBottom={"10px"}
           >

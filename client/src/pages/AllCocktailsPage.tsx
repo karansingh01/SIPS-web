@@ -15,7 +15,6 @@ import SearchBar from "../components/SearchBar";
 import { offset } from "../cache";
 import { log } from "console";
 
-
 const GET_DRINKS_BY_NAME_CONTAINS = gql`
   query getDrinksByNameContainsAny($recipename: String) {
     getDrinksByNameContainsAny(recipename: $recipename) {
@@ -84,19 +83,12 @@ const AllCocktailsPage = () => {
   const { loading, error, data } = useQuery(GET_DRINKS_FROM_INDEX, {
     variables: { amount: useReactiveVar(offset), index: 0 },
   });
-  
+
   const [query, setQuery] = useState("");
   const [cocktails, setCocktails] = useState([]);
   const [visible, setVisible] = useState(true);
-  
+
   const [sortedDown, setSortedDown] = useState(true);
-  
-  // window.onload = function () {
-  //   console.log(cocktails.length + " occktails length");
-  //   if (cocktails.length > 25) {
-  //     window.scrollTo(0, document.body.scrollHeight);
-  //   }
-  // };
 
   const toggleSort = () => {
     setSortedDown(!sortedDown);
@@ -192,7 +184,6 @@ const AllCocktailsPage = () => {
     return sortedCocktails;
   };
 
-
   const [getQuery, { loading: loading1, error: error1, data: data1 }] =
     useLazyQuery(GET_DRINKS_BY_NAME_CONTAINS, {
       variables: { recipename: query },
@@ -207,12 +198,12 @@ const AllCocktailsPage = () => {
       setCocktails(data.getDrinksFromIndex);
     }
     console.log(data, "data");
-    // makes search function work without button. Probably not the best way to do it, but 
+    // makes search function work without button. Probably not the best way to do it, but
     // it works, so I'm not gonna change it. The reason we need the if statement is because
     // we don't want it to run on the first render, because then it would run the query
     if (cocktails.length > 26) {
-      getQuery()
-    };
+      getQuery();
+    }
     // this scrolls to the bottom of the page when the page is loaded after getting more drinks
     window.scrollTo(0, document.body.scrollHeight);
   }, [data]);
@@ -233,10 +224,8 @@ const AllCocktailsPage = () => {
     console.log("removed: ");
   };
 
-
   return (
     <Flex flexDirection="column">
-      {/* <SearchBar /> */}
       <Header />
 
       <Grid
@@ -244,22 +233,27 @@ const AllCocktailsPage = () => {
         margin={"30px"}
         rounded={20}
         templateRows="repeat(1fr)"
-        templateColumns="repeat(1fr)"
+        templateColumns="repeat(4, 1fr)"
         gap={4}
         mt={5}
       >
-        <GridItem colSpan={3}>
+        <GridItem /*colSpan={3}*/ colStart={1} colEnd={4}>
           <SearchBar q={query} setQuery={setQuery} />
         </GridItem>
-        <FilterButtons/>
+        <GridItem colEnd={5}>
+          <FilterButtons />
+        </GridItem>
+
         <GridItem>
           {sortedDown ? (
             <FaSortAlphaDown
               onClick={toggleSort}
               style={{
                 position: "absolute",
-                top: "100px",
+                top: "77px",
                 right: "20px",
+                height: "1.3em",
+                width: "1.3em",
               }}
             />
           ) : (
@@ -267,8 +261,10 @@ const AllCocktailsPage = () => {
               onClick={toggleSort}
               style={{
                 position: "absolute",
-                top: "100px",
+                top: "77px",
                 right: "20px",
+                height: "1.3em",
+                width: "1.3em",
               }}
             />
           )}
@@ -286,13 +282,7 @@ const AllCocktailsPage = () => {
             <CocktailCardsDisplay cocktails={cocktails} />
           )}
         </GridItem>
-        {visible && (
-        <Button
-        onClick={removeElement}
-      >
-        View more
-      </Button>
-      )}
+        {visible && <Button onClick={removeElement}>View more</Button>}
       </Grid>
     </Flex>
   );

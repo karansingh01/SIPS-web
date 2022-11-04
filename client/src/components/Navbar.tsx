@@ -16,7 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { ReactNode, useContext } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/authContext";
+import { AuthContext } from "../context/authContext";
 const TITLE: string = "SIPS";
 const BUTTONTEXT: string = "Favorites";
 
@@ -65,15 +65,14 @@ export default function Navbar() {
               fontSize={"60px"}
               fontWeight={"bold"}
               id={"logo"}
+              marginTop={5}
             >
               {TITLE}
             </Box>
           </RouterLink>
 
-          <Flex alignItems={"center"}>
+          <Flex id={"idButton"} alignItems={"center"}>
             <Stack direction={"row"} spacing={7}>
-              <RouterLink to="/fav"></RouterLink>
-
               <Menu>
                 <MenuButton
                   as={Button}
@@ -81,6 +80,7 @@ export default function Navbar() {
                   variant={"link"}
                   cursor={"pointer"}
                   minW={0}
+                  marginTop={5}
                 >
                   <Avatar
                     size={"md"}

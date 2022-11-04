@@ -1,6 +1,14 @@
-import { gql, useQuery } from '@apollo/client';
-import { Container, Flex, Heading, Image, SimpleGrid, Stack, Text } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
+import { gql, useQuery } from "@apollo/client";
+import {
+  Container,
+  Flex,
+  Heading,
+  Image,
+  SimpleGrid,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 
 const GET_ALL_DRINKS = gql`
   query GetAllDrinks {
@@ -35,9 +43,7 @@ const GET_ALL_DRINKS = gql`
 `;
 
 export default function CocktailDetails() {
-
   const { loading, error, data } = useQuery(GET_ALL_DRINKS);
-
 
   if (loading) {
     return <p>Loading...</p>;
@@ -47,60 +53,51 @@ export default function CocktailDetails() {
     return <p>{error as any}</p>;
   }
 
-  let randomDrink:number = Math.floor(Math.random() * 54);
+  let randomDrink: number = Math.floor(Math.random() * 54);
   const strDrink = data.getAllDrinks[randomDrink].strDrink;
   const IMAGE = data.getAllDrinks[randomDrink].strDrinkThumb;
   const strInstructions = data.getAllDrinks[randomDrink].strInstructions;
   const strGlass = data.getAllDrinks[randomDrink].strGlass;
-  const ingredientsDrink: string[][] = []
+  const ingredientsDrink: string[][] = [];
 
-
-    const ingredients = [];
-    for (let i = 1; i <= 10; i++) {
-      const ingredient = data.getAllDrinks[randomDrink][`strIngredient${i}`];
-      let measurement = data.getAllDrinks[randomDrink][`strMeasure${i}`];
-      if (measurement == null){
-        measurement = ""
-      }
-      if (ingredient) {
-        ingredients.push(measurement+  " "+ ingredient);
-      }
+  const ingredients = [];
+  for (let i = 1; i <= 10; i++) {
+    const ingredient = data.getAllDrinks[randomDrink][`strIngredient${i}`];
+    let measurement = data.getAllDrinks[randomDrink][`strMeasure${i}`];
+    if (measurement == null) {
+      measurement = "";
     }
-    ingredientsDrink.push(ingredients);
+    if (ingredient) {
+      ingredients.push(measurement + " " + ingredient);
+    }
+  }
+  ingredientsDrink.push(ingredients);
 
   return (
-    <Container maxW={"5xl"} py={12}>
+    <Container maxW={"4xl"} py={12}>
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
         <Flex>
           <Image
             rounded={"md"}
             alt={"cocktail image"}
-            src={
-              IMAGE
-            }
+            src={IMAGE}
             objectFit={"cover"}
           />
         </Flex>
         <Stack spacing={4}>
-          <Heading color={"beige"}>
-            {strDrink}
-          </Heading>
-          <Text color={"gray.500"} fontSize={"lg"}>
-            ingredients
+          <Heading color={"beige"}>{strDrink}</Heading>
+          <Text color={"gray.500"} fontSize={"xl"}>
+            Ingredients
           </Text>
           <Stack spacing={4}>
-            
-            {
-              ingredientsDrink.map((ingredient) => (
-                ingredient.map((ing) => (
-                  <Text color={"white"} fontSize={"lg"}>
-                    {ing}
-                  </Text>
-                ))
+            {ingredientsDrink.map((ingredient) =>
+              ingredient.map((ing) => (
+                <Text color={"white"} fontSize={"lg"}>
+                  {ing}
+                </Text>
               ))
-            }
+            )}
           </Stack>
-            
         </Stack>
       </SimpleGrid>
       <Stack marginTop={"20px"}>
@@ -109,14 +106,15 @@ export default function CocktailDetails() {
           fontSize={"20px"}
           color={"beige"}
           marginBottom={"10px"}
-        >
+        ></Text>
+        <Text color={"beige"} fontSize={"l"}>
+          Glass: {strGlass}
         </Text>
-        <Text color={"beige"}>Glass: {strGlass}</Text>
-        <Text color={"gray.500"}>Recipe</Text>
+        <Text color={"gray.500"} fontSize={"xl"}>
+          Recipe
+        </Text>
         <Text color={"white"}>{strInstructions}</Text>
       </Stack>
     </Container>
   );
-
-
 }

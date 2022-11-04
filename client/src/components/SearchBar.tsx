@@ -5,11 +5,12 @@ import {
   InputGroup,
   InputLeftElement,
   Button,
-  Text} from '@chakra-ui/react';
-import { FaSearch } from 'react-icons/fa';
-import gql from 'graphql-tag'
-import { useLazyQuery, useQuery } from '@apollo/client';
-import { useState } from 'react';
+  Text,
+} from "@chakra-ui/react";
+import { FaSearch } from "react-icons/fa";
+import gql from "graphql-tag";
+import { useLazyQuery, useQuery } from "@apollo/client";
+import { useState } from "react";
 
 const GET_DRINKS_BY_NAME_CONTAINS = gql`
   query GetDrinksByNameContains($recipename: String) {
@@ -33,7 +34,7 @@ const GET_DRINKS_BY_NAME_CONTAINS = gql`
   }
 `;
 const GET_DRINKS_BY_NAME_CONTAINS_ANY = gql`
-  query getDrinksByNameContainsAny($recipename: String, $alcohol: String ) {
+  query getDrinksByNameContainsAny($recipename: String, $alcohol: String) {
     getDrinksByNameContainsAny(recipename: $recipename, alcohol: $alcohol) {
       idDrink
       strDrink
@@ -54,33 +55,30 @@ const GET_DRINKS_BY_NAME_CONTAINS_ANY = gql`
   }
 `;
 
-export default function SearchBar( {
+export default function SearchBar({
   q,
   setQuery,
 }: {
   q: string;
   setQuery: Function;
 }) {
-  
-  const [searchTerm, setSearchTerm] = useState('');
-
+  const [searchTerm, setSearchTerm] = useState("");
 
   return (
-    
-    <Stack spacing={4}>
+    <Stack marginLeft={1}>
       <InputGroup>
         <InputLeftElement
           pointerEvents="none"
-          children={<FaSearch color="black" />}
+          children={<FaSearch color="lightpink" />}
         />
         <Input
           type={"search"}
-          placeholder="What drink are you looking for?"
+          placeholder="Search..."
           color={"white"}
           value={q}
           onChange={(e) => setQuery(e.target.value)}
         />
-      {/* <Button onClick={() => getSearchTerm({ variables: { recipename: q } })}>
+        {/* <Button onClick={() => getSearchTerm({ variables: { recipename: q } })}>
         Search
       </Button> */}
       </InputGroup>
