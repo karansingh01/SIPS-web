@@ -203,6 +203,7 @@ const AllCocktailsPage = () => {
     });
 
   useEffect(() => {
+    getQuery()
     if (data) {
       setCocktails(data.getDrinksFromIndex);
     }
@@ -240,11 +241,10 @@ const AllCocktailsPage = () => {
         gap={4}
         mt={5}
       >
-        <FilterButtons/>
         <GridItem colSpan={3}>
           <SearchBar q={query} setQuery={setQuery} />
         </GridItem>
-        <Button onClick={() => getQuery()}>Search</Button>
+        <FilterButtons/>
         <GridItem>
           {sortedDown ? (
             <FaSortAlphaDown
