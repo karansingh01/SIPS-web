@@ -23,11 +23,9 @@ const uri = "mongodb://admin:sips@it2810-26.idi.ntnu.no:27017/";
 
 console.log("Connecting to database");
 
-
 //@ts-ignore
 mongoose.connect(uri, { useUnifiedTopology: true, useNewUrlParser: true })
 .then(()=>console.log("Connected to mongodb"))
-
 
 const connection = mongoose.createConnection(uri);
 autoIncrement.initialize(connection);
@@ -44,6 +42,7 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
 });
+
 await server.start();
 
 server.applyMiddleware({ app });

@@ -1,6 +1,5 @@
 import { gql, useLazyQuery, useQuery } from '@apollo/client';
-import { Button, Flex, Grid, GridItem } from '@chakra-ui/react';
-import React from 'react';
+import { Flex, Grid, GridItem } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
 import CocktailCardsDisplay from '../components/CocktailCardsDisplay';
@@ -64,18 +63,14 @@ const GET_DRINKS_BY_INGREDIENT = gql`
     }
   }
 `;
-export default function GinPage ( /* {
-    setAlcoholType,
-  }: {
-    setAlcoholType: string;
-  } */) 
-  {
+export default function GinPage () {
 
 const [query, setQuery] = useState("");
 
   const [cocktails, setCocktails] = useState([]);
 
-
+  // useLazyQuery is documented in AllCocktailsPage.
+  // it will say that data1 is not used, but it is used in the onCompleted below.
   const [getQuery, { loading: loading1, error: error1, data: data1 }] = useLazyQuery(GET_DRINKS_BY_NAME_CONTAINS,{
     variables: { recipename: query, ingredient: "Gin" },
     onCompleted: (data1) => {

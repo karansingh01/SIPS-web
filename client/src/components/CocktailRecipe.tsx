@@ -8,7 +8,6 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
 
 const GET_ALL_DRINKS = gql`
   query GetAllDrinks {

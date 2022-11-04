@@ -1,10 +1,8 @@
 import { Button, Center, Flex, Grid, GridItem } from "@chakra-ui/react";
-import React from "react";
 import { useEffect, useState } from "react";
 import { gql, useLazyQuery, useQuery, useReactiveVar } from "@apollo/client";
 import {
   FaSortAlphaDown,
-  FaSortAlphaUp,
   FaSortAmountDownAlt,
 } from "react-icons/fa";
 
@@ -13,7 +11,6 @@ import FilterButtons from "../components/FilterButtons";
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
 import { offset } from "../cache";
-import { log } from "console";
 
 const GET_DRINKS_BY_NAME_CONTAINS = gql`
   query getDrinksByNameContainsAny($recipename: String) {
@@ -184,6 +181,7 @@ const AllCocktailsPage = () => {
     return sortedCocktails;
   };
 
+  // useLazyQuery makes it possible to use query when needed, and not on page load
   const [getQuery, { loading: loading1, error: error1, data: data1 }] =
     useLazyQuery(GET_DRINKS_BY_NAME_CONTAINS, {
       variables: { recipename: query },

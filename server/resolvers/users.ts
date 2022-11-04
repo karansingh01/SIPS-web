@@ -47,11 +47,6 @@ module.exports = {
             };
         },
         async loginUser(_: any, {loginInput: {email, password} }: any) {
-            /* Do input validation
-            if (!(email && password)) {
-                res.status(400).send("All input is required");
-            }
-            */
             const user = await User.findOne({ email });
 
             if (user && (await bcrypt.compare(password, user.password))) {
