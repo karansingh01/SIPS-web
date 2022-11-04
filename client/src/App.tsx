@@ -4,7 +4,6 @@ import { HashRouter, Route, Routes } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
 import AllCocktailsPage from "./pages/AllCocktailsPage";
 import CocktailRecipePage from "./pages/CocktailRecipePage";
-import { gql, useQuery } from "@apollo/client";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import { ApolloProvider } from "@apollo/client";
@@ -16,10 +15,6 @@ import GinPage from './pages/GinPage';
 import RumPage from './pages/RumPage';
 import LiqueurPage from './pages/LiqueurPage';
 
-
-// format: response.data.<queryName>.drinks[0].<whateverYouWantToCollect>
-// drinks[0] gives you the first drink in the array, which is the only drink since we
-// are only querying for one random drink.
 
 /**
  * Fetch drinks by alcohol (in different files):
@@ -47,7 +42,5 @@ export default function App() {
         </ApolloProvider>
       </ChakraProvider>
     </AuthProvider>
-    /*       <DisplayLocations />
-     */
   );
 }

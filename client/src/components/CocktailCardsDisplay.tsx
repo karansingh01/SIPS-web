@@ -1,5 +1,4 @@
-import { SimpleGrid, Text, Stack } from "@chakra-ui/react";
-import React from "react";
+import { SimpleGrid, Text } from "@chakra-ui/react";
 import CocktailCard from "./CocktailCard";
 
 export default function CocktailCardsDisplay({

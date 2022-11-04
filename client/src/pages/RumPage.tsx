@@ -1,13 +1,11 @@
-import { Button, Center, Flex, Grid, GridItem } from "@chakra-ui/react";
-import React from "react";
+import { Flex, Grid, GridItem } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { gql, useLazyQuery, useQuery, useReactiveVar } from "@apollo/client";
+import { gql, useLazyQuery, useQuery } from "@apollo/client";
 
 import CocktailCardsDisplay from "../components/CocktailCardsDisplay";
 import FilterButtons from "../components/FilterButtons";
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
-import { offset } from "../cache";
 
 
 const GET_DRINKS_BY_NAME_CONTAINS = gql`

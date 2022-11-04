@@ -1,7 +1,6 @@
 import "./Pages.css";
 
 import { Flex, HStack } from "@chakra-ui/react";
-import React from "react";
 import { BsArrowLeft } from "react-icons/bs";
 import { Link } from "react-router-dom";
 

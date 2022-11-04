@@ -1,13 +1,11 @@
-import { Button, Center, Flex, Grid, GridItem } from "@chakra-ui/react";
-import React from "react";
+import { Flex, Grid, GridItem } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { gql, useLazyQuery, useQuery, useReactiveVar } from "@apollo/client";
+import { gql, useLazyQuery, useQuery } from "@apollo/client";
 
 import CocktailCardsDisplay from "../components/CocktailCardsDisplay";
 import FilterButtons from "../components/FilterButtons";
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
-import { offset } from "../cache";
 
 
 const GET_DRINKS_BY_NAME_CONTAINS = gql`
@@ -76,8 +74,8 @@ const [query, setQuery] = useState("");
 
   const [cocktails, setCocktails] = useState([]);
 
-/*   setAlcohol("Vodka"); */
-
+  // useLazyQuery is documented in AllCocktailsPage.
+  // it will say that data1 is not used, but it is used in the onCompleted below.
   const [getQuery, { loading: loading1, error: error1, data: data1 }] = useLazyQuery(GET_DRINKS_BY_NAME_CONTAINS,{
     variables: { recipename: query, ingredient: "Vodka" },
     onCompleted: (data1) => {

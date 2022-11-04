@@ -1,5 +1,4 @@
-import { Box, Heading, Text, Stack, Container, Button } from "@chakra-ui/react";
-import { FaHeart } from "react-icons/fa";
+import { Box, Text, Stack, Container, Button } from "@chakra-ui/react";
 import { BiDrink } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
@@ -50,14 +49,6 @@ export default function Header() {
           <Text marginTop={150} fontSize={"l"} color={"lightpink"}>
             {text}
           </Text>
-          {/* 
-                Button skal sende til en tilfeldig CocktailRecipe (har satt Link for lenke her, usikker på hva som er mest hensiktsmessig for oss): 
-                <Link to='/{randomCocktail.id}'> 
-                <Button size={'md'} leftIcon={<BiDrink color={'lightpink'} size={20}/>}  color={'beige'} variant={'outline'}>
-                Mix me a drink!
-                </Button>
-                </Link>
-                */}
           <Link to="/cr">
             <Button
               size={"md"}
