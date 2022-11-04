@@ -77,9 +77,6 @@ export default function SearchBar( {
           type={"search"}
           placeholder="What drink are you looking for?"
           color={"white"}
-          // onChange={(event) => {
-          //   setSearchTerm(event.target.value);
-          // }}
           value={q}
           onChange={(e) => setQuery(e.target.value)}
         />
@@ -87,7 +84,6 @@ export default function SearchBar( {
         Search
       </Button> */}
       </InputGroup>
-      <Text>{searchTerm}</Text>
     </Stack>
   );
 }

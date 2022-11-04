@@ -86,6 +86,7 @@ const  { loading,  error, data } = useQuery(GET_DRINKS_BY_INGREDIENT,{
 });
 
   useEffect(() => {
+    getQuery();
     if (data) {
       setCocktails(data.getDrinksByIngredient);
     }
@@ -99,9 +100,6 @@ const  { loading,  error, data } = useQuery(GET_DRINKS_BY_INGREDIENT,{
     // Handle error?
     return <p>{error as any}</p>;
   }
-  
-console.log("cocktailssss",cocktails)
-
 
 
   return (
@@ -119,7 +117,6 @@ console.log("cocktailssss",cocktails)
         <GridItem colSpan={3}>
           <SearchBar q={query} setQuery={setQuery} />
         </GridItem>
-        <Button onClick={() => getQuery()}>Search</Button>
         <FilterButtons/>
         <GridItem colSpan={4}>
           <CocktailCardsDisplay cocktails={cocktails} />

@@ -191,12 +191,13 @@ const AllCocktailsPage = () => {
     useLazyQuery(GET_DRINKS_BY_NAME_CONTAINS, {
       variables: { recipename: query },
       onCompleted: (data1) => {
-        setCocktails(data1.getDrinksByNameContains);
-        console.log(data1.getDrinksByNameContains);
+        setCocktails(data1.getDrinksByNameContainsAny);
+        console.log(data1.getDrinksByNameContainsAny);
       },
     });
 
   useEffect(() => {
+    getQuery()
     if (data) {
       setCocktails(data.getDrinksFromIndex);
     }
@@ -234,11 +235,10 @@ const AllCocktailsPage = () => {
         gap={4}
         mt={5}
       >
-        <FilterButtons/>
         <GridItem colSpan={3}>
           <SearchBar q={query} setQuery={setQuery} />
         </GridItem>
-        <Button onClick={() => getQuery()}>Search</Button>
+        <FilterButtons/>
         <GridItem>
           {sortedDown ? (
             <FaSortAlphaDown
