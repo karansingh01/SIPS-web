@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "cypress": "^10.11.0",
-    "faker": "^6.6.6",
-    "react-router-dom": "^6.4.2"
-  }
-}
