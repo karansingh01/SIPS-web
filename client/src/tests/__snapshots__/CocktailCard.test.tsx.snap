@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Snapshot test of initial front page 1`] = `
+exports[`Snapshot test of CocktailCard 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body
@@ -99,19 +99,80 @@ Object {
         style="position: fixed; z-index: 5500; pointer-events: none; display: flex; flex-direction: column;"
       />
     </div>
+    <div>
+      <div
+        class="css-xqyimh"
+      >
+        <button
+          class="css-1paohjs"
+          role="group"
+        >
+          <div
+            class="chakra-stack css-1q0iyqj"
+          >
+            <p
+              class="chakra-text css-1m8qwtx"
+            >
+              Drink
+            </p>
+          </div>
+          <div
+            class="css-1a5ho4p"
+          >
+            <img
+              class="chakra-image css-19s64ds"
+              src="test"
+            />
+          </div>
+          <div
+            class="chakra-stack css-1282mh9"
+          >
+            <p
+              class="chakra-text css-1cjrhs7"
+            >
+              Click on me...
+            </p>
+          </div>
+        </button>
+      </div>
+    </div>
   </body>,
   "container": <div>
-    <p>
-      Loading...
-    </p>
-    <span
-      hidden=""
-      id="__chakra_env"
-    />
-    <span
-      hidden=""
-      id="__chakra_env"
-    />
+    <div
+      class="css-xqyimh"
+    >
+      <button
+        class="css-1paohjs"
+        role="group"
+      >
+        <div
+          class="chakra-stack css-1q0iyqj"
+        >
+          <p
+            class="chakra-text css-1m8qwtx"
+          >
+            Drink
+          </p>
+        </div>
+        <div
+          class="css-1a5ho4p"
+        >
+          <img
+            class="chakra-image css-19s64ds"
+            src="test"
+          />
+        </div>
+        <div
+          class="chakra-stack css-1282mh9"
+        >
+          <p
+            class="chakra-text css-1cjrhs7"
+          >
+            Click on me...
+          </p>
+        </div>
+      </button>
+    </div>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
