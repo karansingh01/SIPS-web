@@ -1,10 +1,4 @@
 import "./App.css";
-import { client } from "./api/client";
-import { alcoholFilterParam } from "./api/graphql/alcoholFilter";
-import { RandomDrinkQuery } from "./api/graphql/randomDrink";
-import { VodkaDrinksQuery } from "./api/graphql/vodkaDrinks";
-import { GinDrinksQuery } from "./api/graphql/ginDrinks";
-import { RumDrinksQuery } from "./api/graphql/rumDrinks";
 import reportWebVitals from "./reportWebVitals";
 import { HashRouter, Route, Routes } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
@@ -32,7 +26,6 @@ import LiqueurPage from './pages/LiqueurPage';
  * Fetch drinks by alcohol (in different files):
  */
 
-console.log("reportwebVitals: ", reportWebVitals);
 
 export default function App() {
   return (

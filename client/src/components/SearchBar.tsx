@@ -58,45 +58,14 @@ const GET_DRINKS_BY_NAME_CONTAINS_ANY = gql`
 export default function SearchBar({
   q,
   setQuery,
-  setAlcoholType,
 }: {
   q: string;
   setQuery: Function;
-  setAlcoholType: string;
 }) {
   const [searchTerm, setSearchTerm] = useState("");
-  const [alcohol, setAlcohol] = useState("");
-
-  /*   setAlcohol("Vodka");
-   */
-  console.log("searchBar", alcohol);
-
-  const [getSearchTerm, { loading, error, data }] = useLazyQuery(
-    GET_DRINKS_BY_NAME_CONTAINS_ANY,
-    {
-      variables: { recipename: searchTerm, alcohol: "Vodka" },
-      onCompleted: (data) => {
-        console.log("searchBar", data);
-        console.log(data.getDrinksByNameContains);
-      },
-    }
-  );
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    // Handle error?
-    return <p>{error as any}</p>;
-  }
-
-  if (data) {
-    console.log(data);
-  }
 
   return (
-    <Stack>
+    <Stack marginLeft={1}>
       <InputGroup>
         <InputLeftElement
           pointerEvents="none"
@@ -104,11 +73,8 @@ export default function SearchBar({
         />
         <Input
           type={"search"}
-          placeholder="Search for a drink..."
+          placeholder="Search..."
           color={"white"}
-          // onChange={(event) => {
-          //   setSearchTerm(event.target.value);
-          // }}
           value={q}
           onChange={(e) => setQuery(e.target.value)}
         />
@@ -116,7 +82,6 @@ export default function SearchBar({
         Search
       </Button> */}
       </InputGroup>
-      <Text>{searchTerm}</Text>
     </Stack>
   );
 }

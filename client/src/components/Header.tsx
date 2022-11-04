@@ -2,7 +2,7 @@ import { Box, Heading, Text, Stack, Container, Button } from "@chakra-ui/react";
 import { FaHeart } from "react-icons/fa";
 import { BiDrink } from "react-icons/bi";
 import { Link } from "react-router-dom";
-import Navbar from "./Navbar/Navbar";
+import Navbar from "./Navbar";
 
 export default function Header() {
   const IMAGE: string =

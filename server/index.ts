@@ -17,7 +17,9 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
-const uri = "mongodb+srv://sips:sips123@sips.zjjstwz.mongodb.net/?retryWrites=true&w=majority";
+
+// it is technically not safe to have the uri in the code, but for the sake of the project, it is ok
+const uri = "mongodb://admin:sips@it2810-26.idi.ntnu.no:27017/";
 
 console.log("Connecting to database");
 

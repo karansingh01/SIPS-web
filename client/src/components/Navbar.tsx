@@ -1,4 +1,3 @@
-import "./Navbar.css";
 import {
   Avatar,
   Box,
@@ -17,7 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { ReactNode, useContext } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/authContext";
+import { AuthContext } from "../context/authContext";
 const TITLE: string = "SIPS";
 const BUTTONTEXT: string = "Favorites";
 

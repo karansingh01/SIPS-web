@@ -26,7 +26,8 @@ const startServer = () => __awaiter(void 0, void 0, void 0, function* () {
     app.use(express_1.default.json());
     app.use(express_1.default.urlencoded({ extended: false }));
     app.use((0, cors_1.default)());
-    const uri = "mongodb+srv://sips:sips123@sips.zjjstwz.mongodb.net/?retryWrites=true&w=majority";
+    // it is technically not safe to have the uri in the code, but for the sake of the project, it is ok
+    const uri = "mongodb://admin:sips@it2810-26.idi.ntnu.no:27017/";
     console.log("Connecting to database");
     //@ts-ignore
     mongoose_1.default.connect(uri, { useUnifiedTopology: true, useNewUrlParser: true })
