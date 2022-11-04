@@ -91,12 +91,12 @@ const AllCocktailsPage = () => {
   
   const [sortedDown, setSortedDown] = useState(true);
   
-  window.onload = function () {
-    console.log(cocktails.length + " occktails length");
-    if (cocktails.length > 25) {
-      window.scrollTo(0, document.body.scrollHeight);
-    }
-  };
+  // window.onload = function () {
+  //   console.log(cocktails.length + " occktails length");
+  //   if (cocktails.length > 25) {
+  //     window.scrollTo(0, document.body.scrollHeight);
+  //   }
+  // };
 
   const toggleSort = () => {
     setSortedDown(!sortedDown);
@@ -203,10 +203,17 @@ const AllCocktailsPage = () => {
     });
 
   useEffect(() => {
-    getQuery()
     if (data) {
       setCocktails(data.getDrinksFromIndex);
     }
+    console.log(data, "data");
+    // makes search function work without button. Probably not the best way to do it, but 
+    // it works, so I'm not gonna change it. The reason we need the if statement is because
+    // we don't want it to run on the first render, because then it would run the query
+    if (cocktails.length > 26) {
+      getQuery()
+    };
+    // this scrolls to the bottom of the page when the page is loaded after getting more drinks
     window.scrollTo(0, document.body.scrollHeight);
   }, [data]);
 
