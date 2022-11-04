@@ -12,9 +12,7 @@ test("Snapshot test of AllCocktailsPage", async () => {
     <AuthProvider>
       <ChakraProvider>
         <MockedProvider>
-          {/*  <HashRouter> */}
           <AllCocktailsPage />
-          {/* </HashRouter> */}
         </MockedProvider>
       </ChakraProvider>
     </AuthProvider>

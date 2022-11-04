@@ -7,14 +7,12 @@ import { AuthProvider } from "../context/authContext";
 import client1 from "../apolloClient";
 import App from "../App";
 
-test("Snapshot test checks that the same pokemons get rendered every time", async () => {
+test("Snapshot test of initial front page", async () => {
   const { queryAllByRole, baseElement } = render(
     <AuthProvider>
       <ChakraProvider>
         <MockedProvider>
-          {/*  <HashRouter> */}
           <App />
-          {/* </HashRouter> */}
         </MockedProvider>
       </ChakraProvider>
     </AuthProvider>
