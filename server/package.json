@@ -135,6 +135,7 @@
     "author": "",
     "license": "ISC",
     "devDependencies": {
+        "@testing-library/react": "^13.4.0",
         "@types/mongoose": "^5.11.97",
         "@types/mongoose-auto-increment": "^5.0.35",
         "nodemon": "^2.0.15",
