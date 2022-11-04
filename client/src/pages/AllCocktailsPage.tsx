@@ -189,7 +189,6 @@ const AllCocktailsPage = () => {
       variables: { recipename: query },
       onCompleted: (data1) => {
         setCocktails(data1.getDrinksByNameContainsAny);
-        console.log(data1.getDrinksByNameContainsAny);
       },
     });
 
@@ -197,11 +196,10 @@ const AllCocktailsPage = () => {
     if (data) {
       setCocktails(data.getDrinksFromIndex);
     }
-    console.log(data, "data");
     // makes search function work without button. Probably not the best way to do it, but
     // it works, so I'm not gonna change it. The reason we need the if statement is because
-    // we don't want it to run on the first render, because then it would run the query
-    if (cocktails.length > 26) {
+    // we don't want it to run on the first render, because then it would load all drinks
+    if (cocktails.length > 25) {
       getQuery();
     }
     // this scrolls to the bottom of the page when the page is loaded after getting more drinks
