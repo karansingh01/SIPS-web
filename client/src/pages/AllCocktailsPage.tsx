@@ -199,12 +199,12 @@ const AllCocktailsPage = () => {
     // makes search function work without button. Probably not the best way to do it, but
     // it works, so I'm not gonna change it. The reason we need the if statement is because
     // we don't want it to run on the first render, because then it would load all drinks
-    if (cocktails.length > 25) {
+    if (query!=="") {
       getQuery();
     }
     // this scrolls to the bottom of the page when the page is loaded after getting more drinks
     window.scrollTo(0, document.body.scrollHeight);
-  }, [data]);
+  }, [query, data, getQuery]);
 
   if (loading) {
     return <p>Loading...</p>;

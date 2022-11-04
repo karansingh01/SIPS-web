@@ -11,6 +11,7 @@ import { FaSearch } from "react-icons/fa";
 import gql from "graphql-tag";
 import { useLazyQuery, useQuery } from "@apollo/client";
 import { useState } from "react";
+import { getQueryDefinition } from "@apollo/client/utilities";
 
 const GET_DRINKS_BY_NAME_CONTAINS = gql`
   query GetDrinksByNameContains($recipename: String) {
@@ -76,7 +77,12 @@ export default function SearchBar({
           placeholder="Search..."
           color={"white"}
           value={q}
-          onChange={(e) => setQuery(e.target.value)}
+          // onChange={(e) => setQuery(e.target.value)}
+          // // onchange console log and setquery
+          onChange={(e) => {
+            console.log(e.target.value);
+            setQuery(e.target.value);
+          }}
         />
         {/* <Button onClick={() => getSearchTerm({ variables: { recipename: q } })}>
         Search
