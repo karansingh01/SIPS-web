@@ -3,6 +3,7 @@ const { gql } = require('apollo-server');
 module.exports = gql`
 
 type Drinks {
+  // Siden alle feltene i modellen har typer er det unødvendig å ha str først. Det er også fint å bruke så riktige typer som mulig. F.eks. kunne kanskje strAlcoholic vært en boolean. 
   idDrink: String
   strDrink: String
   strDrinkAlternate: String
@@ -18,6 +19,7 @@ type Drinks {
   strInstructionsFR: String
   strInstructionsIT: String
   strDrinkThumb: String
+  // For ingredients og measurements ville jeg anbefalt lister. Ingredienser gjenbrukes også gjerne så for en bedre modell her kunne dere laget en egen type av ingrediens og referert til disse i hver oppskrift.
   strIngredient1: String
   strIngredient2: String
   strIngredient3: String

@@ -19,7 +19,7 @@ const TITLE: string = "SIPS";
 export default function Navbar() {
 
   // For checking if user is logged in or not
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { user, logout } = useContext<{
     user: any;
     login: (userData: any) => void;
@@ -36,7 +36,6 @@ export default function Navbar() {
   };
 
   return (
-    <>
       <Box backgroundColor={"transparent"} px={10} id={"navbar"}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <RouterLink to="/">
@@ -106,6 +105,5 @@ export default function Navbar() {
           </Flex>
         </Flex>
       </Box>
-    </>
   );
 }

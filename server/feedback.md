@@ -1,0 +1,4 @@
+- Supert at dere bruker typescript også serverside!
+- Det er litt vanskelig å lese koden fordi den ikke er formatert. Prettier er et flott verktøy for å automatisk formatere kode.
+- `//rest routes`, det er nyttig med kommentarer, men her tenker jeg at koden er forklarende nok. I et større prosjekt kunne man også dratt ut endepunktene i en egen fil for tydeligere skille.
+- Inkludere gjerne .dist mappen i gitingore filen. Pluss for bruk av gitignore :) 

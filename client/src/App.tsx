@@ -28,6 +28,7 @@ export default function App() {
         <ApolloProvider client={client1}>
           <HashRouter>
             <Routes>
+              {`Det ser ut til at de fleste av rutene deres rendrer det samme innholdet så her kunne man gjerne ryddet opp litt. Dere kan enkelt hente ut query params fra URL ved å bruke router pakken, se her f.eks. https://v5.reactrouter.com/web/example/query-parameters`}
               <Route path="/" element={<AllCocktailsPage />} />
               <Route path="/cr" element={<CocktailRecipePage />} />
               <Route path="/register" element={<RegisterPage />} />

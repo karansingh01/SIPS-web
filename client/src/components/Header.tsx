@@ -38,7 +38,7 @@ export default function Header() {
         style={{ flexDirection: "row-reverse" }}
         marginTop={"30px"}
         marginRight={"30px"}
-      ></Stack>
+      />
       <Container
         height="600px"
         position="relative"
